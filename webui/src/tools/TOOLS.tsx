@@ -8,6 +8,7 @@ import {
 	IpfsClusterToolDefinition,
 	IpnsToolDefinition
 } from './definitions';
+import {FilesToolDefinition} from './definitions/FilesToolDefinition';
 
 export const IpfsWebUIDefinition: ITool = {
 	name: 'IPFS WebUI',
@@ -20,11 +21,12 @@ export const IpfsCidToolDefinition: ITool = {
 	tool: EmbedTool.create('https://cid.ipfs.io'),
 };
 
-export const TOOLS: IToolCategory[] = [
-	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
-];
-export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 export const DefaultToolIcon = <DashboardIcon/>;
 export const DefaultToolImage = '/missing.jpg';
+
+export const TOOLS: IToolCategory[] = [
+	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
+	{name: 'Tools', tools: [FilesToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
+];
+export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 

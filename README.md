@@ -6,6 +6,12 @@ Or you can follow the instructions below and build it yourself.
 ![screenshot](./docs/img/ipfs-cluster-webui.png)
 
 
+## Shortcuts
+
+- `ctrl` + `h` - Go to dashboard.
+- `ctrl` + `,` - Go to configuration.
+- `ctrl` + `m` - Toggle menu.
+
 ## Notes
 
 **Cluster webui**

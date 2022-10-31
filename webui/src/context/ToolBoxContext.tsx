@@ -26,6 +26,9 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		} else if (event.key == ',' && event.ctrlKey) {
 			event.preventDefault();
 			setTool(ConfigurationDefinition);
+		} else if (event.key == 'm' && event.ctrlKey) {
+			event.preventDefault();
+			setMenuOpen(v => !v);
 		}
 		console.log(`Key pressed: ${event.key}`);
 	}, []);

@@ -3,11 +3,13 @@
   "packageManager": "yarn@3.2.4",
   "workspaces": [
     "webui",
-    "ipfs-cluster-api"
+    "ipfs-cluster-api",
+    "tests"
   ],
   "scripts": {
     "start": "yarn workspace webui run start",
     "build": "yarn workspaces foreach run build",
+    "test": "yarn workspace tests run test",
     "upgrade": "yarn upgrade-interactive"
   }
 }

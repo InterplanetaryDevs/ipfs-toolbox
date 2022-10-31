@@ -8,7 +8,7 @@ export interface IToolBoxContext {
 	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
 	isMenuOpen: boolean,
 	setMenuOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
-	menu: JSX.Element,
+	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 }
 

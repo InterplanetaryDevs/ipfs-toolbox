@@ -10,7 +10,7 @@ import {
 	Stack,
 	Typography,
 } from '@mui/material';
-import {SyntheticEvent, useEffect, useState} from 'react';
+import React, {SyntheticEvent, useEffect, useState} from 'react';
 import {useIpfsCluster} from '../../context/ApiContext';
 import {useLoading} from '../../hooks/UseLoading';
 

@@ -15,6 +15,7 @@ import {useToolBox} from '../context/ToolBoxContext';
 import {ToolList} from './menu/ToolList';
 import {DashboardDefinition} from './Dashboard';
 import {ConfigurationDefinition} from './Configuration';
+import React from 'react';
 
 export function Menu() {
 	const {tool, setTool, setMenuOpen, isMenuOpen} = useToolBox();

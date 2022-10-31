@@ -20,7 +20,7 @@ export function Publish() {
 		<CardHeader title={'Publish'}/>
 		<CardContent>
 			<Select label={'key'} value={key} onChange={(e) => setKey(e.target.value)}>
-				{keys.map(k => (<MenuItem value={k.name}>{k.name} : {k.id}</MenuItem>))}
+				{keys.map(k => (<MenuItem value={k.name} key={k.name}>{k.name} : {k.id}</MenuItem>))}
 			</Select>
 			<br/>
 			<PublishButton key={key}/>

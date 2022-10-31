@@ -4,6 +4,7 @@ import {useIpfsCluster} from '../../context/ApiContext';
 import {PinOptions} from './types/PinOptions';
 import {PinType} from './types/PinType';
 import {PinForm} from './PinForm';
+import React from 'react';
 
 export interface PinDialogProps {
 	pin?: PinType;

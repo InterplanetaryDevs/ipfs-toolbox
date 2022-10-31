@@ -16,6 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {PublishButton} from './PublishButton';
 import {Delayed} from '../../components/Delayed';
 import {useSnackbar} from 'notistack';
+import React from 'react';
+import {ExportButton} from './ExportButton';
 
 export function KeyList() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
@@ -93,6 +95,7 @@ export function KeyList() {
 					})()}/>
 					</Typography>
 					<PublishButton key={key.name}/>
+					<ExportButton key={key.name}/>
 					<ButtonGroup>
 						<Button onClick={() => deleteKey(key.name)}>Delete</Button>
 						<Button>Export</Button>

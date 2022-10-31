@@ -1,4 +1,4 @@
-import {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
+import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
 import {ITool} from '../App';
 import {DashboardDefinition} from '../components/Dashboard';
 import {ConfigurationDefinition} from '../components/Configuration';

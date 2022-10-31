@@ -2,6 +2,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import {Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography} from '@mui/material';
 import {ITool} from '../../App';
 import {TOOLS} from '../../tools/TOOLS';
+import React from 'react';
 
 export function ToolList(props: { onClick: (tool: ITool) => void, tool: ITool }) {
 	return <>{

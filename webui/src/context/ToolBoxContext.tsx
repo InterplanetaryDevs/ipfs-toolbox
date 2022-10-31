@@ -1,6 +1,7 @@
 import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
 import {ITool} from '../types';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
+import {ToolSearch} from '../components/ToolSearch';
 
 export interface IToolBoxContext {
 	tool: ITool,
@@ -59,6 +60,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		isSearchOpen,
 		setSearchOpen,
 	}}>
+		<ToolSearch/>
 		{props.children}
 	</ToolBoxContext.Provider>;
 }

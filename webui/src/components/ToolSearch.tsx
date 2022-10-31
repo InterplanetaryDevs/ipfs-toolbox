@@ -1,5 +1,5 @@
 import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
-import {useToolBox} from '../context/ToolBoxContext';
+import {useToolBox} from '../context';
 import React, {useEffect, useMemo, useState} from 'react';
 import {AdditionalTools, DefaultToolIcon, TOOLS} from '../tools/TOOLS';
 import {ITool} from '../types';
@@ -24,6 +24,7 @@ export function ToolSearch() {
 		const allItems = AdditionalTools.concat(...TOOLS.map(c => c.tools));
 
 		setSelected(0);
+
 		return allItems.filter(t => t.name.toLowerCase().includes(value.toLowerCase()));
 	}, [value]);
 

@@ -2,7 +2,6 @@ import React, {createContext, PropsWithChildren, useCallback, useContext, useEff
 import {ITool} from '../App';
 import {DashboardDefinition} from '../components/Dashboard';
 import {ConfigurationDefinition} from '../components/Configuration';
-import {ToolSearch} from '../components/ToolSearch';
 
 export interface IToolBoxContext {
 	tool: ITool,
@@ -36,6 +35,10 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		} else if (event.key == ' ' && event.ctrlKey) {
 			event.preventDefault();
 			setSearchOpen(v => !v);
+		} else if (event.key == 'Escape') {
+			event.preventDefault();
+			setSearchOpen(false);
+			setMenuOpen(false);
 		}
 	}, []);
 
@@ -57,7 +60,6 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		isSearchOpen,
 		setSearchOpen,
 	}}>
-		<ToolSearch/>
 		{props.children}
 	</ToolBoxContext.Provider>;
 }

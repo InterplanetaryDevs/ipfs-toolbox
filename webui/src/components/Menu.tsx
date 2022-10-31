@@ -16,9 +16,10 @@ import {ToolList} from './menu/ToolList';
 import {DashboardDefinition} from './Dashboard';
 import {ConfigurationDefinition} from './Configuration';
 import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 
 export function Menu() {
-	const {tool, setTool, setMenuOpen, isMenuOpen} = useToolBox();
+	const {tool, setTool, setMenuOpen, isMenuOpen, setSearchOpen} = useToolBox();
 	return <Drawer
 		anchor={'left'}
 		open={isMenuOpen}
@@ -29,6 +30,17 @@ export function Menu() {
 			role="presentation"
 		>
 			<List>
+				<ListItem disablePadding>
+					<ListItemButton onClick={() => {
+						setSearchOpen(true);
+						setMenuOpen(false);
+					}}>
+						<ListItemIcon>
+							<SearchIcon/>
+						</ListItemIcon>
+						<ListItemText primary={'Search'}/>
+					</ListItemButton>
+				</ListItem>
 				<ListItem disablePadding selected={tool === DashboardDefinition}>
 					<ListItemButton onClick={() => {
 						setTool(DashboardDefinition);

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import {ITool} from '../App';
-import LanIcon from '@mui/icons-material/Lan';
 import {EmbedTool} from './EmbedTool';
-import {lazy} from 'react';
+import LanIcon from '@mui/icons-material/Lan';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const IpnsTool = lazy(() => import('./ipns/IpnsTool'));
 export const IpnsToolDefinition: ITool = {
@@ -30,10 +30,12 @@ export const IpfsClusterToolDefinition: ITool = {
 };
 
 export const TOOLS: IToolCategory[] = [
-		{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-		{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
-	]
-;
+	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
+	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
+];
+
+export const DefaultToolIcon = <DashboardIcon/>;
+export const DefaultToolImage = '/assets/missing.jpg';
 
 export interface IToolCategory {
 	name: string,

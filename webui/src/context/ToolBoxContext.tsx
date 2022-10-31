@@ -2,12 +2,15 @@ import React, {createContext, PropsWithChildren, useCallback, useContext, useEff
 import {ITool} from '../App';
 import {DashboardDefinition} from '../components/Dashboard';
 import {ConfigurationDefinition} from '../components/Configuration';
+import {ToolSearch} from '../components/ToolSearch';
 
 export interface IToolBoxContext {
 	tool: ITool,
 	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
 	isMenuOpen: boolean,
 	setMenuOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+	isSearchOpen: boolean,
+	setSearchOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
 	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 }
@@ -17,6 +20,7 @@ const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
 export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [tool, setTool] = useState(DashboardDefinition);
 	const [menu, setMenu] = useState<JSX.Element>();
+	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 
 	const handleKeyPress = useCallback((event: KeyboardEvent) => {
@@ -29,8 +33,10 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		} else if (event.key == 'm' && event.ctrlKey) {
 			event.preventDefault();
 			setMenuOpen(v => !v);
+		} else if (event.key == ' ' && event.ctrlKey) {
+			event.preventDefault();
+			setSearchOpen(v => !v);
 		}
-		console.log(`Key pressed: ${event.key}`);
 	}, []);
 
 	useEffect(() => {
@@ -48,7 +54,10 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		setMenuOpen,
 		menu,
 		setMenu,
+		isSearchOpen,
+		setSearchOpen,
 	}}>
+		<ToolSearch/>
 		{props.children}
 	</ToolBoxContext.Provider>;
 }

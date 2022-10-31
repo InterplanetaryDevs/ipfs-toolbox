@@ -11,6 +11,7 @@ Or you can follow the instructions below and build it yourself.
 - `ctrl` + `h` - Go to dashboard.
 - `ctrl` + `,` - Go to configuration.
 - `ctrl` + `m` - Toggle menu.
+- `ctrl` + ` ` - Toggle search.
 
 ## Notes
 

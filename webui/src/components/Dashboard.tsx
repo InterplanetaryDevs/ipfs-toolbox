@@ -1,6 +1,6 @@
 import {Button, Card, CardActions, CardHeader, CardMedia, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
-import {TOOLS} from '../tools/TOOLS';
+import {DefaultToolImage, TOOLS} from '../tools/TOOLS';
 import {ITool} from '../App';
 import {useToolBox} from '../context/ToolBoxContext';
 
@@ -22,7 +22,7 @@ export function Dashboard() {
 				<Card>
 					<CardMedia
 						component={'img'}
-						image={t.image ?? '/assets/missing.jpg'}
+						image={t.image ?? DefaultToolImage}
 					/>
 					<CardHeader title={t.name}/>
 					<CardActions>

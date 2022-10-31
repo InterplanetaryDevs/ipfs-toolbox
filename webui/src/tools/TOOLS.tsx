@@ -28,4 +28,5 @@ export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
 	{name: 'Tools', tools: [FilesToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
+
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];

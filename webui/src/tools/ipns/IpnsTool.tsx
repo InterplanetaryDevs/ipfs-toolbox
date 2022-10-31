@@ -15,7 +15,6 @@ import {useSnackbar} from 'notistack';
 import React, {useEffect, useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
 import {useMenu} from '../../hooks/UseMenu';
-import {IToolProps} from '../../IToolProps';
 import {KeyList} from './KeyList';
 
 function Publish() {

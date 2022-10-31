@@ -14,19 +14,22 @@ export function Dashboard() {
 	const {setTool} = useToolBox();
 
 	return (<Container>
-			{TOOLS.map(c => (<Grid container key={c.name} spacing={3}>
-				<Grid item xs={12}>
-					<Typography variant={'h4'}>{c.name}</Typography>
-				</Grid>
-				{c.tools.map(t => (<Grid item xs={4} key={t.name}>
-					<Card>
-						<CardMedia/>
-						<CardHeader title={t.name}/>
-						<CardActions>
-							<Button onClick={() => setTool(t)}>Open</Button>
-						</CardActions>
-					</Card>
-				</Grid>))}
+		{TOOLS.map(c => (<Grid container key={c.name} spacing={3}>
+			<Grid item xs={12}>
+				<Typography variant={'h4'}>{c.name}</Typography>
+			</Grid>
+			{c.tools.map(t => (<Grid item xs={4} key={t.name}>
+				<Card>
+					<CardMedia
+						component={'img'}
+						image={t.image ?? '/assets/missing.jpg'}
+					/>
+					<CardHeader title={t.name}/>
+					<CardActions>
+						<Button onClick={() => setTool(t)}>Open</Button>
+					</CardActions>
+				</Card>
 			</Grid>))}
-		</Container>);
+		</Grid>))}
+	</Container>);
 }

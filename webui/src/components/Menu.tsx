@@ -14,6 +14,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import {useToolBox} from '../context/ToolBoxContext';
 import {ToolList} from './menu/ToolList';
 import {DashboardDefinition} from './Dashboard';
+import {ConfigurationDefinition} from './Configuration';
 
 export function Menu() {
 	const {tool, setTool, setMenuOpen, isMenuOpen} = useToolBox();
@@ -42,12 +43,14 @@ export function Menu() {
 			<Divider/>
 			<Typography>Settings</Typography>
 			<List>
-				<ListItem disablePadding>
-					<ListItemButton>
+				<ListItem disablePadding selected={tool === ConfigurationDefinition}>
+					<ListItemButton onClick={() => {
+						setTool(ConfigurationDefinition);
+					}}>
 						<ListItemIcon>
 							<SettingsIcon/>
 						</ListItemIcon>
-						<ListItemText primary={'settings'}/>
+						<ListItemText primary={'Configuration'}/>
 					</ListItemButton>
 				</ListItem>
 			</List>

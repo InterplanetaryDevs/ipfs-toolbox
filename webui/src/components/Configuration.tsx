@@ -1,4 +1,5 @@
 import {ITool} from '../App';
+import React from 'react';
 
 export const ConfigurationDefinition: ITool = {
 	tool: <Configuration/>,

@@ -13,7 +13,7 @@ import {
 	TableRow,
 } from '@mui/material';
 import {useSnackbar} from 'notistack';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useIpfsCluster} from '../../context/ApiContext';
 import {useLoading} from '../../hooks/UseLoading';
 

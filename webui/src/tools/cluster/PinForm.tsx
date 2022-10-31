@@ -1,6 +1,6 @@
 import SaveIcon from '@mui/icons-material/Save';
 import {Grid, IconButton, TextField} from '@mui/material';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {PinOptions} from './types/PinOptions';
 import {PinType} from './types/PinType';
 

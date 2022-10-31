@@ -3,6 +3,7 @@ import {useSnackbar} from 'notistack';
 import {PinOptions} from 'ipfs-cluster-api';
 import {useIpfsCluster} from '../../context/ApiContext';
 import {PinForm} from './PinForm';
+import React from 'react';
 
 export const AddPinDialog = (props: any) => {
 	const {enqueueSnackbar} = useSnackbar();

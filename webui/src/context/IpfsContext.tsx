@@ -1,6 +1,6 @@
 import {create} from 'ipfs-http-client';
-import type { IPFS } from 'ipfs-core-types'
-import {createContext, PropsWithChildren, useContext, useMemo, useState} from 'react';
+import type {IPFS} from 'ipfs-core-types';
+import React, {createContext, PropsWithChildren, useContext, useMemo, useState} from 'react';
 
 export interface IIpfsContext {
 	apiUrl: string;

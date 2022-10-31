@@ -1,4 +1,4 @@
-import {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
+import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
 import {ITool} from '../App';
 import {DashboardDefinition} from '../components/Dashboard';
 import {ConfigurationDefinition} from '../components/Configuration';
@@ -8,7 +8,9 @@ export interface IToolBoxContext {
 	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
 	isMenuOpen: boolean,
 	setMenuOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
-	menu: JSX.Element,
+	isSearchOpen: boolean,
+	setSearchOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 }
 
@@ -17,6 +19,7 @@ const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
 export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [tool, setTool] = useState(DashboardDefinition);
 	const [menu, setMenu] = useState<JSX.Element>();
+	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 
 	const handleKeyPress = useCallback((event: KeyboardEvent) => {
@@ -26,8 +29,17 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		} else if (event.key == ',' && event.ctrlKey) {
 			event.preventDefault();
 			setTool(ConfigurationDefinition);
+		} else if (event.key == 'm' && event.ctrlKey) {
+			event.preventDefault();
+			setMenuOpen(v => !v);
+		} else if (event.key == ' ' && event.ctrlKey) {
+			event.preventDefault();
+			setSearchOpen(v => !v);
+		} else if (event.key == 'Escape') {
+			event.preventDefault();
+			setSearchOpen(false);
+			setMenuOpen(false);
 		}
-		console.log(`Key pressed: ${event.key}`);
 	}, []);
 
 	useEffect(() => {
@@ -45,6 +57,8 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		setMenuOpen,
 		menu,
 		setMenu,
+		isSearchOpen,
+		setSearchOpen,
 	}}>
 		{props.children}
 	</ToolBoxContext.Provider>;

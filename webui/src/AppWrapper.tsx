@@ -5,6 +5,7 @@ import {App} from './App';
 import {IpfsClusterContextProvider} from './context/ApiContext';
 import {IpfsContextProvider} from './context/IpfsContext';
 import {ToolBoxContextProvider} from './context/ToolBoxContext';
+import React from 'react';
 
 const theme = createTheme({
 	palette: {

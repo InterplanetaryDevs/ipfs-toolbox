@@ -10,14 +10,14 @@ import {
 	ListItemText,
 } from '@mui/material';
 import {useSnackbar} from 'notistack';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReplayIcon from '@mui/icons-material/Replay';
 import {useIpfsCluster} from '../../context/ApiContext';
 
 export const IdentityDisplay = (props: any) => {
 	const [identity, setIdentity] = useState<any>();
-	const {enqueueSnackbar} = useSnackbar()
-	const api = useIpfsCluster().ipfsCluster
+	const {enqueueSnackbar} = useSnackbar();
+	const api = useIpfsCluster().ipfsCluster;
 
 	const reload = () => {
 		api.id()

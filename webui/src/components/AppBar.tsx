@@ -4,6 +4,7 @@ import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
 import {ConnectionTextField} from './ConnectionTextField';
 import {useIpfsCluster} from '../context/ApiContext';
+import React from 'react';
 
 interface IAppBarProps {
 }

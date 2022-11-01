@@ -5,10 +5,10 @@ import {ITool, IToolCategory} from '../types';
 import {
 	ConfigurationDefinition,
 	DashboardDefinition,
+	FilesToolDefinition,
 	IpfsClusterToolDefinition,
 	IpnsToolDefinition
 } from './definitions';
-import {FilesToolDefinition} from './definitions/FilesToolDefinition';
 
 export const IpfsWebUIDefinition: ITool = {
 	name: 'IPFS WebUI',

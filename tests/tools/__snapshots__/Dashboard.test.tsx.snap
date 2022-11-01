@@ -53,7 +53,7 @@ exports[`Dashboard renders 1`] = `
             <ForwardRef(Card)>
               <ForwardRef(CardMedia)
                 component="img"
-                image="/assets/missing.jpg"
+                image="/missing.jpg"
               />
               <ForwardRef(CardHeader)
                 title="IPFS CID"
@@ -89,7 +89,7 @@ exports[`Dashboard renders 1`] = `
             <ForwardRef(Card)>
               <ForwardRef(CardMedia)
                 component="img"
-                image="/assets/missing.jpg"
+                image="/missing.jpg"
               />
               <ForwardRef(CardHeader)
                 title="IPNS"
@@ -171,7 +171,7 @@ exports[`Dashboard renders 1`] = `
               <ForwardRef(Card)>
                 <ForwardRef(CardMedia)
                   component="img"
-                  image="/assets/missing.jpg"
+                  image="/missing.jpg"
                 />
                 <ForwardRef(CardHeader)
                   title="IPFS CID"
@@ -207,7 +207,7 @@ exports[`Dashboard renders 1`] = `
               <ForwardRef(Card)>
                 <ForwardRef(CardMedia)
                   component="img"
-                  image="/assets/missing.jpg"
+                  image="/missing.jpg"
                 />
                 <ForwardRef(CardHeader)
                   title="IPNS"
@@ -363,7 +363,7 @@ exports[`Dashboard renders 1`] = `
                 <ForwardRef(Card)>
                   <ForwardRef(CardMedia)
                     component="img"
-                    image="/assets/missing.jpg"
+                    image="/missing.jpg"
                   />
                   <ForwardRef(CardHeader)
                     title="IPFS CID"
@@ -399,7 +399,7 @@ exports[`Dashboard renders 1`] = `
                 <ForwardRef(Card)>
                   <ForwardRef(CardMedia)
                     component="img"
-                    image="/assets/missing.jpg"
+                    image="/missing.jpg"
                   />
                   <ForwardRef(CardHeader)
                     title="IPNS"
@@ -484,7 +484,7 @@ exports[`Dashboard renders 1`] = `
                     <ForwardRef(Card)>
                       <ForwardRef(CardMedia)
                         component="img"
-                        image="/assets/missing.jpg"
+                        image="/missing.jpg"
                       />
                       <ForwardRef(CardHeader)
                         title="IPFS CID"
@@ -549,7 +549,7 @@ exports[`Dashboard renders 1`] = `
                       <ForwardRef(Card)>
                         <ForwardRef(CardMedia)
                           component="img"
-                          image="/assets/missing.jpg"
+                          image="/missing.jpg"
                         />
                         <ForwardRef(CardHeader)
                           title="IPFS CID"
@@ -688,7 +688,7 @@ exports[`Dashboard renders 1`] = `
                         <ForwardRef(Card)>
                           <ForwardRef(CardMedia)
                             component="img"
-                            image="/assets/missing.jpg"
+                            image="/missing.jpg"
                           />
                           <ForwardRef(CardHeader)
                             title="IPFS CID"
@@ -2206,7 +2206,7 @@ exports[`Dashboard renders 1`] = `
                       "children": <ForwardRef(Card)>
                         <ForwardRef(CardMedia)
                           component="img"
-                          image="/assets/missing.jpg"
+                          image="/missing.jpg"
                         />
                         <ForwardRef(CardHeader)
                           title="IPFS CID"
@@ -2231,7 +2231,7 @@ exports[`Dashboard renders 1`] = `
                         "children": <ForwardRef(Card)>
                           <ForwardRef(CardMedia)
                             component="img"
-                            image="/assets/missing.jpg"
+                            image="/missing.jpg"
                           />
                           <ForwardRef(CardHeader)
                             title="IPFS CID"
@@ -2319,7 +2319,7 @@ exports[`Dashboard renders 1`] = `
                           "children": <ForwardRef(Card)>
                             <ForwardRef(CardMedia)
                               component="img"
-                              image="/assets/missing.jpg"
+                              image="/missing.jpg"
                             />
                             <ForwardRef(CardHeader)
                               title="IPFS CID"
@@ -2342,7 +2342,7 @@ exports[`Dashboard renders 1`] = `
                               "children": [
                                 <ForwardRef(CardMedia)
                                   component="img"
-                                  image="/assets/missing.jpg"
+                                  image="/missing.jpg"
                                 />,
                                 <ForwardRef(CardHeader)
                                   title="IPFS CID"
@@ -2361,7 +2361,7 @@ exports[`Dashboard renders 1`] = `
                                 "children": [
                                   <ForwardRef(CardMedia)
                                     component="img"
-                                    image="/assets/missing.jpg"
+                                    image="/missing.jpg"
                                   />,
                                   <ForwardRef(CardHeader)
                                     title="IPFS CID"
@@ -2439,7 +2439,7 @@ exports[`Dashboard renders 1`] = `
                                   "children": [
                                     <ForwardRef(CardMedia)
                                       component="img"
-                                      image="/assets/missing.jpg"
+                                      image="/missing.jpg"
                                     />,
                                     <ForwardRef(CardHeader)
                                       title="IPFS CID"
@@ -2457,7 +2457,7 @@ exports[`Dashboard renders 1`] = `
                                     "children": [
                                       <ForwardRef(CardMedia)
                                         component="img"
-                                        image="/assets/missing.jpg"
+                                        image="/missing.jpg"
                                       />,
                                       <ForwardRef(CardHeader)
                                         title="IPFS CID"
@@ -2538,7 +2538,7 @@ exports[`Dashboard renders 1`] = `
                                       "children": [
                                         <ForwardRef(CardMedia)
                                           component="img"
-                                          image="/assets/missing.jpg"
+                                          image="/missing.jpg"
                                         />,
                                         <ForwardRef(CardHeader)
                                           title="IPFS CID"
@@ -2563,12 +2563,12 @@ exports[`Dashboard renders 1`] = `
                                           "className": "MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img",
                                           "ownerState": {
                                             "component": "img",
-                                            "image": "/assets/missing.jpg",
+                                            "image": "/missing.jpg",
                                             "isImageComponent": true,
                                             "isMediaComponent": true,
                                           },
                                           "role": undefined,
-                                          "src": "/assets/missing.jpg",
+                                          "src": "/missing.jpg",
                                           "style": undefined,
                                         },
                                         "rendered": [
@@ -2632,7 +2632,7 @@ exports[`Dashboard renders 1`] = `
                                               "children": undefined,
                                               "className": "MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root",
                                               "role": undefined,
-                                              "src": "/assets/missing.jpg",
+                                              "src": "/missing.jpg",
                                               "style": undefined,
                                             },
                                             "rendered": [],
@@ -3358,7 +3358,7 @@ exports[`Dashboard renders 1`] = `
                     <ForwardRef(Card)>
                       <ForwardRef(CardMedia)
                         component="img"
-                        image="/assets/missing.jpg"
+                        image="/missing.jpg"
                       />
                       <ForwardRef(CardHeader)
                         title="IPNS"
@@ -3423,7 +3423,7 @@ exports[`Dashboard renders 1`] = `
                       <ForwardRef(Card)>
                         <ForwardRef(CardMedia)
                           component="img"
-                          image="/assets/missing.jpg"
+                          image="/missing.jpg"
                         />
                         <ForwardRef(CardHeader)
                           title="IPNS"
@@ -3550,7 +3550,7 @@ exports[`Dashboard renders 1`] = `
                         <ForwardRef(Card)>
                           <ForwardRef(CardMedia)
                             component="img"
-                            image="/assets/missing.jpg"
+                            image="/missing.jpg"
                           />
                           <ForwardRef(CardHeader)
                             title="IPNS"
@@ -3815,7 +3815,7 @@ exports[`Dashboard renders 1`] = `
                       "children": <ForwardRef(Card)>
                         <ForwardRef(CardMedia)
                           component="img"
-                          image="/assets/missing.jpg"
+                          image="/missing.jpg"
                         />
                         <ForwardRef(CardHeader)
                           title="IPNS"
@@ -3840,7 +3840,7 @@ exports[`Dashboard renders 1`] = `
                         "children": <ForwardRef(Card)>
                           <ForwardRef(CardMedia)
                             component="img"
-                            image="/assets/missing.jpg"
+                            image="/missing.jpg"
                           />
                           <ForwardRef(CardHeader)
                             title="IPNS"
@@ -3928,7 +3928,7 @@ exports[`Dashboard renders 1`] = `
                           "children": <ForwardRef(Card)>
                             <ForwardRef(CardMedia)
                               component="img"
-                              image="/assets/missing.jpg"
+                              image="/missing.jpg"
                             />
                             <ForwardRef(CardHeader)
                               title="IPNS"
@@ -3951,7 +3951,7 @@ exports[`Dashboard renders 1`] = `
                               "children": [
                                 <ForwardRef(CardMedia)
                                   component="img"
-                                  image="/assets/missing.jpg"
+                                  image="/missing.jpg"
                                 />,
                                 <ForwardRef(CardHeader)
                                   title="IPNS"
@@ -3970,7 +3970,7 @@ exports[`Dashboard renders 1`] = `
                                 "children": [
                                   <ForwardRef(CardMedia)
                                     component="img"
-                                    image="/assets/missing.jpg"
+                                    image="/missing.jpg"
                                   />,
                                   <ForwardRef(CardHeader)
                                     title="IPNS"
@@ -4048,7 +4048,7 @@ exports[`Dashboard renders 1`] = `
                                   "children": [
                                     <ForwardRef(CardMedia)
                                       component="img"
-                                      image="/assets/missing.jpg"
+                                      image="/missing.jpg"
                                     />,
                                     <ForwardRef(CardHeader)
                                       title="IPNS"
@@ -4066,7 +4066,7 @@ exports[`Dashboard renders 1`] = `
                                     "children": [
                                       <ForwardRef(CardMedia)
                                         component="img"
-                                        image="/assets/missing.jpg"
+                                        image="/missing.jpg"
                                       />,
                                       <ForwardRef(CardHeader)
                                         title="IPNS"
@@ -4147,7 +4147,7 @@ exports[`Dashboard renders 1`] = `
                                       "children": [
                                         <ForwardRef(CardMedia)
                                           component="img"
-                                          image="/assets/missing.jpg"
+                                          image="/missing.jpg"
                                         />,
                                         <ForwardRef(CardHeader)
                                           title="IPNS"
@@ -4172,12 +4172,12 @@ exports[`Dashboard renders 1`] = `
                                           "className": "MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img",
                                           "ownerState": {
                                             "component": "img",
-                                            "image": "/assets/missing.jpg",
+                                            "image": "/missing.jpg",
                                             "isImageComponent": true,
                                             "isMediaComponent": true,
                                           },
                                           "role": undefined,
-                                          "src": "/assets/missing.jpg",
+                                          "src": "/missing.jpg",
                                           "style": undefined,
                                         },
                                         "rendered": [
@@ -4241,7 +4241,7 @@ exports[`Dashboard renders 1`] = `
                                               "children": undefined,
                                               "className": "MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root",
                                               "role": undefined,
-                                              "src": "/assets/missing.jpg",
+                                              "src": "/missing.jpg",
                                               "style": undefined,
                                             },
                                             "rendered": [],

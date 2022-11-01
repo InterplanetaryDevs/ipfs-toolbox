@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import {Dashboard} from 'webui/src/components/Dashboard';
+import {Dashboard} from 'webui/src/tools/Dashboard';
 
 describe('Dashboard', () => {
 	it('renders', () => {

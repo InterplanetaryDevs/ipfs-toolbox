@@ -2,7 +2,7 @@ import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper
 import {useToolBox} from '../context/ToolBoxContext';
 import React, {useEffect, useMemo, useState} from 'react';
 import {AdditionalTools, DefaultToolIcon, TOOLS} from '../tools/TOOLS';
-import {ITool} from '../App';
+import {ITool} from '../types';
 
 export function ToolSearch() {
 	const {setSearchOpen, isSearchOpen, setTool} = useToolBox();

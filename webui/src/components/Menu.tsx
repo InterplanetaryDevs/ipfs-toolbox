@@ -12,12 +12,12 @@ import {
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {useToolBox} from '../context/ToolBoxContext';
-import {ToolList} from './menu/ToolList';
+import {ToolList} from './ToolList';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import {ITool} from '../App';
 import {ToolSearch} from './ToolSearch';
-import {ConfigurationDefinition, DashboardDefinition} from '../tools/TOOLS';
+import {ITool} from '../types';
+import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 
 export function Menu() {
 	const {tool, setTool, setMenuOpen, isMenuOpen, setSearchOpen} = useToolBox();

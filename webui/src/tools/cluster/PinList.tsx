@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 import {useSnackbar} from 'notistack';
 import React, {useEffect, useState} from 'react';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {useLoading} from '../../hooks/UseLoading';
 import {PinDetailPopup} from './PinDetailPopup';
 import {PinDialog} from './PinDialog';

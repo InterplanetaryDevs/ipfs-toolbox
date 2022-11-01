@@ -1,8 +1,9 @@
 import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
-import {useToolBox} from '../context/ToolBoxContext';
+import {useToolBox} from '../context';
 import React, {useEffect, useMemo, useState} from 'react';
-import {AdditionalTools, DefaultToolIcon, TOOLS} from '../tools/TOOLS';
+import {AdditionalTools, TOOLS} from '../tools/TOOLS';
 import {ITool} from '../types';
+import {DefaultToolIcon} from '../tools/ToolDefaults';
 
 export function ToolSearch() {
 	const {setSearchOpen, isSearchOpen, setTool} = useToolBox();

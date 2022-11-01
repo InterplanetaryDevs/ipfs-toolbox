@@ -1,6 +1,5 @@
 import React from 'react';
 import {EmbedTool} from './EmbedTool';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import {ITool, IToolCategory} from '../types';
 import {
 	ConfigurationDefinition,
@@ -24,7 +23,6 @@ export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
 	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
+
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
-export const DefaultToolIcon = <DashboardIcon/>;
-export const DefaultToolImage = '/missing.jpg';
 

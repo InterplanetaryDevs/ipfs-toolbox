@@ -6,37 +6,38 @@ import {viteCommonjs} from '@originjs/vite-plugin-commonjs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: path.resolve(__dirname, 'src')
-      }
+    resolve: {
+        alias: [
+            {
+                find: '@',
+                replacement: path.resolve(__dirname, 'src')
+            }
+        ],
+        extensions: [
+            '.mjs',
+            '.js',
+            '.ts',
+            '.jsx',
+            '.tsx',
+            '.json',
+            '.vue'
+        ]
+    },
+    plugins: [
+        viteCommonjs(),
+        envCompatible(),
+        createHtmlPlugin({
+            inject: {
+                data: {
+                    title: 'cluster-webui'
+                }
+            }
+        })
     ],
-    extensions: [
-      '.mjs',
-      '.js',
-      '.ts',
-      '.jsx',
-      '.tsx',
-      '.json',
-      '.vue'
-    ]
-  },
-  plugins: [
-    viteCommonjs(),
-    envCompatible(),
-    createHtmlPlugin({
-      inject: {
-        data: {
-          title: 'cluster-webui'
-        }
-      }
-    })
-  ],
-  build: {
-    assetsDir: './assets',
-    outDir: './build',
-    rollupOptions: {}
-  }
+    build: {
+        assetsDir: './assets',
+        copyPublicDir: true,
+        outDir: './build',
+        rollupOptions: {}
+    }
 })

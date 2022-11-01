@@ -47,7 +47,7 @@ export const TOOLS: IToolCategory[] = [
 ];
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 export const DefaultToolIcon = <DashboardIcon/>;
-export const DefaultToolImage = '/assets/missing.jpg';
+export const DefaultToolImage = '/missing.jpg';
 
 export interface IToolCategory {
 	name: string,

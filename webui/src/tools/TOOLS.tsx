@@ -4,7 +4,6 @@ import {EmbedTool} from './EmbedTool';
 import LanIcon from '@mui/icons-material/Lan';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import {Dashboard} from '../components/Dashboard';
-import {Configuration} from '../components/Configuration';
 
 const IpnsTool = lazy(() => import('./ipns/IpnsTool'));
 export const IpnsToolDefinition: ITool = {

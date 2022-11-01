@@ -1,7 +1,7 @@
 import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
 import {useToolBox} from '../context/ToolBoxContext';
 import React, {useEffect, useMemo, useState} from 'react';
-import {DefaultToolIcon, TOOLS} from '../tools/TOOLS';
+import {AdditionalTools, DefaultToolIcon, TOOLS} from '../tools/TOOLS';
 import {ITool} from '../App';
 
 export function ToolSearch() {
@@ -21,7 +21,7 @@ export function ToolSearch() {
 	}, [isSearchOpen]);
 
 	const results = useMemo(() => {
-		const allItems = ([] as ITool[]).concat(...TOOLS.map(c => c.tools));
+		const allItems = AdditionalTools.concat(...TOOLS.map(c => c.tools));
 
 		setSelected(0);
 		return allItems.filter(t => t.name.toLowerCase().includes(value.toLowerCase()));

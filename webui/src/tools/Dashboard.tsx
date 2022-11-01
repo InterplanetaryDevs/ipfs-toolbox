@@ -1,6 +1,6 @@
 import {Button, Card, CardActions, CardHeader, CardMedia, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
-import {useToolBox} from '../context';
+import {useToolBox} from '../context/ToolBoxContext';
 import {DefaultToolImage} from './ToolDefaults';
 
 export function Dashboard() {

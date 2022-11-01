@@ -1,10 +1,17 @@
 # IPFS Toolbox
 
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/InterplanetaryDevs/ipfs-toolbox/Build%20&%20test/master)
+![GitHub](https://img.shields.io/github/license/InterplanetaryDevs/ipfs-toolbox)
+![GitHub forks](https://img.shields.io/github/forks/InterplanetaryDevs/ipfs-toolbox?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/InterplanetaryDevs/ipfs-toolbox?style=social)
+
 You can check it out right [here](http://ipfs-toolbox.on.fleek.co/).
 Or you can follow the instructions below and build it yourself.
 
-![screenshot](./docs/img/ipfs-cluster-webui.png)
+## Screenshots
 
+**Dashboard**
+![screenshot](./docs/img/ipfs-toolbox.png)
 
 ## Shortcuts
 

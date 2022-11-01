@@ -1,4 +1,13 @@
-import {ButtonGroup, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
+import {
+	ButtonGroup,
+	CircularProgress,
+	IconButton,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText
+} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
@@ -20,6 +29,7 @@ export function FolderView(props: IFolderViewProps) {
 	const {enqueueSnackbar} = useSnackbar();
 
 	const [files, setFiles] = useState<MFSEntry[]>([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		async function loadFiles() {
@@ -31,12 +41,20 @@ export function FolderView(props: IFolderViewProps) {
 			return files;
 		}
 
+		setLoading(true);
 		loadFiles()
 			.then(setFiles)
 			.catch(() => {
 				enqueueSnackbar('Failed to load files', {variant: 'error'});
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	}, [props.path]);
+
+	if (loading) {
+		return <CircularProgress/>;
+	}
 
 	return <List>
 		{props.path !== '/' && (<ListItem>

@@ -1,14 +1,7 @@
 import {Button, Card, CardActions, CardHeader, CardMedia, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
 import {DefaultToolImage, TOOLS} from '../tools/TOOLS';
-import {ITool} from '../App';
 import {useToolBox} from '../context/ToolBoxContext';
-
-
-export const DashboardDefinition: ITool = {
-	name: 'Dashboard',
-	tool: <Dashboard/>,
-};
 
 export function Dashboard() {
 	const {setTool} = useToolBox();

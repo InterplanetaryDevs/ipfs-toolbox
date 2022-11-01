@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {useToolBox} from '../context';
+import {useToolBox} from '../context/ToolBoxContext';
 import {ToolList} from './ToolList';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';

@@ -2,7 +2,7 @@ import {Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typ
 import React from 'react';
 import {ITool} from '../types';
 import {DefaultToolIcon} from '../tools/ToolDefaults';
-import {useToolBox} from '../context';
+import {useToolBox} from '../context/ToolBoxContext';
 
 export function ToolList(props: { onClick: (tool: ITool) => void, tool: ITool }) {
 	const {tools} = useToolBox()

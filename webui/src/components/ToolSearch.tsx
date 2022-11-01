@@ -1,5 +1,5 @@
 import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
-import {useToolBox} from '../context';
+import {useToolBox} from '../context/ToolBoxContext';
 import React, {useEffect, useMemo, useState} from 'react';
 import {AdditionalTools, TOOLS} from '../tools/TOOLS';
 import {ITool} from '../types';

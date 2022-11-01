@@ -1,11 +1,20 @@
-import {ITool} from '../App';
-import React from 'react';
+import React, {useState} from 'react';
+import {useIpfs} from '../context/IpfsContext';
+import {useEffectCancel} from '../hooks/UseEffectCancel';
+import {Container, Typography} from '@mui/material';
 
-export const ConfigurationDefinition: ITool = {
-	tool: <Configuration/>,
-	name: 'Configuration'
-};
+export default function Configuration() {
+	const {ipfs} = useIpfs();
+	const [configuration, setConfiguration] = useState<any>();
 
-export function Configuration() {
-	return <div></div>;
+	useEffectCancel((signal) => {
+		ipfs.config.getAll({signal})
+			.then(setConfiguration)
+			.catch(console.error);
+	}, []);
+
+	return <Container>
+		<Typography variant={'h3'}></Typography>
+		<pre>{JSON.stringify(configuration, null, 2)}</pre>
+	</Container>;
 }

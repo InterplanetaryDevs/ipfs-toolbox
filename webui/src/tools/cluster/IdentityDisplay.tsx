@@ -12,7 +12,7 @@ import {
 import {useSnackbar} from 'notistack';
 import React, {useEffect, useState} from 'react';
 import ReplayIcon from '@mui/icons-material/Replay';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 
 export const IdentityDisplay = (props: any) => {
 	const [identity, setIdentity] = useState<any>();

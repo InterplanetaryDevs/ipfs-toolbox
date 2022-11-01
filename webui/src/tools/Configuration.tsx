@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useIpfs} from '../context/IpfsContext';
+import {useIpfs} from '../context';
 import {useEffectCancel} from '../hooks/UseEffectCancel';
 import {Container, Typography} from '@mui/material';
 

@@ -11,7 +11,7 @@ import {
 	Typography,
 } from '@mui/material';
 import React, {SyntheticEvent, useEffect, useState} from 'react';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {useLoading} from '../../hooks/UseLoading';
 
 export const PinDetailPopup = (props: { cid?: string, onClose?: () => void }) => {

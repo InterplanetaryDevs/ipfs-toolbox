@@ -5,13 +5,6 @@ import {ErrorBoundary} from './components/ErrorBoundary';
 import {Menu} from './components/Menu';
 import {useToolBox} from './context/ToolBoxContext';
 
-export interface ITool {
-	icon?: JSX.Element;
-	name: string;
-	tool: JSX.Element;
-	image?: string;
-}
-
 export function App() {
 	const toolBox = useToolBox();
 

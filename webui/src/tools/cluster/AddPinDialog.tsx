@@ -1,7 +1,7 @@
 import {Card, CardContent, CardHeader} from '@mui/material';
 import {useSnackbar} from 'notistack';
 import {PinOptions} from 'ipfs-cluster-api';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {PinForm} from './PinForm';
 import React from 'react';
 

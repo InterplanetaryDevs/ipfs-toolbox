@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {Accordion, AccordionDetails, AccordionSummary, CircularProgress, Typography} from '@mui/material';
 import {SyntheticEvent, useEffect, useState} from 'react';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {useLoading} from '../../hooks/UseLoading';
 
 export const PeerMap = (props: { cid: string }) => {

@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
 import {ConnectionTextField} from './ConnectionTextField';
-import {useIpfsCluster} from '../context/ApiContext';
+import {useIpfsCluster} from '../context/IpfsClusterContext';
 import React from 'react';
 
 interface IAppBarProps {

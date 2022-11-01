@@ -1,7 +1,7 @@
 import {Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography} from '@mui/material';
-import {ITool} from '../../App';
-import {DefaultToolIcon, TOOLS} from '../../tools/TOOLS';
+import {DefaultToolIcon, TOOLS} from '../tools/TOOLS';
 import React from 'react';
+import {ITool} from '../types';
 
 export function ToolList(props: { onClick: (tool: ITool) => void, tool: ITool }) {
 	return <>{

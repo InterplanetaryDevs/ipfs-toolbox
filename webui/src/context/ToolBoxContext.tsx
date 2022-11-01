@@ -1,6 +1,6 @@
 import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
-import {ITool} from '../App';
-import {ConfigurationDefinition, DashboardDefinition} from '../tools/TOOLS';
+import {ITool} from '../types';
+import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 
 export interface IToolBoxContext {
 	tool: ITool,

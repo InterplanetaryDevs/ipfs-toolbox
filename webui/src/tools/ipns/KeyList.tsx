@@ -3,9 +3,9 @@ import {
 	AccordionDetails,
 	AccordionSummary,
 	Button,
-	Card,
+	Card, CardActions,
 	CardContent,
-	CardHeader,
+	CardHeader, FormGroup,
 	Grid,
 	TextField,
 	Typography
@@ -68,10 +68,14 @@ export function KeyList() {
 		<Card>
 			<CardHeader title={'Generate new key'}/>
 			<CardContent>
-				<TextField value={key} onChange={(e) => setKey(e.target.value)} label={'Name'}/>
-				<br/>
-				<Button onClick={generateKey}>Generate</Button>
+				<FormGroup row>
+					<TextField value={key} onChange={(e) => setKey(e.target.value)} label={'Name'}/>
+					<Button onClick={generateKey}>Generate</Button>
+				</FormGroup>
 			</CardContent>
+			<CardActions>
+				{/* TODO: reload button */}
+			</CardActions>
 		</Card>
 		{keys.map(key => (
 			<Accordion key={key.id} expanded={expanded === key.id} onChange={handleChange(key.id)}>
@@ -98,7 +102,7 @@ export function KeyList() {
 							<PublishButton keyName={key.name}/>
 						</Grid>
 						<Grid item xs={12} md={6}>
-							<ExportButton key={key.name}/>
+							<ExportButton keyName={key.name}/>
 						</Grid>
 					</Grid>
 					<Button onClick={() => deleteKey(key.name)}>Delete</Button>

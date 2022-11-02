@@ -6,7 +6,7 @@ import {CID} from 'ipfs-http-client';
 import React from 'react';
 
 interface IExportButtonProps {
-	key: string;
+	keyName: string;
 }
 
 export function ExportButton(props: IExportButtonProps) {
@@ -16,11 +16,11 @@ export function ExportButton(props: IExportButtonProps) {
 	const [value, setValue] = useState<string>('');
 
 	const exportKey = () => {
-		ipfs.key.export(props.key, value)
+		ipfs.key.export(props.keyName, value)
 			.then(r => {
-				enqueueSnackbar(`Exported key ${props.key}`, {variant: 'success'});
+				enqueueSnackbar(`Exported key ${props.keyName}`, {variant: 'success'});
 			}).catch(e => {
-			enqueueSnackbar(`Failed to export key ${props.key}`, {variant: 'error'});
+			enqueueSnackbar(`Failed to export key ${props.keyName}`, {variant: 'error'});
 		});
 	};
 

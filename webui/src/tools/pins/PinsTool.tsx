@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
 import {useEffectCancel} from '../../hooks/UseEffectCancel';
-import {collectIterable} from '../../dist/utils/CollectIterable';
+import {collectIterable} from '../../utils/CollectIterable';
 import {LsResult, PinQueryType} from 'ipfs-core-types/dist/src/pin';
 import {
 	Card,
@@ -18,21 +18,14 @@ import {useReloadButton} from '../../hooks/UseReloadButton';
 
 export default function PinsTool() {
 	const {ipfs} = useIpfs();
-	const [type, setType] = useState<PinQueryType>('all');
+	const [type, setType] = useState<PinQueryType>('direct');
 	const [pins, setPins] = useState<LsResult[]>([]);
 
-	const {reloadButton, isLoading} = useReloadButton(() => collectIterable(ipfs.pin.ls({
-		type,
-	}))
-		.then(r => setPins(r)));
-
-	useEffectCancel((signal) => {
-		collectIterable(ipfs.pin.ls({
-			signal: signal,
+	const {reloadButton, isLoading} = useReloadButton(() => collectIterable<LsResult>(ipfs.pin.ls({
 			type,
 		}))
-			.then(r => setPins(r));
-	}, [type]);
+			.then(r => setPins(r)),
+		[type]);
 
 	return <Container>
 		<Card>

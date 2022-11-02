@@ -3,7 +3,7 @@ import {Box, Button, CircularProgress, IconButton} from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 import {useEffectCancel} from './UseEffectCancel';
 
-export function useReloadButton(reload: (signal: AbortSignal) => Promise<any>) {
+export function useReloadButton(reload: (signal: AbortSignal) => Promise<any>, deps: any[] = []) {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const load = () => {
@@ -21,7 +21,7 @@ export function useReloadButton(reload: (signal: AbortSignal) => Promise<any>) {
 			.finally(() => {
 				setIsLoading(false);
 			});
-	}, []);
+	}, deps);
 
 	return {
 		isLoading,

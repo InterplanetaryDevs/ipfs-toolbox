@@ -4,7 +4,8 @@
   "workspaces": [
     "webui",
     "ipfs-cluster-api",
-    "tests"
+    "tests",
+    "testing"
   ],
   "scripts": {
     "start": "yarn workspace webui run start",

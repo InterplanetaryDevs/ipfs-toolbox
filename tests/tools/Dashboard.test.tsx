@@ -7,9 +7,9 @@ describe('Dashboard', () => {
 	it('renders', () => {
 		const component = renderer.create(<ToolBoxContextProvider>
 				<Dashboard/>,
-		</ToolBoxContextProvider>
+			</ToolBoxContextProvider>
 		);
 
 		expect(component.toTree()).toMatchSnapshot();
-	})
-})
+	});
+});

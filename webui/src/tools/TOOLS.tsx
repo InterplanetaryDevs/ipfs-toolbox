@@ -5,7 +5,8 @@ import {
 	ConfigurationDefinition,
 	DashboardDefinition,
 	IpfsClusterToolDefinition,
-	IpnsToolDefinition
+	IpnsToolDefinition,
+	PinsToolDefinition
 } from './definitions';
 
 export const IpfsWebUIDefinition: ITool = {
@@ -21,7 +22,7 @@ export const IpfsCidToolDefinition: ITool = {
 
 export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
+	{name: 'Tools', tools: [PinsToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];

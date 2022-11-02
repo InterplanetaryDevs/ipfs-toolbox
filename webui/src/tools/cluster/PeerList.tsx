@@ -1,11 +1,9 @@
-import ReplayIcon from '@mui/icons-material/Replay';
 import {
 	Card,
 	CardActions,
 	CardContent,
 	CardHeader,
 	CircularProgress,
-	IconButton,
 	Table,
 	TableBody,
 	TableCell,
@@ -13,31 +11,25 @@ import {
 	TableRow,
 } from '@mui/material';
 import {useSnackbar} from 'notistack';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useIpfsCluster} from '../../context/IpfsClusterContext';
-import {useLoading} from '../../hooks/UseLoading';
+import {useReloadButton} from '../../hooks/UseReloadButton';
 
 export const PeerList = (props: any) => {
 	const [peers, setPeers] = useState<any[]>([]);
-	const [isLoading, load] = useLoading();
 	const {enqueueSnackbar} = useSnackbar();
 	const api = useIpfsCluster().ipfsCluster;
 
-	const reload = () => {
-		load(api.peers.list())
-			.then(setPeers)
-			.catch(e => {
-				enqueueSnackbar(`Error: ${e}`, {variant: 'error'});
-			});
-	};
-
-	//eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(reload, []);
+	const {reloadButton, isLoading} = useReloadButton(() => api.peers.list()
+		.then(setPeers)
+		.catch(e => {
+			enqueueSnackbar(`Error: ${e}`, {variant: 'error'});
+		}))
 
 	return <Card>
 		<CardHeader title={'Peers'} subheader={`${isLoading ? '?' : peers.length} peers`}/>
 		<CardActions>
-			<IconButton onClick={reload}><ReplayIcon/></IconButton>
+			{reloadButton}
 		</CardActions>
 		<CardContent>
 			<Table width={'100%'}>

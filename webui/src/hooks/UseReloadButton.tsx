@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, CircularProgress, IconButton} from '@mui/material';
+import {Box, Button, CircularProgress} from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 import {useEffectCancel} from './UseEffectCancel';
 
@@ -24,6 +24,7 @@ export function useReloadButton(reload: (signal: AbortSignal) => Promise<any>, d
 	}, deps);
 
 	return {
+		reload: load,
 		isLoading,
 		reloadButton: <Box sx={{position: 'relative', display: 'inline-block'}}>
 			<Button

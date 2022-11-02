@@ -26,6 +26,7 @@ import {ExportButton} from './ExportButton';
 import {AsyncActionButton} from '../../components/AsyncActionButton';
 import {OptionsButton} from '../../components/OptionsButton';
 import {KeyType} from '@libp2p/interface-keychain';
+import {useReloadButton} from '../../hooks/UseReloadButton';
 
 export function KeyList() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
@@ -37,12 +38,12 @@ export function KeyList() {
 	const {enqueueSnackbar} = useSnackbar();
 
 	const reload = () => {
-		ipfs.key.list()
+		return ipfs.key.list()
 			.then(setKeys)
 			.catch(console.error);
 	};
 
-	useEffect(reload, []);
+	const {reloadButton} = useReloadButton(reload)
 
 	const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
 		setExpanded(isExpanded ? panel : false);
@@ -104,7 +105,7 @@ export function KeyList() {
 				</FormGroup>
 			</CardContent>
 			<CardActions>
-				{/* TODO: reload button */}
+				{reloadButton}
 			</CardActions>
 		</Card>
 		{keys.map(key => (
@@ -118,14 +119,14 @@ export function KeyList() {
 				</AccordionSummary>
 				<AccordionDetails>
 					<Typography>
-						{key.id}: <Delayed promise={(async () => {
+						{key.id}{/*: <Delayed promise={(async () => {
 						let res = '';
 						for await (const name of ipfs.name.resolve(key.id)) {
 							res = name;
 						}
 
 						return <>{res}</>;
-					})()}/>
+					})()}/>*/}
 					</Typography>
 					<Grid container>
 						<Grid item xs={12} md={6}>

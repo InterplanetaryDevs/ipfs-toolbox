@@ -3,20 +3,19 @@ import {
 	AccordionDetails,
 	AccordionSummary,
 	Button,
-	ButtonGroup,
 	Card,
 	CardContent,
 	CardHeader,
+	Grid,
 	TextField,
 	Typography
 } from '@mui/material';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {PublishButton} from './PublishButton';
 import {Delayed} from '../../components/Delayed';
 import {useSnackbar} from 'notistack';
-import React from 'react';
 import {ExportButton} from './ExportButton';
 
 export function KeyList() {
@@ -94,12 +93,15 @@ export function KeyList() {
 						return <>{res}</>;
 					})()}/>
 					</Typography>
-					<PublishButton key={key.name}/>
-					<ExportButton key={key.name}/>
-					<ButtonGroup>
-						<Button onClick={() => deleteKey(key.name)}>Delete</Button>
-						<Button>Export</Button>
-					</ButtonGroup>
+					<Grid container>
+						<Grid item xs={12} md={6}>
+							<PublishButton keyName={key.name}/>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<ExportButton key={key.name}/>
+						</Grid>
+					</Grid>
+					<Button onClick={() => deleteKey(key.name)}>Delete</Button>
 				</AccordionDetails>
 			</Accordion>))}
 	</>);

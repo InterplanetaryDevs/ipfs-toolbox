@@ -12,6 +12,7 @@ export function LoadingButton({loading, onClick, children}: ILoadingButtonProps)
 			variant="contained"
 			disabled={loading}
 			onClick={onClick}
+			sx={{width: '100%', height: '100%'}}
 		>
 			{children}
 		</Button>

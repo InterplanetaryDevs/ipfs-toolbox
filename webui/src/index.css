@@ -28,3 +28,15 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.MuiFormGroup-row :not(:first-child) .MuiButtonBase-root,
+.MuiFormGroup-row :not(:first-child) .MuiInputBase-root {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.MuiFormGroup-row :not(:last-child) .MuiButtonBase-root,
+.MuiFormGroup-row :not(:last-child) .MuiInputBase-root {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}

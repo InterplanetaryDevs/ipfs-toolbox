@@ -1,6 +1,6 @@
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
-import {Button, InputAdornment, OutlinedInput} from '@mui/material';
+import {Button, FormGroup, InputAdornment, OutlinedInput, TextField} from '@mui/material';
 import {useState} from 'react';
 import {CID} from 'ipfs-http-client';
 import React from 'react';
@@ -24,15 +24,13 @@ export function ExportButton(props: IExportButtonProps) {
 		});
 	};
 
-	return <div>
-		<OutlinedInput
+	return <FormGroup row>
+		<TextField
 			label={'Password'}
 			type={'password'}
 			value={value}
 			onChange={(e) => setValue(e.target.value)}
-			endAdornment={(<InputAdornment position={'end'}>
-				<Button onClick={exportKey}>Export</Button>
-			</InputAdornment>)}
 		/>
-	</div>;
+		<Button onClick={exportKey}>Export</Button>
+	</FormGroup>;
 }

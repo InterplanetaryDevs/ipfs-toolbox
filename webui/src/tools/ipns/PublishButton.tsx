@@ -1,9 +1,10 @@
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
-import {Button, FormControlLabel, FormGroup, Popover, Switch, TextField, Typography} from '@mui/material';
+import {Button, FormControlLabel, FormGroup, Popover, Stack, Switch, TextField} from '@mui/material';
 import React, {useState} from 'react';
 import {CID} from 'ipfs-http-client';
-import {LoadingButton} from '../../components/LoadingButton';
+import {AsyncActionButton} from '../../components/AsyncActionButton';
+import {OptionsButton} from '../../components/OptionsButton';
 
 interface IPublishButtonProps {
 	keyName: string;
@@ -13,27 +14,17 @@ export function PublishButton(props: IPublishButtonProps) {
 	const {ipfs} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
 
-	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-	const [loading, setLoading] = useState(false);
 	const [value, setValue] = useState('');
 	const [resolve, setResolve] = useState(true);
 	const [allowOffline, setAllowOffline] = useState(false);
 	const [lifetime, setLifetime] = useState('24h');
 	const [ttl, setTtl] = useState('');
 
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
 
 	const publish = () => {
 		try {
 			const cid = CID.parse(value);
-			setLoading(true);
-			ipfs.name.publish(cid, {
+			return ipfs.name.publish(cid, {
 				key: props.keyName,
 				resolve,
 				allowOffline,
@@ -43,43 +34,29 @@ export function PublishButton(props: IPublishButtonProps) {
 				.then(r => {
 					enqueueSnackbar(`Published ${value} to ${props.keyName}`, {variant: 'success'});
 				}).catch(e => {
-				enqueueSnackbar(`Failed to publish ${value} to ${props.keyName}`, {variant: 'error'});
-			})
-				.finally(() => {
-					setLoading(false);
+					enqueueSnackbar(`Failed to publish ${value} to ${props.keyName}`, {variant: 'error'});
 				});
 		} catch (e) {
 			enqueueSnackbar('Invalid CID entered', {variant: 'error'});
+			return Promise.reject();
 		}
 	};
-	const open = Boolean(anchorEl);
-	return <>
-		<FormGroup row={true}>
-			<TextField
-				label={'cid'}
-				value={value}
-				onChange={(e) => setValue(e.target.value)}
-			/>
-			<Button onClick={handleClick}>Options</Button>
-			<LoadingButton onClick={publish} loading={loading}>Publish</LoadingButton>
-		</FormGroup>
-		<Popover
-			open={open}
-			anchorEl={anchorEl}
-			onClose={handleClose}
-			anchorOrigin={{
-				vertical: 'bottom',
-				horizontal: 'left',
-			}}
-		>
-			<FormGroup>
+
+	return <FormGroup row={true}>
+		<TextField
+			label={'cid'}
+			value={value}
+			onChange={(e) => setValue(e.target.value)}
+		/>
+		<OptionsButton>
+			<Stack spacing={1}>
 				<FormControlLabel
 					control={<Switch checked={resolve} onChange={e => setResolve(e.target.checked)}/>}
-					label="Resolve"
+					label={'Resolve'}
 				/>
 				<FormControlLabel
 					control={<Switch checked={allowOffline} onChange={e => setAllowOffline(e.target.checked)}/>}
-					label="Allow offline"
+					label={'Allow offline'}
 				/>
 				<TextField
 					label={'Lifetime'}
@@ -91,8 +68,9 @@ export function PublishButton(props: IPublishButtonProps) {
 					value={ttl}
 					onChange={e => setTtl(e.target.value)}
 				/>
-			</FormGroup>
-		</Popover>
-	</>;
+			</Stack>
+		</OptionsButton>
+		<AsyncActionButton action={publish}>Publish</AsyncActionButton>
+	</FormGroup>;
 }
 

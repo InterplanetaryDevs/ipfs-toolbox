@@ -2889,7 +2889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@libp2p/interface-keychain@npm:^1.0.3":
+"@libp2p/interface-keychain@npm:^1.0.3, @libp2p/interface-keychain@npm:^1.0.4":
   version: 1.0.4
   resolution: "@libp2p/interface-keychain@npm:1.0.4"
   dependencies:
@@ -16301,6 +16301,7 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
+    "@libp2p/interface-keychain": ^1.0.4
     "@mui/icons-material": ^5.10.9
     "@mui/material": ^5.10.12
     "@originjs/vite-plugin-commonjs": ^1.0.3

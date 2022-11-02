@@ -1,21 +1,20 @@
 import React, {useState} from 'react';
-import {useIpfs} from '../../context/IpfsContext';
-import {useEffectCancel} from '../../hooks/UseEffectCancel';
-import {Container, Typography} from '@mui/material';
-import type {Config} from 'ipfs-core-types/dist/src/config';
+import {Container, Tab, Tabs} from '@mui/material';
+import {useMenu} from '../../hooks/UseMenu';
+import {IpfsConfiguration} from './IpfsConfiguration';
+import {AppConfiguration} from './AppConfiguration';
 
 export default function ConfigurationTool() {
-	const {ipfs} = useIpfs();
-	const [configuration, setConfiguration] = useState<Config>();
+	const [tab, setTab] = useState(0);
 
-	useEffectCancel((signal) => {
-		ipfs.config.getAll({signal})
-			.then(setConfiguration)
-			.catch(console.error);
-	}, []);
+	useMenu(<Tabs value={tab} onChange={(e, v) => setTab(v)}>
+		<Tab label={'App'}/>
+		<Tab label={'IPFS'}/>
+	</Tabs>);
 
-	return <Container>
-		<Typography variant={'h3'}>Configuration</Typography>
-		<pre>{JSON.stringify(configuration, null, 2)}</pre>
-	</Container>;
+	return (<>
+		<Container>
+			{tab == 0 ? <AppConfiguration/> : <IpfsConfiguration/>}
+		</Container>
+	</>);
 }

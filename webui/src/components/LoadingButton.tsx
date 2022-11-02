@@ -7,7 +7,9 @@ export interface ILoadingButtonProps extends PropsWithChildren {
 }
 
 export function LoadingButton({loading, onClick, children}: ILoadingButtonProps) {
-	return <Box>
+	return <Box
+		sx={{display: 'inline-block', position: 'relative'}}
+	>
 		<Button
 			variant="contained"
 			disabled={loading}

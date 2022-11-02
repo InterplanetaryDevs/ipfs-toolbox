@@ -16,10 +16,12 @@ body {
 .embed {
     width: 100%;
     height: calc(100vh - 75px);
+    margin-top: -15px;
 }
 
 .tool-root {
     margin-top: 64px;
+    padding-top: 15px;
     min-height: calc(100vh - 75px);
     overflow: auto;
 }

@@ -2,11 +2,17 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
-	Button,
-	Card, CardActions,
+	Card,
+	CardActions,
 	CardContent,
-	CardHeader, FormGroup,
+	CardHeader,
+	FormControl,
+	FormGroup,
 	Grid,
+	InputLabel,
+	MenuItem,
+	Select,
+	Stack,
 	TextField,
 	Typography
 } from '@mui/material';
@@ -17,10 +23,15 @@ import {PublishButton} from './PublishButton';
 import {Delayed} from '../../components/Delayed';
 import {useSnackbar} from 'notistack';
 import {ExportButton} from './ExportButton';
+import {AsyncActionButton} from '../../components/AsyncActionButton';
+import {OptionsButton} from '../../components/OptionsButton';
+import {KeyType} from '@libp2p/interface-keychain';
 
 export function KeyList() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
 	const [key, setKey] = useState('');
+	const [type, setType] = useState<KeyType>('RSA');
+	const [size, setSize] = useState(2048);
 	const [expanded, setExpanded] = useState<string | false>(false);
 	const {ipfs} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
@@ -38,7 +49,10 @@ export function KeyList() {
 	};
 
 	const generateKey = () => {
-		ipfs.key.gen(key)
+		return ipfs.key.gen(key, {
+			type,
+			size,
+		})
 			.then(() => {
 				enqueueSnackbar(`Key ${key} generated`, {variant: 'success'});
 				setKey('');
@@ -52,7 +66,7 @@ export function KeyList() {
 	};
 
 	const deleteKey = (name: string) => {
-		ipfs.key.rm(name)
+		return ipfs.key.rm(name)
 			.then(() => {
 				enqueueSnackbar(`Key ${name} deleted`, {variant: 'success'});
 			})
@@ -70,7 +84,23 @@ export function KeyList() {
 			<CardContent>
 				<FormGroup row>
 					<TextField value={key} onChange={(e) => setKey(e.target.value)} label={'Name'}/>
-					<Button onClick={generateKey}>Generate</Button>
+					<OptionsButton>
+						<Stack spacing={1}>
+							<FormControl fullWidth>
+								<InputLabel>Type</InputLabel>
+								<Select
+									label={'Type'}
+									value={type}
+									onChange={e => setType(e.target.value as KeyType)}
+								>
+									<MenuItem value={'RSA'}>RSA</MenuItem>
+									<MenuItem value={'Ed25519'}>Ed25519</MenuItem>
+								</Select>
+							</FormControl>
+							<TextField label={'Size'} type={'number'} value={size} onChange={e => setSize(parseInt(e.target.value))}/>
+						</Stack>
+					</OptionsButton>
+					<AsyncActionButton action={generateKey}>Generate</AsyncActionButton>
 				</FormGroup>
 			</CardContent>
 			<CardActions>
@@ -105,7 +135,7 @@ export function KeyList() {
 							<ExportButton keyName={key.name}/>
 						</Grid>
 					</Grid>
-					<Button onClick={() => deleteKey(key.name)}>Delete</Button>
+					{key.name !== 'self' && (<AsyncActionButton action={() => deleteKey(key.name)}>Delete</AsyncActionButton>)}
 				</AccordionDetails>
 			</Accordion>))}
 	</>);

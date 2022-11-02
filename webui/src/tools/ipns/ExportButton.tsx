@@ -1,9 +1,8 @@
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
-import {Button, FormGroup, InputAdornment, OutlinedInput, TextField} from '@mui/material';
-import {useState} from 'react';
-import {CID} from 'ipfs-http-client';
-import React from 'react';
+import {FormGroup, TextField} from '@mui/material';
+import React, {useState} from 'react';
+import {AsyncActionButton} from '../../components/AsyncActionButton';
 
 interface IExportButtonProps {
 	keyName: string;
@@ -16,7 +15,7 @@ export function ExportButton(props: IExportButtonProps) {
 	const [value, setValue] = useState<string>('');
 
 	const exportKey = () => {
-		ipfs.key.export(props.keyName, value)
+		return ipfs.key.export(props.keyName, value)
 			.then(r => {
 				enqueueSnackbar(`Exported key ${props.keyName}`, {variant: 'success'});
 			}).catch(e => {
@@ -31,6 +30,6 @@ export function ExportButton(props: IExportButtonProps) {
 			value={value}
 			onChange={(e) => setValue(e.target.value)}
 		/>
-		<Button onClick={exportKey}>Export</Button>
+		<AsyncActionButton action={exportKey}>Export</AsyncActionButton>
 	</FormGroup>;
 }

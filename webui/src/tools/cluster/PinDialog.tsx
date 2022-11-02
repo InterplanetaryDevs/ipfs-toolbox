@@ -1,6 +1,6 @@
 import {Dialog, DialogContent, DialogTitle} from '@mui/material';
 import {useSnackbar} from 'notistack';
-import {useIpfsCluster} from '../../context/ApiContext';
+import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {PinOptions} from './types/PinOptions';
 import {PinType} from './types/PinType';
 import {PinForm} from './PinForm';

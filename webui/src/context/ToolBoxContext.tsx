@@ -1,9 +1,10 @@
 import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
-import {ITool} from '../App';
-import {DashboardDefinition} from '../components/Dashboard';
-import {ConfigurationDefinition} from '../components/Configuration';
+import {ITool, IToolCategory} from '../types';
+import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
+import {TOOLS} from '../tools/TOOLS';
 
 export interface IToolBoxContext {
+	tools: IToolCategory[]
 	tool: ITool,
 	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
 	isMenuOpen: boolean,
@@ -51,6 +52,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	}, [handleKeyPress]);
 
 	return <ToolBoxContext.Provider value={{
+		tools: TOOLS,
 		tool,
 		setTool,
 		isMenuOpen,

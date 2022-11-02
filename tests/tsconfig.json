@@ -21,8 +21,5 @@
     "jsx": "react-jsx",
     "types": ["node", "jest"]
   },
-  "include": [
-    "src"
-  ],
   "extends": "../tsconfig.json"
 }

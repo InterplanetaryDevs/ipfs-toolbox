@@ -1,32 +1,22 @@
-import React, {lazy} from 'react';
-import {ITool} from '../App';
+import React from 'react';
 import {EmbedTool} from './EmbedTool';
-import LanIcon from '@mui/icons-material/Lan';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-
-const IpnsTool = lazy(() => import('./ipns/IpnsTool'));
-export const IpnsToolDefinition: ITool = {
-	name: 'IPNS',
-	tool: <IpnsTool/>,
-};
+import {ITool, IToolCategory} from '../types';
+import {
+	ConfigurationDefinition,
+	DashboardDefinition,
+	IpfsClusterToolDefinition,
+	IpnsToolDefinition
+} from './definitions';
 
 export const IpfsWebUIDefinition: ITool = {
 	name: 'IPFS WebUI',
-	tool: EmbedTool.create('https://webui.ipfs.io.ipns.dweb.link'),
+	tool: EmbedTool.create('https://webui.ipfs.io'),
 	image: 'https://raw.githubusercontent.com/ipfs/ipfs-webui/main/docs/screenshots/ipfs-webui-status.png'
 };
 
 export const IpfsCidToolDefinition: ITool = {
 	name: 'IPFS CID',
-	tool: EmbedTool.create('https://cid.ipfs.io.ipns.dweb.link'),
-};
-
-const ClusterTool = lazy(() => import('./cluster/ClusterTool'));
-export const IpfsClusterToolDefinition: ITool = {
-	icon: <LanIcon/>,
-	name: 'Cluster',
-	tool: <ClusterTool/>,
-	image: 'https://raw.githubusercontent.com/InterplanetaryDevs/ipfs-toolbox/master/docs/img/ipfs-cluster-webui.png'
+	tool: EmbedTool.create('https://cid.ipfs.io'),
 };
 
 export const TOOLS: IToolCategory[] = [
@@ -34,10 +24,5 @@ export const TOOLS: IToolCategory[] = [
 	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
 
-export const DefaultToolIcon = <DashboardIcon/>;
-export const DefaultToolImage = '/assets/missing.jpg';
+export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 
-export interface IToolCategory {
-	name: string,
-	tools: ITool[]
-}

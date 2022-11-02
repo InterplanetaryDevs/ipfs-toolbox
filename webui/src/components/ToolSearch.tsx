@@ -1,4 +1,4 @@
-import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
+import {Dialog, List, ListItem, ListItemButton, ListItemIcon, ListItemText, TextField} from '@mui/material';
 import {useToolBox} from '../context/ToolBoxContext';
 import React, {useEffect, useMemo, useState} from 'react';
 import {AdditionalTools, TOOLS} from '../tools/TOOLS';
@@ -33,39 +33,44 @@ export function ToolSearch() {
 		setTool(tool);
 	};
 
-	return <Modal open={isSearchOpen}>
-		<Paper>
-			<TextField
-				id={'tool-search'}
-				value={value}
-				onChange={e => setValue(e.target.value)}
-				variant={'standard'}
-				sx={{width: '100%'}}
-				onKeyDown={(ev) => {
-					if (ev.key === 'Enter' && results.length >= selected) {
-						ev.preventDefault();
-						openTool(results[selected]);
-					} else if (ev.key === 'ArrowDown') {
-						ev.preventDefault();
-						if (selected < results.length) {
-							setSelected(s => s + 1);
+	return <Dialog
+		open={isSearchOpen}
+		onClose={() => setSearchOpen(false)}
+	>
+				<TextField
+					id={'tool-search'}
+					value={value}
+					placeholder={'Type something to search...'}
+					onChange={e => setValue(e.target.value)}
+					variant={'standard'}
+					sx={{width: '100%'}}
+					onKeyDown={(ev) => {
+						if (ev.key === 'Enter' && results.length >= selected) {
+							ev.preventDefault();
+							openTool(results[selected]);
+						} else if (ev.key === 'ArrowDown') {
+							ev.preventDefault();
+							if (selected < results.length) {
+								setSelected(s => s + 1);
+							}
+						} else if (ev.key === 'ArrowUp') {
+							ev.preventDefault();
+							if (selected > 0) {
+								setSelected(s => s - 1);
+							}
+						} else if (ev.key === 'Escape') {
+							ev.preventDefault();
+							setSearchOpen(false);
 						}
-					} else if (ev.key === 'ArrowUp') {
-						ev.preventDefault();
-						if (selected > 0) {
-							setSelected(s => s - 1);
-						}
-					}
-				}}
-			/>
-			<List>
-				{results.map((t, k) => (<ListItem key={t.name} selected={selected === k}>
-					<ListItemButton onClick={() => openTool(t)}>
-						<ListItemIcon>{t.icon ?? DefaultToolIcon}</ListItemIcon>
-						<ListItemText primary={t.name}/>
-					</ListItemButton>
-				</ListItem>))}
-			</List>
-		</Paper>
-	</Modal>;
+					}}
+				/>
+				<List>
+					{results.map((t, k) => (<ListItem key={t.name} selected={selected === k}>
+						<ListItemButton onClick={() => openTool(t)}>
+							<ListItemIcon>{t.icon ?? DefaultToolIcon}</ListItemIcon>
+							<ListItemText primary={t.name}/>
+						</ListItemButton>
+					</ListItem>))}
+				</List>
+	</Dialog>;
 }

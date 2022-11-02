@@ -11,7 +11,9 @@ interface IKeyBindInputProps {
 export function KeyBindInput({keyBind, onChange, label}: IKeyBindInputProps) {
 	return <FormControlLabel
 		label={label}
+		labelPlacement={'top'}
 		control={<InputBase
+			fullWidth={true}
 			onKeyDown={(ev) => {
 				ev.preventDefault();
 				onChange && onChange({

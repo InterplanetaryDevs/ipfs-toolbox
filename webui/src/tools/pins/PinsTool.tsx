@@ -12,7 +12,7 @@ import {
 	InputLabel,
 	List,
 	ListItem,
-	ListItemText, MenuItem, Select
+	ListItemText, MenuItem, Select, Typography
 } from '@mui/material';
 import {useReloadButton} from '../../hooks/UseReloadButton';
 
@@ -47,6 +47,7 @@ export default function PinsTool() {
 				{reloadButton}
 			</CardActions>
 			<CardContent>
+				{pins.length === 0 && (<Typography>No Pins.</Typography>)}
 				<List>
 					{pins.map(p => (<ListItem key={p.cid.toString()}>
 						<ListItemText

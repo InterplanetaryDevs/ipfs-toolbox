@@ -8,6 +8,7 @@ import {
 	IpnsToolDefinition,
 	PinsToolDefinition
 } from './definitions';
+import {PeersToolDefinition} from './definitions/PeersToolDefinition';
 
 export const IpfsWebUIDefinition: ITool = {
 	name: 'IPFS WebUI',
@@ -22,7 +23,7 @@ export const IpfsCidToolDefinition: ITool = {
 
 export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [PinsToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
+	{name: 'Tools', tools: [PinsToolDefinition, PeersToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];

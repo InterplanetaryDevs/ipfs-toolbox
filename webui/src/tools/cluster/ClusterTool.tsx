@@ -5,6 +5,7 @@ import {AddPinDialog} from './AddPinDialog';
 import {IdentityDisplay} from './IdentityDisplay';
 import {PeerList} from './PeerList';
 import {PinList} from './PinList';
+import {IpfsClusterNodeOnline} from '../../components/IpfsClusterNodeOnline';
 
 export default function ClusterTool() {
 	const [tab, setTab] = useState(0);
@@ -16,17 +17,19 @@ export default function ClusterTool() {
 	</Tabs>);
 
 	return (<Container>
-		<TabPanel index={0} value={tab}>
-			<AddPinDialog/>
-			<div style={{height: 15}}/>
-			<PinList/>
-		</TabPanel>
-		<TabPanel index={1} value={tab}>
-			<PeerList/>
-		</TabPanel>
-		<TabPanel index={2} value={tab}>
-			<IdentityDisplay/>
-		</TabPanel>
+		<IpfsClusterNodeOnline>
+			<TabPanel index={0} value={tab}>
+				<AddPinDialog/>
+				<div style={{height: 15}}/>
+				<PinList/>
+			</TabPanel>
+			<TabPanel index={1} value={tab}>
+				<PeerList/>
+			</TabPanel>
+			<TabPanel index={2} value={tab}>
+				<IdentityDisplay/>
+			</TabPanel>
+		</IpfsClusterNodeOnline>
 	</Container>);
 }
 

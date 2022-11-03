@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {useMenu} from '../../hooks/UseMenu';
 import {KeyList} from './KeyList';
 import {Publish} from './Publish';
+import {IpfsNodeOnline} from '../../components/IpfsNodeOnline';
 
 export default function IpnsTool() {
 	const [tab, setTab] = useState(0);
@@ -14,7 +15,9 @@ export default function IpnsTool() {
 
 	return (<>
 		<Container>
+			<IpfsNodeOnline>
 			{tab == 0 ? <Publish/> : <KeyList/>}
+			</IpfsNodeOnline>
 		</Container>
 	</>);
 }

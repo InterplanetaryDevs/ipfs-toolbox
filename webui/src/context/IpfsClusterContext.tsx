@@ -14,7 +14,7 @@ export const IpfsClusterContextProvider = (props: any) => {
 
 	const api = useMemo(() => new IpfsClusterApi(url), [url]);
 	const check = useCallback(() => api.id().then(() => true), [api]);
-	const {connected, checking} = useConnectionChecker(check);
+	const {connected, checking} = useConnectionChecker(check, 25000);
 
 	return <IpfsClusterContext.Provider
 		value={{

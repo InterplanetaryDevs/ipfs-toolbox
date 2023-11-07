@@ -1,12 +1,13 @@
-import {Button, Card, CardActions, CardHeader, CardMedia, Container, Grid, Typography} from '@mui/material';
+import {Button, Card, CardActions, CardHeader, CardMedia, Grid, Typography} from '@mui/material';
 import React from 'react';
 import {useToolBox} from '../context/ToolBoxContext';
 import {DefaultToolImage} from './ToolDefaults';
+import {ToolContainer} from '../components/ToolContainer';
 
 export function Dashboard() {
 	const {setTool, tools} = useToolBox();
 
-	return (<Container>
+	return (<ToolContainer>
 		{tools.map(c => (<Grid container key={c.name} spacing={3}>
 			<Grid item xs={12}>
 				<Typography variant={'h4'}>{c.name}</Typography>
@@ -16,6 +17,7 @@ export function Dashboard() {
 					<CardMedia
 						component={'img'}
 						image={t.image ?? DefaultToolImage}
+						sx={{height: 250}}
 					/>
 					<CardHeader title={t.name}/>
 					<CardActions>
@@ -24,5 +26,5 @@ export function Dashboard() {
 				</Card>
 			</Grid>))}
 		</Grid>))}
-	</Container>);
+	</ToolContainer>);
 }

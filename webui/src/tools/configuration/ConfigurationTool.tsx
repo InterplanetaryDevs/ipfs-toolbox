@@ -17,13 +17,13 @@ export default function ConfigurationTool() {
 	</Tabs>);
 
 	const tabs = [
-		AppTab,
-		IpfsTab,
-		IpfsClusterTab,
+		<AppTab/>,
+		<IpfsTab/>,
+		<IpfsClusterTab/>,
 	];
 
 
-	return Tabs(tab);
+	return tabs[tab];
 
 }
 

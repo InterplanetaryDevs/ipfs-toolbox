@@ -7,7 +7,8 @@ import {useLocation, useNavigate} from 'react-router-dom';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
-	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
+	tool: ITool
+	setTool: (value: ITool) => void,
 	isMenuOpen: boolean,
 	setMenuOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
 	isSearchOpen: boolean,
@@ -97,7 +98,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	}, []);
 
 	useEffect(() => {
-		const handleKeyPress = (ev) => shortcutService.handleKeyPress(ev);
+		const handleKeyPress = (ev: KeyboardEvent) => shortcutService.handleKeyPress(ev);
 		document.addEventListener('keydown', handleKeyPress);
 
 		return () => {

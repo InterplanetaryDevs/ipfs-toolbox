@@ -7,6 +7,7 @@ import {PeerList} from './PeerList';
 import {PinList} from './PinList';
 import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {ConnectionChecker} from '../../components/ConnectionChecker';
+import {ToolContainer} from '../../components/ToolContainer';
 
 export default function ClusterTool() {
 	const [tab, setTab] = useState(0);
@@ -19,7 +20,7 @@ export default function ClusterTool() {
 	</Tabs>);
 
 	return (<ConnectionChecker context={context}>
-		<Container>
+		<ToolContainer>
 			<TabPanel index={0} value={tab}>
 				<AddPinDialog/>
 				<div style={{height: 15}}/>
@@ -31,7 +32,7 @@ export default function ClusterTool() {
 			<TabPanel index={2} value={tab}>
 				<IdentityDisplay/>
 			</TabPanel>
-		</Container>
+		</ToolContainer>
 	</ConnectionChecker>);
 }
 

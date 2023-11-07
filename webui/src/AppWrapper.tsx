@@ -6,12 +6,9 @@ import {IpfsClusterContextProvider} from './context/IpfsClusterContext';
 import {IpfsContextProvider} from './context/IpfsContext';
 import {ToolBoxContextProvider} from './context/ToolBoxContext';
 import React from 'react';
+import {Theme} from './Theme';
 
-const theme = createTheme({
-	palette: {
-		mode: 'dark',
-	},
-});
+const theme = createTheme(Theme);
 
 export const AppWrapper = () => {
 	return <ThemeProvider theme={theme}>

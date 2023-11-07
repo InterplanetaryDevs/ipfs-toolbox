@@ -1,4 +1,4 @@
-import {AppBar as MuiAppBar, Chip, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
+import {Box, Chip, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
@@ -43,7 +43,9 @@ export function AppBar(props: IAppBarProps) {
 	};
 
 
-	return <MuiAppBar position="fixed">
+	return <Box sx={{
+		bgcolor: 'primary.light',
+	}}>
 		<Toolbar>
 			<IconButton
 				color="inherit"
@@ -95,5 +97,5 @@ export function AppBar(props: IAppBarProps) {
 				</Popover>
 			</Stack>
 		</Toolbar>
-	</MuiAppBar>;
+	</Box>;
 }

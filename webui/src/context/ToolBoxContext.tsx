@@ -32,7 +32,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		n(tool.url);
 	}
 
-	const tool = ALL_TOOLS.find(t => t.url.startsWith(location.pathname));
+	const tool = ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
 
 	useEffect(() => {
 		const symbols = [

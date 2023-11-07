@@ -7360,6 +7360,7 @@ __metadata:
     jest-environment-jsdom: "npm:^29.2.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-router-dom: "npm:^6.18.0"
     react-test-renderer: "npm:^18.2.0"
     testing: "workspace:^"
     ts-jest: "npm:^29.0.3"

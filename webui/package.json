@@ -23,7 +23,6 @@
     "codemirror": "^6.0.1",
     "ipfs-cluster-api": "workspace:^",
     "ipfs-core-types": "^0.13.0",
-    "ipfs-http-client": "^59.0.0",
     "kubo-rpc-client": "^3.0.1",
     "notistack": "^2.0.8",
     "react": "^18.2.0",

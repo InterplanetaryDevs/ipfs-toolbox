@@ -35,7 +35,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 			setMenuOpen(v => !v);
 		} else if (event.key == ' ' && event.ctrlKey) {
 			event.preventDefault();
-			setSearchOpen(v => !v);
+			setSearchOpen(true);
 		} else if (event.key == 'Escape') {
 			event.preventDefault();
 			setSearchOpen(false);

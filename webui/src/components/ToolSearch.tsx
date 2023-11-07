@@ -29,6 +29,7 @@ export function ToolSearch() {
 	}, [value]);
 
 	const openTool = (tool: ITool) => {
+		setValue('');
 		setSearchOpen(false);
 		setTool(tool);
 	};
@@ -57,6 +58,7 @@ export function ToolSearch() {
 						}
 					} else if (ev.key == 'Escape') {
 						ev.preventDefault();
+						setValue('');
 						setSearchOpen(false);
 					}
 				}}

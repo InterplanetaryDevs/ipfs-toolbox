@@ -1,4 +1,4 @@
-import React, {createContext, PropsWithChildren, useContext, useMemo, useState} from 'react';
+import React, {createContext, PropsWithChildren, useCallback, useContext, useMemo, useState} from 'react';
 import {create, IPFSHTTPClient} from 'kubo-rpc-client';
 
 export interface IIpfsContext {
@@ -7,6 +7,8 @@ export interface IIpfsContext {
 	setApiUrl(value: string): void;
 
 	ipfs: IPFSHTTPClient;
+
+	checker: () => Promise<boolean>
 }
 
 const IpfsContext = createContext<IIpfsContext>({} as IIpfsContext);
@@ -16,10 +18,13 @@ export function IpfsContextProvider(props: PropsWithChildren) {
 
 	const ipfs = useMemo(() => create({url: apiUrl}), [apiUrl]);
 
+	const checker = useCallback(() => ipfs.id().then(() => true), [ipfs])
+
 	return <IpfsContext.Provider value={{
 		apiUrl,
 		setApiUrl,
 		ipfs,
+		checker
 	}}>
 		{props.children}
 	</IpfsContext.Provider>;

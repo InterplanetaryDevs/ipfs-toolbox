@@ -23,11 +23,11 @@ export function KeyList() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
 	const [key, setKey] = useState('');
 	const [expanded, setExpanded] = useState<string | false>(false);
-	const {ipfs} = useIpfs();
+	const {node} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
 
 	const reload = () => {
-		ipfs.key.list()
+		node.key.list()
 			.then(setKeys)
 			.catch(console.error);
 	};
@@ -39,7 +39,7 @@ export function KeyList() {
 	};
 
 	const generateKey = () => {
-		ipfs.key.gen(key)
+		node.key.gen(key)
 			.then(() => {
 				enqueueSnackbar(`Key ${key} generated`, {variant: 'success'});
 				setKey('');
@@ -53,7 +53,7 @@ export function KeyList() {
 	};
 
 	const deleteKey = (name: string) => {
-		ipfs.key.rm(name)
+		node.key.rm(name)
 			.then(() => {
 				enqueueSnackbar(`Key ${name} deleted`, {variant: 'success'});
 			})
@@ -87,7 +87,7 @@ export function KeyList() {
 					<Typography>
 						{key.id}: <Delayed promise={(async () => {
 						let res = '';
-						for await (const name of ipfs.name.resolve(key.id)) {
+						for await (const name of node.name.resolve(key.id)) {
 							res = name;
 						}
 

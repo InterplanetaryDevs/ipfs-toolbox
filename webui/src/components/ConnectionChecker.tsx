@@ -1,27 +1,19 @@
-import { Alert } from '@mui/material';
+import {Alert, Stack} from '@mui/material';
 import React, {PropsWithChildren, ReactElement, useEffect, useState} from 'react';
+import {INodeContext} from '../context/INodeContext';
 
 type ConnectionCheckerProps = PropsWithChildren<{
-	check: () => Promise<boolean>
-	checkInterval?: number
+	context: INodeContext<any>
 	notConnectedMessage?: ReactElement
 }>
 
-export function ConnectionChecker(props: ConnectionCheckerProps) {
-	const [connected, setConnected] = useState(false);
-
-	useEffect(() => {
-		props.check().then(setConnected).catch(() => setConnected(false));
-		const timer = setInterval(() => {
-			props.check().then(setConnected).catch(() => setConnected(false));
-		}, props.checkInterval ?? 5000);
-
-		return () => clearInterval(timer);
-	}, []);
-
-	if (!connected) {
-		return props.notConnectedMessage ?? <Alert severity="error">Failed to connect! Retrying...</Alert>;
+export function ConnectionChecker({context, notConnectedMessage, children}: ConnectionCheckerProps) {
+	if (!context.connected) {
+		return notConnectedMessage ?? <Stack spacing={1}>
+        <Alert severity="error">Failed to connect!</Alert>
+			{context.checking && <Alert severity={'warning'}>Retrying...</Alert>}
+    </Stack>;
 	}
 
-	return <div>{props.children}</div>;
+	return <div>{children}</div>;
 }

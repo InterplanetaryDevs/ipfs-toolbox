@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "watcg": "tsc --watch"
+    "watch": "tsc --watch"
   },
   "dependencies": {
     "axios": "^1.1.3"

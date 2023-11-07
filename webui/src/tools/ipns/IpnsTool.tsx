@@ -8,14 +8,14 @@ import {useIpfs} from '../../context/IpfsContext';
 
 export default function IpnsTool() {
 	const [tab, setTab] = useState(0);
-	const {checker} = useIpfs()
+	const ipfs = useIpfs()
 
 	useMenu(<Tabs value={tab} onChange={(e, v) => setTab(v)}>
 		<Tab label={'Publish'}/>
 		<Tab label={'Keys'}/>
 	</Tabs>);
 
-	return (<ConnectionChecker check={checker}>
+	return (<ConnectionChecker context={ipfs}>
 		<Container>
 			{tab == 0 ? <Publish/> : <KeyList/>}
 		</Container>

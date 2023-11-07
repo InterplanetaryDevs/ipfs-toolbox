@@ -4,7 +4,7 @@ import {AppBar} from './components/AppBar';
 import {ErrorBoundary} from './components/ErrorBoundary';
 import {Menu} from './components/Menu';
 import {useToolBox} from './context/ToolBoxContext';
-import { Footer } from './components/Footer';
+import {Footer} from './components/Footer';
 
 export function App() {
 	const toolBox = useToolBox();
@@ -14,11 +14,11 @@ export function App() {
 		<AppBar/>
 		<Menu/>
 		<Box className={'tool-root'}>
-			<ErrorBoundary>
-				<Suspense fallback={<CircularProgress/>}>
+			<Suspense fallback={<CircularProgress/>}>
+				<ErrorBoundary>
 					{toolBox.tool.tool}
-				</Suspense>
-			</ErrorBoundary>
+				</ErrorBoundary>
+			</Suspense>
 		</Box>
 		<Footer/>
 	</>;

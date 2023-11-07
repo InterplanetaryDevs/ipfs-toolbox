@@ -7,10 +7,10 @@ import {useEffectCancel} from '../../hooks/UseEffectCancel';
 export function Publish() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
 	const [key, setKey] = useState<string>('self');
-	const {ipfs} = useIpfs();
+	const {node} = useIpfs();
 
 	const reload = (signal: AbortSignal) => {
-		ipfs.key.list({signal})
+		node.key.list({signal})
 			.then(setKeys)
 			.catch(console.error);
 	};

@@ -1,4 +1,4 @@
-import {AppBar as MuiAppBar, IconButton, Toolbar, Typography} from '@mui/material';
+import {AppBar as MuiAppBar, IconButton, Stack, Toolbar, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
@@ -11,8 +11,13 @@ interface IAppBarProps {
 
 export function AppBar(props: IAppBarProps) {
 	const {tool, menu, setMenuOpen} = useToolBox();
-	const {apiUrl, setApiUrl} = useIpfs();
-	const {url, setUrl} = useIpfsCluster();
+	const {connected: ipfsConnected, apiUrl, setApiUrl, checking: ipfsChecking} = useIpfs();
+	const {
+		apiUrl: clusterApiUrl,
+		setApiUrl: clusterSetApiUrl,
+		connected: clusterConnected,
+		checking: clusterChecking
+	} = useIpfsCluster();
 
 	return <MuiAppBar position="fixed">
 		<Toolbar>
@@ -29,22 +34,24 @@ export function AppBar(props: IAppBarProps) {
 			</Typography>
 			{menu}
 			<div style={{flexGrow: 1}}/>
-			<div>
+			<Stack spacing={3} direction={'row'}>
 				<ConnectionTextField
 					value={apiUrl}
 					onChange={setApiUrl}
 					label={'IPFS Url'}
 					placeholder={'/ip4/127.0.0.1/tcp/5001'}
+					connected={ipfsConnected}
+					checking={ipfsChecking}
 				/>
-			</div>
-			<div>
 				<ConnectionTextField
-					value={url}
-					onChange={setUrl}
+					value={clusterApiUrl}
+					onChange={clusterSetApiUrl}
 					label={'IPFS Cluster Url'}
 					placeholder={'http://localhost:9094'}
+					connected={clusterConnected}
+					checking={clusterChecking}
 				/>
-			</div>
+			</Stack>
 		</Toolbar>
 	</MuiAppBar>;
 }

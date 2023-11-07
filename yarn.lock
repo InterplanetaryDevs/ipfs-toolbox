@@ -1899,10 +1899,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@remix-run/router@npm:1.0.3"
-  checksum: 832d8b52281ed939a2b7c936f0544dacf7b9797d85f8c5d3a3d4cb6f36930ee011ebb1e334b483357e87b43c59cfafff49daa5e4fb23e5079022ebf913ff5ca6
+"@remix-run/router@npm:1.11.0":
+  version: 1.11.0
+  resolution: "@remix-run/router@npm:1.11.0"
+  checksum: 629ec578b9dfd3c5cb5de64a0798dd7846ec5ba0351aa66f42b1c65efb43da8f30366be59b825303648965b0df55b638c110949b24ef94fd62e98117fdfb0c0f
   languageName: node
   linkType: hard
 
@@ -6407,27 +6407,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.4.3":
-  version: 6.4.3
-  resolution: "react-router-dom@npm:6.4.3"
+"react-router-dom@npm:^6.18.0":
+  version: 6.18.0
+  resolution: "react-router-dom@npm:6.18.0"
   dependencies:
-    "@remix-run/router": "npm:1.0.3"
-    react-router: "npm:6.4.3"
+    "@remix-run/router": "npm:1.11.0"
+    react-router: "npm:6.18.0"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 4865f00868c93f5a2b8191383e0671f38b0e26fc2858f4663b322a66f1ace752faeb621aa0d49683073a4373ab78655c10bf7f935e2195edb05f6d3c41cda682
+  checksum: b0e72603d73172b6c6662afe2faed326753d5bbd9905aa560e3dade7996fc13d19e34e3ed668d2849efd685e2db2f711129c84b1439870e92c9cc91ddc343cf5
   languageName: node
   linkType: hard
 
-"react-router@npm:6.4.3":
-  version: 6.4.3
-  resolution: "react-router@npm:6.4.3"
+"react-router@npm:6.18.0":
+  version: 6.18.0
+  resolution: "react-router@npm:6.18.0"
   dependencies:
-    "@remix-run/router": "npm:1.0.3"
+    "@remix-run/router": "npm:1.11.0"
   peerDependencies:
     react: ">=16.8"
-  checksum: b7ae8409a551d1c56627d5c80c4c0277c723df5573dc14ac90ac552626b6fe7f6767bb12d4c21ba344d9d81a42a82f2fdd3c20383a665b43a237d25b142fffd3
+  checksum: a00c8f347b7ffee575f4a7731782e688e3fca458ca5bd970fb41cef66a6851853caa24464155ab438d5879f367b1223a539642a405a865913ffe7e63e53b1245
   languageName: node
   linkType: hard
 
@@ -7503,7 +7503,7 @@ __metadata:
     notistack: "npm:^2.0.8"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    react-router-dom: "npm:^6.4.3"
+    react-router-dom: "npm:^6.18.0"
     typescript: "npm:^5.2.2"
     vite: "npm:^3.2.2"
     vite-plugin-env-compatible: "npm:^1.1.1"

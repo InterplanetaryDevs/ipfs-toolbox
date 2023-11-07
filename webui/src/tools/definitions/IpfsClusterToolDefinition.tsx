@@ -4,6 +4,7 @@ import LanIcon from '@mui/icons-material/Lan';
 
 const ClusterTool = lazy(() => import('../cluster/ClusterTool'));
 export const IpfsClusterToolDefinition: ITool = {
+	url: '/cluster',
 	icon: <LanIcon/>,
 	name: 'Cluster',
 	tool: <ClusterTool/>,

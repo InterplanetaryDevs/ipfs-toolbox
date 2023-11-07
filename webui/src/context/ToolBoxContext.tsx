@@ -1,12 +1,12 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
 import {ITool, IToolCategory} from '../types';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
-import {TOOLS} from '../tools/TOOLS';
+import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
 import {ShortcutService} from '../services/ShortcutService';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
-	tool: ITool,
 	setTool: (value: (((prevState: ITool) => ITool) | ITool)) => void,
 	isMenuOpen: boolean,
 	setMenuOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
@@ -20,67 +20,80 @@ export interface IToolBoxContext {
 const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
 
 export function ToolBoxContextProvider(props: PropsWithChildren) {
-	const [tool, setTool] = useState(DashboardDefinition);
 	const [menu, setMenu] = useState<JSX.Element>();
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const shortcutService = useMemo(() => new ShortcutService(), []);
+	const n = useNavigate();
+	const location = useLocation();
+
+	function setTool(tool: ITool) {
+		n(tool.url);
+	}
+
+	const tool = ALL_TOOLS.find(t => t.url.startsWith(location.pathname));
 
 	useEffect(() => {
-		shortcutService.registerShortcut(
-			{
-				name: 'Search',
-				keyBind: {
-					key: ' ', ctrl: true, shift: false, alt: false
-				},
-				action: () => {
-					setSearchOpen(true);
-				}
-			});
-		shortcutService.registerShortcut(
-			{
-				hidden: true,
-				name: '',
-				keyBind: {
-					key: 'Escape', ctrl: false, shift: false, alt: false
-				},
-				action: () => {
-					setSearchOpen(false);
-					setMenuOpen(false);
-				}
-			});
-		shortcutService.registerShortcut(
-			{
-				name: 'Dashboard',
-				description: 'Go to Dashboard',
-				keyBind: {
-					key: 'd', ctrl: true, shift: false, alt: false
-				},
-				action: () => {
-					setTool(DashboardDefinition);
-				}
-			});
-		shortcutService.registerShortcut(
-			{
-				name: 'Configuration',
-				description: 'Go to Configuration',
-				keyBind: {
-					key: ',', ctrl: true, shift: false, alt: false
-				},
-				action: () => {
-					setTool(ConfigurationDefinition);
-				}
-			});
-		shortcutService.registerShortcut(
-			{
-				name: 'Menu',
-				keyBind: {
-					key: 'm', ctrl: true, shift: false, alt: false
-				},
-				action: () => {
-					setMenuOpen(v => !v);
-				}
-			});
+		const symbols = [
+			shortcutService.registerShortcut(
+				{
+					name: 'Search',
+					keyBind: {
+						key: ' ', ctrl: true, shift: false, alt: false
+					},
+					action: () => {
+						setSearchOpen(true);
+					}
+				}),
+			shortcutService.registerShortcut(
+				{
+					hidden: true,
+					name: '',
+					keyBind: {
+						key: 'Escape', ctrl: false, shift: false, alt: false
+					},
+					action: () => {
+						setSearchOpen(false);
+						setMenuOpen(false);
+					}
+				}),
+			shortcutService.registerShortcut(
+				{
+					name: 'Dashboard',
+					description: 'Go to Dashboard',
+					keyBind: {
+						key: 'd', ctrl: true, shift: false, alt: false
+					},
+					action: () => {
+						setTool(DashboardDefinition);
+					}
+				}),
+			shortcutService.registerShortcut(
+				{
+					name: 'Configuration',
+					description: 'Go to Configuration',
+					keyBind: {
+						key: ',', ctrl: true, shift: false, alt: false
+					},
+					action: () => {
+						setTool(ConfigurationDefinition);
+					}
+				}),
+			shortcutService.registerShortcut(
+				{
+					name: 'Menu',
+					keyBind: {
+						key: 'm', ctrl: true, shift: false, alt: false
+					},
+					action: () => {
+						setMenuOpen(v => !v);
+					}
+				}),
+		];
+
+		return () => {
+			symbols.forEach(s => shortcutService.removeShortcut(s));
+		};
 	}, []);
 
 	useEffect(() => {

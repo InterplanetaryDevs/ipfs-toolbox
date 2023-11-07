@@ -5,4 +5,5 @@ import React from 'react';
 export const DashboardDefinition: ITool = {
 	name: 'Dashboard',
 	tool: <Dashboard/>,
+	url: '/'
 };

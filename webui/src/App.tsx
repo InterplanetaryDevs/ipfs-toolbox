@@ -3,11 +3,12 @@ import React, {Suspense} from 'react';
 import {AppBar} from './components/AppBar';
 import {ErrorBoundary} from './components/ErrorBoundary';
 import {Menu} from './components/Menu';
-import {useToolBox} from './context/ToolBoxContext';
 import {Footer} from './components/Footer';
+import {ALL_TOOLS} from './tools/TOOLS';
+import {Route, Routes} from 'react-router-dom';
 
 export function App() {
-	const toolBox = useToolBox();
+	const routes = ALL_TOOLS.map(t => <Route path={t.url} element={t.tool}/>);
 
 	return <>
 		<CssBaseline/>
@@ -17,10 +18,12 @@ export function App() {
 		<ErrorBoundary>
 			<Menu/>
 		</ErrorBoundary>
-		<Box className={'tool-root'}>
+		<Box id={'tool'}>
 			<Suspense fallback={<CircularProgress/>}>
 				<ErrorBoundary>
-					{toolBox.tool.tool}
+					<Routes>
+						{routes}
+					</Routes>
 				</ErrorBoundary>
 			</Suspense>
 		</Box>

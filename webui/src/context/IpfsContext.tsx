@@ -1,13 +1,12 @@
 import React, {createContext, PropsWithChildren, useContext, useMemo, useState} from 'react';
-import {create} from 'ipfs-http-client';
-import type {IPFS} from 'ipfs-core-types';
+import {create, IPFSHTTPClient} from 'kubo-rpc-client';
 
 export interface IIpfsContext {
 	apiUrl: string;
 
 	setApiUrl(value: string): void;
 
-	ipfs: IPFS;
+	ipfs: IPFSHTTPClient;
 }
 
 const IpfsContext = createContext<IIpfsContext>({} as IIpfsContext);

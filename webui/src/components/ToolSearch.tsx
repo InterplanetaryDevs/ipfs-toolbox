@@ -55,6 +55,9 @@ export function ToolSearch() {
 						if (selected > 0) {
 							setSelected(s => s - 1);
 						}
+					} else if (ev.key == 'Escape') {
+						ev.preventDefault();
+						setSearchOpen(false);
 					}
 				}}
 			/>

@@ -1,6 +1,6 @@
 {
   "name": "ipfs-toolbox",
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@4.0.1",
   "workspaces": [
     "webui",
     "ipfs-cluster-api",
@@ -9,8 +9,7 @@
   ],
   "scripts": {
     "start": "yarn workspace webui run start",
-    "build": "yarn workspaces foreach run build",
-    "test": "yarn workspace tests run test",
-    "upgrade": "yarn upgrade-interactive"
+    "build": "yarn workspaces foreach -A run build",
+    "test": "yarn workspace tests run test"
   }
 }

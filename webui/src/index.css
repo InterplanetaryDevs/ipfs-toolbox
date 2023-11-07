@@ -11,16 +11,18 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .embed {
-    width: 100%;
-    height: calc(100vh - 75px);
+    width: 100vw;
+    height: calc(100vh - 155px);
 }
 
 .tool-root {
     margin-top: 64px;
-    min-height: calc(100vh - 75px);
+    margin-bottom: 20px;
+    min-height: calc(100vh - 145px);
     overflow: auto;
 }
 

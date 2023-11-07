@@ -4,6 +4,7 @@ import {AppBar} from './components/AppBar';
 import {ErrorBoundary} from './components/ErrorBoundary';
 import {Menu} from './components/Menu';
 import {useToolBox} from './context/ToolBoxContext';
+import { Footer } from './components/Footer';
 
 export function App() {
 	const toolBox = useToolBox();
@@ -19,5 +20,6 @@ export function App() {
 				</Suspense>
 			</ErrorBoundary>
 		</Box>
+		<Footer/>
 	</>;
 }

@@ -2,7 +2,7 @@ import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
 import {InputAdornment, OutlinedInput} from '@mui/material';
 import React, {useState} from 'react';
-import {CID} from 'ipfs-http-client';
+import {CID} from 'kubo-rpc-client';
 import {LoadingButton} from '../../components/LoadingButton';
 
 interface IPublishButtonProps {
@@ -45,4 +45,3 @@ export function PublishButton(props: IPublishButtonProps) {
 		/>
 	</div>;
 }
-

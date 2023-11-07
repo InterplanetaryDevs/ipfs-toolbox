@@ -20,9 +20,9 @@ body {
 }
 
 .tool-root {
-    margin-top: 64px;
-    margin-bottom: 20px;
-    min-height: calc(100vh - 145px);
+    margin-top: 74px;
+    margin-bottom: 18px;
+    min-height: calc(100vh - 135px);
     overflow: auto;
 }
 

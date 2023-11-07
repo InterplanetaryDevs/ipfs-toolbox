@@ -10,7 +10,7 @@ type ConnectionCheckerProps = PropsWithChildren<{
 export function ConnectionChecker({context, notConnectedMessage, children}: ConnectionCheckerProps) {
 	if (!context.connected) {
 		return notConnectedMessage ?? <Stack spacing={1}>
-        <Alert severity="error">Failed to connect!</Alert>
+			{context.notConnectedMessage ?? <Alert severity="error">Failed to connect!</Alert>}
 			{context.checking && <Alert severity={'warning'}>Retrying...</Alert>}
     </Stack>;
 	}

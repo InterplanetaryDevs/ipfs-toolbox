@@ -11,8 +11,12 @@ export function App() {
 
 	return <>
 		<CssBaseline/>
-		<AppBar/>
-		<Menu/>
+		<ErrorBoundary>
+			<AppBar/>
+		</ErrorBoundary>
+		<ErrorBoundary>
+			<Menu/>
+		</ErrorBoundary>
 		<Box className={'tool-root'}>
 			<Suspense fallback={<CircularProgress/>}>
 				<ErrorBoundary>

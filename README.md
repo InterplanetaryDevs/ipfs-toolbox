@@ -15,7 +15,7 @@ Or you can follow the instructions below and build it yourself.
 
 ## Shortcuts
 
-- `ctrl` + `h` - Go to dashboard.
+- `ctrl` + `d` - Go to dashboard.
 - `ctrl` + `,` - Go to configuration.
 - `ctrl` + `m` - Toggle menu.
 - `ctrl` + ` ` - Toggle search.

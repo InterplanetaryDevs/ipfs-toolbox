@@ -1,16 +1,28 @@
-import {AppBar as MuiAppBar, IconButton, Stack, Toolbar, Typography} from '@mui/material';
+import {AppBar as MuiAppBar, Chip, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
 import {ConnectionTextField} from './ConnectionTextField';
 import {useIpfsCluster} from '../context/IpfsClusterContext';
-import React from 'react';
+import React, {PropsWithoutRef} from 'react';
+import InfoIcon from '@mui/icons-material/Info';
+import {IKeyBind} from '../services/ShortcutService';
 
 interface IAppBarProps {
 }
 
+
+function ShortcutDisplay({keyBind}: PropsWithoutRef<{ keyBind: IKeyBind }>) {
+	return <div>
+		{keyBind.ctrl && <><Chip label={'CTRL'}/> + </>}
+		{keyBind.alt && <><Chip label={'ALT'}/> + </>}
+		{keyBind.shift && <><Chip label={'SHIFT'}/> + </>}
+		<Chip label={keyBind.key.replace(' ', 'space').toUpperCase()}/>
+	</div>;
+}
+
 export function AppBar(props: IAppBarProps) {
-	const {tool, menu, setMenuOpen} = useToolBox();
+	const {tool, menu, setMenuOpen, shortcutService} = useToolBox();
 	const {connected: ipfsConnected, apiUrl, setApiUrl, checking: ipfsChecking} = useIpfs();
 	const {
 		apiUrl: clusterApiUrl,
@@ -18,6 +30,18 @@ export function AppBar(props: IAppBarProps) {
 		connected: clusterConnected,
 		checking: clusterChecking
 	} = useIpfsCluster();
+
+	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 
 	return <MuiAppBar position="fixed">
 		<Toolbar>
@@ -34,7 +58,7 @@ export function AppBar(props: IAppBarProps) {
 			</Typography>
 			{menu}
 			<div style={{flexGrow: 1}}/>
-			<Stack spacing={3} direction={'row'}>
+			<Stack spacing={2} direction={'row'}>
 				<ConnectionTextField
 					value={apiUrl}
 					onChange={setApiUrl}
@@ -51,6 +75,24 @@ export function AppBar(props: IAppBarProps) {
 					connected={clusterConnected}
 					checking={clusterChecking}
 				/>
+				<IconButton onClick={handleClick}>
+					<InfoIcon/>
+				</IconButton>
+				<Popover
+					open={open}
+					anchorEl={anchorEl}
+					onClose={handleClose}
+					anchorOrigin={{
+						vertical: 'bottom',
+						horizontal: 'right',
+					}}
+				>
+					<Stack>
+						{shortcutService.getShortcuts().map((v, i) => <div style={{display: 'flex'}}>
+							<div style={{flexGrow: 1}}>{v.name}</div>
+							<ShortcutDisplay keyBind={v.keyBind}/></div>)}
+					</Stack>
+				</Popover>
 			</Stack>
 		</Toolbar>
 	</MuiAppBar>;

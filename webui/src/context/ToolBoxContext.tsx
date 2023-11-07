@@ -1,7 +1,8 @@
-import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from 'react';
+import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
 import {ITool, IToolCategory} from '../types';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 import {TOOLS} from '../tools/TOOLS';
+import {ShortcutService} from '../services/ShortcutService';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
@@ -13,6 +14,7 @@ export interface IToolBoxContext {
 	setSearchOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void,
 	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
+	shortcutService: ShortcutService
 }
 
 const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
@@ -22,34 +24,73 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [menu, setMenu] = useState<JSX.Element>();
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
+	const shortcutService = useMemo(() => new ShortcutService(), []);
 
-	const handleKeyPress = useCallback((event: KeyboardEvent) => {
-		if (event.key == 'h' && event.ctrlKey) {
-			event.preventDefault();
-			setTool(DashboardDefinition);
-		} else if (event.key == ',' && event.ctrlKey) {
-			event.preventDefault();
-			setTool(ConfigurationDefinition);
-		} else if (event.key == 'm' && event.ctrlKey) {
-			event.preventDefault();
-			setMenuOpen(v => !v);
-		} else if (event.key == ' ' && event.ctrlKey) {
-			event.preventDefault();
-			setSearchOpen(true);
-		} else if (event.key == 'Escape') {
-			event.preventDefault();
-			setSearchOpen(false);
-			setMenuOpen(false);
-		}
+	useEffect(() => {
+		shortcutService.registerShortcut(
+			{
+				name: 'Search',
+				keyBind: {
+					key: ' ', ctrl: true, shift: false, alt: false
+				},
+				action: () => {
+					setSearchOpen(true);
+				}
+			});
+		shortcutService.registerShortcut(
+			{
+				hidden: true,
+				name: '',
+				keyBind: {
+					key: 'Escape', ctrl: false, shift: false, alt: false
+				},
+				action: () => {
+					setSearchOpen(false);
+					setMenuOpen(false);
+				}
+			});
+		shortcutService.registerShortcut(
+			{
+				name: 'Dashboard',
+				description: 'Go to Dashboard',
+				keyBind: {
+					key: 'd', ctrl: true, shift: false, alt: false
+				},
+				action: () => {
+					setTool(DashboardDefinition);
+				}
+			});
+		shortcutService.registerShortcut(
+			{
+				name: 'Configuration',
+				description: 'Go to Configuration',
+				keyBind: {
+					key: ',', ctrl: true, shift: false, alt: false
+				},
+				action: () => {
+					setTool(ConfigurationDefinition);
+				}
+			});
+		shortcutService.registerShortcut(
+			{
+				name: 'Menu',
+				keyBind: {
+					key: 'm', ctrl: true, shift: false, alt: false
+				},
+				action: () => {
+					setMenuOpen(v => !v);
+				}
+			});
 	}, []);
 
 	useEffect(() => {
+		const handleKeyPress = (ev) => shortcutService.handleKeyPress(ev);
 		document.addEventListener('keydown', handleKeyPress);
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyPress);
 		};
-	}, [handleKeyPress]);
+	}, []);
 
 	return <ToolBoxContext.Provider value={{
 		tools: TOOLS,
@@ -61,6 +102,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		setMenu,
 		isSearchOpen,
 		setSearchOpen,
+		shortcutService
 	}}>
 		{props.children}
 	</ToolBoxContext.Provider>;

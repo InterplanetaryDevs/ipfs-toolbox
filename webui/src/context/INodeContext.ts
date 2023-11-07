@@ -1,6 +1,8 @@
 /**
  * Context for a node of type <T>
  */
+import {ReactNode} from 'react';
+
 export interface INodeContext<T> {
 	/**
 	 * Url to connect to the node
@@ -26,4 +28,9 @@ export interface INodeContext<T> {
 	 * Whether the node is checking the connection
 	 */
 	checking: boolean;
+
+	/***
+	 * Message to display when not connected
+	 */
+	notConnectedMessage?: ReactNode;
 }

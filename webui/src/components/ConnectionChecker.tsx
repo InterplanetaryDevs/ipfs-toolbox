@@ -19,7 +19,7 @@ export function ConnectionChecker({context, children}: ConnectionCheckerProps) {
             <CardActions>
 								{context.checking && <Alert severity={'warning'}>Retrying...</Alert>}
                 <Box sx={{flexGrow: 1}}/>
-                <Button startIcon={<ReplayIcon/>}>Retry</Button>
+                <Button startIcon={<ReplayIcon/>} onClick={() => context.runCheck()}>Retry</Button>
             </CardActions>
         </Card>
     </Centered>;

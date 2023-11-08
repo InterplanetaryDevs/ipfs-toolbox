@@ -14,12 +14,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
 import {useIpfsCluster} from '../context/IpfsClusterContext';
-import React, {PropsWithoutRef} from 'react';
+import React, {PropsWithoutRef, useRef} from 'react';
 import InfoIcon from '@mui/icons-material/Info';
-import {IKeyBind} from '../services/ShortcutService';
+import {IKeyBind, IShortCut} from '../services/ShortcutService';
 import {INodeContext} from '../context/INodeContext';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import {useShortCut} from '../hooks/UseShortCut';
 
 interface IAppBarProps {
 }
@@ -48,6 +49,7 @@ export function AppBar(props: IAppBarProps) {
 
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 	const open = Boolean(anchorEl);
+	const anchorRef = useRef<HTMLButtonElement | null>(null);
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -56,6 +58,18 @@ export function AppBar(props: IAppBarProps) {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	useShortCut({
+		name: 'Help',
+		category: 'Global',
+		keyBind: {
+			key: 'h',
+			ctrl: true,
+		},
+		action: () => {
+			setAnchorEl(anchorRef.current);
+		}
+	});
 
 
 	return <Box sx={{
@@ -78,7 +92,7 @@ export function AppBar(props: IAppBarProps) {
 			<Stack spacing={2} direction={'row'}>
 				<ConnectionStatusButton label={'IPFS'} context={ipfs}/>
 				<ConnectionStatusButton label={'IPFS Cluster'} context={ipfsCluster}/>
-				<IconButton onClick={handleClick}>
+				<IconButton onClick={handleClick} ref={el => anchorRef.current = el}>
 					<InfoIcon/>
 				</IconButton>
 				<Popover
@@ -90,13 +104,25 @@ export function AppBar(props: IAppBarProps) {
 						horizontal: 'right',
 					}}
 				>
-					<Stack>
-						{shortcutService.getShortcuts().map((v, i) => <div style={{display: 'flex'}}>
-							<div style={{flexGrow: 1}}>{v.name}</div>
-							<ShortcutDisplay keyBind={v.keyBind}/></div>)}
+					<Stack spacing={1} sx={{width: 300, padding: 2}}>
+						{Object.entries(shortcutService.getShortcuts()
+							.reduce((group, product) => {
+								const category = product.category ?? 'unknown';
+								group[category] = group[category] ?? [];
+								group[category].push(product);
+								return group;
+							}, {} as { [key: string]: IShortCut[] }))
+							.map(([category, shortcuts]) => <Stack>
+								<Typography variant={'caption'}>{category}</Typography>
+								{shortcuts.map((v, i) => (<Box
+									sx={{display: 'flex', borderBottomWidth: 1, borderBottomColor: 'primary.dark'}}>
+									<div style={{flexGrow: 1}}>{v.name}</div>
+									<ShortcutDisplay keyBind={v.keyBind}/>
+								</Box>))}
+							</Stack>)}
 					</Stack>
 				</Popover>
 			</Stack>
 		</Toolbar>
 	</Box>;
-}
+};

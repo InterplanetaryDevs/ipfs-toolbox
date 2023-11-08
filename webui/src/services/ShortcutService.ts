@@ -1,8 +1,8 @@
 export interface IKeyBind {
 	key: string;
-	ctrl: boolean;
-	alt: boolean;
-	shift: boolean;
+	ctrl?: boolean;
+	alt?: boolean;
+	shift?: boolean;
 }
 
 export interface IShortCut {
@@ -11,16 +11,17 @@ export interface IShortCut {
 	action: () => void;
 	description?: string;
 	hidden?: boolean;
+	category?: string;
 }
 
 export class ShortcutService {
 	private shortcuts = new Map<symbol, IShortCut>();
 
 	public handleKeyPress(event: KeyboardEvent) {
-		const active = this.getAllShortcuts().find(s => s.keyBind.key.toLowerCase() == event.key.toUpperCase()
-			&& s.keyBind.ctrl == event.ctrlKey
-			&& s.keyBind.shift == event.shiftKey
-			&& s.keyBind.alt == event.altKey
+		const active = this.getAllShortcuts().find(s => s.keyBind.key.toLowerCase() == event.key.toLowerCase()
+			&& Boolean(s.keyBind.ctrl) == event.ctrlKey
+			&& Boolean(s.keyBind.shift) == event.shiftKey
+			&& Boolean(s.keyBind.alt) == event.altKey
 		);
 
 		if (active) {

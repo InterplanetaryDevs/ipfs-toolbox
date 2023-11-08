@@ -46,43 +46,6 @@ export default function ConfigurationTool() {
 
 }
 
-function ConfigInput(props: {
-	label: string,
-	value: string,
-	defaultValue?: string,
-	onChange: (newValue: string) => void
-}) {
-	const [text, setText] = useState(props.value);
-
-	return <div>
-		<TextField
-			label={props.label}
-			value={text}
-			onChange={(e) => setText(e.target.value)}
-			placeholder={props.defaultValue}
-			InputProps={{
-				endAdornment: (<ButtonGroup>
-					{props.defaultValue && props.defaultValue != props.value && <IconButton
-              onClick={() => {
-								props.onChange(props.defaultValue!);
-								setText(props.defaultValue!);
-							}}
-          ><RefreshIcon/></IconButton>}
-					{props.value !== text && <>
-              <IconButton
-                  onClick={() => setText(props.value)}
-              ><CloseIcon/></IconButton>
-              <IconButton
-                  onClick={() => {
-										props.onChange(text);
-									}}
-              ><CheckIcon/></IconButton>
-          </>}
-				</ButtonGroup>)
-			}}/>
-	</div>;
-}
-
 function AppTab() {
 	const configuration = useConfiguration();
 
@@ -145,4 +108,41 @@ function IpfsClusterTab() {
 
 		</Container>
 	</ConnectionChecker>;
+}
+
+function ConfigInput(props: {
+	label: string,
+	value: string,
+	defaultValue?: string,
+	onChange: (newValue: string) => void
+}) {
+	const [text, setText] = useState(props.value);
+
+	return <div>
+		<TextField
+			label={props.label}
+			value={text}
+			onChange={(e) => setText(e.target.value)}
+			placeholder={props.defaultValue}
+			InputProps={{
+				endAdornment: (<ButtonGroup>
+					{props.defaultValue && props.defaultValue != props.value && <IconButton
+              onClick={() => {
+								props.onChange(props.defaultValue!);
+								setText(props.defaultValue!);
+							}}
+          ><RefreshIcon/></IconButton>}
+					{props.value !== text && <>
+              <IconButton
+                  onClick={() => setText(props.value)}
+              ><CloseIcon/></IconButton>
+              <IconButton
+                  onClick={() => {
+										props.onChange(text);
+									}}
+              ><CheckIcon/></IconButton>
+          </>}
+				</ButtonGroup>)
+			}}/>
+	</div>;
 }

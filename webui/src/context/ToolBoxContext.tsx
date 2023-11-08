@@ -20,7 +20,6 @@ export interface IToolBoxContext {
 	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 	shortcutService: ShortcutService
-	configuration: IConfigurationService
 	config: LocalStorageConfigurationStore
 }
 
@@ -43,7 +42,6 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const shortcutService = useMemo(() => new ShortcutService(), []);
-	const configurationService = useMemo(() => new ConfigurationService(new LocalStorageConfigurationStore()), []);
 	const n = useNavigate();
 	const location = useLocation();
 	const dashboardShortCut = useToolShortCut(DashboardDefinition);
@@ -124,7 +122,6 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		isSearchOpen,
 		setSearchOpen,
 		shortcutService,
-		configuration: configurationService,
 		config: new LocalStorageConfigurationStore(),
 	}}>
 		{props.children}

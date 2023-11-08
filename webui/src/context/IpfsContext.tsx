@@ -6,7 +6,7 @@ import React, {
 	useEffect,
 	useMemo,
 	useRef,
-	useState
+	useState,
 } from 'react';
 import {create, IPFSHTTPClient} from 'kubo-rpc-client';
 import {INodeContext} from './INodeContext';
@@ -44,7 +44,7 @@ export function IpfsContextProvider(props: PropsWithChildren) {
 					"https://webui.ipfs.io"]'
 					ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "POST"]'</code>
 			</Alert>
-		</Stack>
+		</Stack>,
 	}}>
 		{props.children}
 	</IpfsContext.Provider>;

@@ -1,4 +1,4 @@
-import {Container, Tab, Tabs} from '@mui/material';
+import {Tab, Tabs} from '@mui/material';
 import React, {useState} from 'react';
 import {useMenu} from '../../hooks/UseMenu';
 import {AddPinDialog} from './AddPinDialog';
@@ -8,10 +8,55 @@ import {PinList} from './PinList';
 import {useIpfsCluster} from '../../context/IpfsClusterContext';
 import {ConnectionChecker} from '../../components/ConnectionChecker';
 import {ToolContainer} from '../../components/ToolContainer';
+import {useShortCut} from '../../hooks/UseShortCut';
 
 export default function ClusterTool() {
 	const [tab, setTab] = useState(0);
+
+
 	const context = useIpfsCluster();
+
+	useShortCut({
+		category: 'Cluster',
+		name: 'Pins',
+		keyBind: {
+			key: '1',
+			alt: true,
+			ctrl: false,
+			shift: false,
+		},
+		action: () => {
+			setTab(0);
+		}
+	});
+
+	useShortCut({
+		category: 'Cluster',
+		name: 'Peers',
+		keyBind: {
+			key: '2',
+			alt: true,
+			ctrl: false,
+			shift: false,
+		},
+		action: () => {
+			setTab(1);
+		}
+	});
+
+	useShortCut({
+		category: 'Cluster',
+		name: 'Identity',
+		keyBind: {
+			key: '3',
+			alt: true,
+			ctrl: false,
+			shift: false,
+		},
+		action: () => {
+			setTab(2);
+		}
+	});
 
 	useMenu(<Tabs value={tab} onChange={(e, v) => setTab(v)}>
 		<Tab label={'Pins'}/>

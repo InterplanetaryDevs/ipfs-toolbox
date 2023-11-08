@@ -42,21 +42,17 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		const symbols = [
 			shortcutService.registerShortcut(
 				{
+					category: 'Global',
 					name: 'Search',
-					keyBind: {
-						key: ' ', ctrl: true, shift: false, alt: false
-					},
-					action: () => {
-						setSearchOpen(true);
-					}
+					keyBind: {key: ' ', ctrl: true},
+					action: () => setSearchOpen(true)
 				}),
 			shortcutService.registerShortcut(
 				{
+					category: 'Global',
 					hidden: true,
 					name: '',
-					keyBind: {
-						key: 'Escape', ctrl: false, shift: false, alt: false
-					},
+					keyBind: {key: 'Escape'},
 					action: () => {
 						setSearchOpen(false);
 						setMenuOpen(false);
@@ -64,35 +60,26 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 				}),
 			shortcutService.registerShortcut(
 				{
+					category: 'Global',
 					name: 'Dashboard',
 					description: 'Go to Dashboard',
-					keyBind: {
-						key: 'd', ctrl: true, shift: false, alt: false
-					},
-					action: () => {
-						setTool(DashboardDefinition);
-					}
+					keyBind: {key: 'd', ctrl: true},
+					action: () => setTool(DashboardDefinition)
 				}),
 			shortcutService.registerShortcut(
 				{
+					category: 'Global',
 					name: 'Configuration',
 					description: 'Go to Configuration',
-					keyBind: {
-						key: ',', ctrl: true, shift: false, alt: false
-					},
-					action: () => {
-						setTool(ConfigurationDefinition);
-					}
+					keyBind: {key: ',', ctrl: true},
+					action: () => setTool(ConfigurationDefinition)
 				}),
 			shortcutService.registerShortcut(
 				{
+					category: 'Global',
 					name: 'Menu',
-					keyBind: {
-						key: 'm', ctrl: true, shift: false, alt: false
-					},
-					action: () => {
-						setMenuOpen(v => !v);
-					}
+					keyBind: {key: 'm', ctrl: true},
+					action: () => setMenuOpen(v => !v)
 				}),
 		];
 

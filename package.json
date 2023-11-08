@@ -8,8 +8,8 @@
     "testing"
   ],
   "scripts": {
-    "watch": "yarn workspaces foreach -A run watch",
-    "build": "yarn workspaces foreach -A run build",
+    "watch": "yarn workspaces foreach -Ap run watch",
+    "build": "yarn workspaces foreach -At run build",
     "test": "yarn workspace tests run test"
   }
 }

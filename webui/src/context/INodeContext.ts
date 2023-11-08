@@ -1,9 +1,9 @@
+import {IConnectionCheckAble} from '../services/IConnectionCheckAble';
+
 /**
  * Context for a node of type <T>
  */
-import {ReactNode} from 'react';
-
-export interface INodeContext<T> {
+export interface INodeContext<T> extends IConnectionCheckAble {
 	/**
 	 * Url to connect to the node
 	 */
@@ -18,19 +18,4 @@ export interface INodeContext<T> {
 	 * The actual node
 	 */
 	node: T;
-
-	/***
-	 * Whether the node is connected or not
-	 */
-	connected: boolean;
-
-	/***
-	 * Whether the node is checking the connection
-	 */
-	checking: boolean;
-
-	/***
-	 * Message to display when not connected
-	 */
-	notConnectedMessage?: ReactNode;
 }

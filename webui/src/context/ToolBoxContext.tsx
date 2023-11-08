@@ -4,6 +4,8 @@ import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions
 import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
 import {ShortcutService} from '../services/ShortcutService';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {ConfigurationService, IConfigurationService} from '../services/ConfigurationService';
+import {LocalStorageConfigurationStore} from '../services/LocalStorageConfigurationStore';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
@@ -16,6 +18,7 @@ export interface IToolBoxContext {
 	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 	shortcutService: ShortcutService
+	configuration: IConfigurationService
 }
 
 const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
@@ -25,6 +28,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const shortcutService = useMemo(() => new ShortcutService(), []);
+	const configurationService = useMemo(() => new ConfigurationService(new LocalStorageConfigurationStore()), []);
 	const n = useNavigate();
 	const location = useLocation();
 
@@ -116,7 +120,8 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		setMenu,
 		isSearchOpen,
 		setSearchOpen,
-		shortcutService
+		shortcutService,
+		configuration: configurationService
 	}}>
 		{props.children}
 	</ToolBoxContext.Provider>;

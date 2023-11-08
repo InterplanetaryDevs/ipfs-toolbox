@@ -15,4 +15,6 @@ export interface IConnectionCheckAble {
 	 * Message to display when not connected
 	 */
 	notConnectedMessage?: ReactNode;
+
+	runCheck(): void;
 }

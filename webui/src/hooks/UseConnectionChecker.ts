@@ -17,10 +17,14 @@ export function useConnectionChecker(check: () => Promise<boolean>, interval = 1
 		});
 	}, [check]);
 
-	useEffect(() => {
+	const runCheck = useCallback(() => {
 		checker().then(setConnected).catch(() => setConnected(false));
+	}, [checker]);
+
+	useEffect(() => {
+		runCheck();
 		const timer = setInterval(() => {
-			checker().then(setConnected).catch(() => setConnected(false));
+			runCheck();
 		}, interval);
 
 		return () => {
@@ -28,5 +32,5 @@ export function useConnectionChecker(check: () => Promise<boolean>, interval = 1
 		};
 	}, [checker]);
 
-	return {connected, checking};
+	return {connected, checking, runCheck};
 }

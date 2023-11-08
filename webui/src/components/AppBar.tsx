@@ -1,12 +1,25 @@
-import {Box, Chip, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
+import {
+	Badge,
+	Box,
+	Button,
+	Chip,
+	CircularProgress,
+	IconButton,
+	Popover,
+	Stack,
+	Toolbar,
+	Typography
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
-import {ConnectionTextField} from './ConnectionTextField';
 import {useIpfsCluster} from '../context/IpfsClusterContext';
 import React, {PropsWithoutRef} from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import {IKeyBind} from '../services/ShortcutService';
+import {INodeContext} from '../context/INodeContext';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface IAppBarProps {
 }
@@ -21,15 +34,17 @@ function ShortcutDisplay({keyBind}: PropsWithoutRef<{ keyBind: IKeyBind }>) {
 	</div>;
 }
 
+function ConnectionStatusButton({context, label}: { label: string, context: INodeContext<any> }) {
+	return <Badge badgeContent={(context.connected ? <CheckIcon color={'success'}/> : (context.checking ?
+		<CircularProgress color={'warning'} size={25}/> : <CloseIcon color={'error'}/>))}>
+		<Button onClick={() => context.runCheck()}>{label}</Button>
+	</Badge>;
+}
+
 export function AppBar(props: IAppBarProps) {
 	const {tool, menu, setMenuOpen, shortcutService} = useToolBox();
-	const {connected: ipfsConnected, apiUrl, setApiUrl, checking: ipfsChecking} = useIpfs();
-	const {
-		apiUrl: clusterApiUrl,
-		setApiUrl: clusterSetApiUrl,
-		connected: clusterConnected,
-		checking: clusterChecking
-	} = useIpfsCluster();
+	const ipfs = useIpfs();
+	const ipfsCluster = useIpfsCluster();
 
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 	const open = Boolean(anchorEl);
@@ -61,22 +76,8 @@ export function AppBar(props: IAppBarProps) {
 			{menu}
 			<div style={{flexGrow: 1}}/>
 			<Stack spacing={2} direction={'row'}>
-				<ConnectionTextField
-					value={apiUrl}
-					onChange={setApiUrl}
-					label={'IPFS Url'}
-					placeholder={'/ip4/127.0.0.1/tcp/5001'}
-					connected={ipfsConnected}
-					checking={ipfsChecking}
-				/>
-				<ConnectionTextField
-					value={clusterApiUrl}
-					onChange={clusterSetApiUrl}
-					label={'IPFS Cluster Url'}
-					placeholder={'http://localhost:9094'}
-					connected={clusterConnected}
-					checking={clusterChecking}
-				/>
+				<ConnectionStatusButton label={'IPFS'} context={ipfs}/>
+				<ConnectionStatusButton label={'IPFS Cluster'} context={ipfsCluster}/>
 				<IconButton onClick={handleClick}>
 					<InfoIcon/>
 				</IconButton>

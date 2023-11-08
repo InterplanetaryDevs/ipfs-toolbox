@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {ConnectionChecker} from '../components/ConnectionChecker';
-import {useIpfs} from '../context/IpfsContext';
 import {Card, CardContent, CircularProgress} from '@mui/material';
+import React, {useState} from 'react';
+import {ConnectionChecker} from '../components/ConnectionChecker';
 import {ToolContainer} from '../components/ToolContainer';
+import {useIpfs} from '../context/IpfsContext';
 import {useEffectCancel} from '../hooks/UseEffectCancel';
 
 export default function StatusTool() {

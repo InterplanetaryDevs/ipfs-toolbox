@@ -1,6 +1,6 @@
 # IPFS Toolbox
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/InterplanetaryDevs/ipfs-toolbox/Build%20&%20test/master)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/InterplanetaryDevs/ipfs-toolbox/build-and-test.yml?branch=master)
 ![GitHub](https://img.shields.io/github/license/InterplanetaryDevs/ipfs-toolbox)
 ![GitHub forks](https://img.shields.io/github/forks/InterplanetaryDevs/ipfs-toolbox?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/InterplanetaryDevs/ipfs-toolbox?style=social)

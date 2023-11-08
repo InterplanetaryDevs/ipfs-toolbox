@@ -8,7 +8,7 @@
     "testing"
   ],
   "scripts": {
-    "watch": "yarn workspaces foreach -Ap run watch",
+    "watch": "yarn workspaces foreach -Api run watch",
     "build": "yarn workspaces foreach -At run build",
     "test": "yarn workspace tests run test"
   }

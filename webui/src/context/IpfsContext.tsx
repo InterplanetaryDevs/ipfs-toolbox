@@ -35,7 +35,7 @@ export function IpfsContextProvider(props: PropsWithChildren) {
 		node: ipfs,
 		connected,
 		checking,
-		notConnectedMessage: <Stack>
+		notConnectedMessage: <Stack spacing={2}>
 			<Alert severity={'error'}>Could not connect to IPFS node!</Alert>
 			<Alert severity={'info'}>
 				<p>Try running the code below to update the IPFS API headers.</p>

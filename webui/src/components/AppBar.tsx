@@ -1,48 +1,16 @@
-import {
-	Badge,
-	Box,
-	Button,
-	Chip,
-	CircularProgress,
-	IconButton,
-	Popover,
-	Stack,
-	Toolbar,
-	Typography
-} from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 import MenuIcon from '@mui/icons-material/Menu';
+import {Box, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
+import React, {useRef} from 'react';
+import {useIpfsCluster} from '../context/IpfsClusterContext';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
-import {useIpfsCluster} from '../context/IpfsClusterContext';
-import React, {PropsWithoutRef, useRef} from 'react';
-import InfoIcon from '@mui/icons-material/Info';
-import {IKeyBind, IShortCut} from '../services/ShortcutService';
-import {INodeContext} from '../context/INodeContext';
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
 import {useShortCut} from '../hooks/UseShortCut';
+import {ConnectionStatusButton} from './ConnectionStatusButton';
+import {ShortcutButton} from './ShortcutButton';
+import {ShortCutList} from './ShortCutList';
 
-interface IAppBarProps {
-}
-
-
-function ShortcutDisplay({keyBind}: PropsWithoutRef<{ keyBind: IKeyBind }>) {
-	return <div>
-		{keyBind.ctrl && <><Chip label={'CTRL'}/> + </>}
-		{keyBind.alt && <><Chip label={'ALT'}/> + </>}
-		{keyBind.shift && <><Chip label={'SHIFT'}/> + </>}
-		<Chip label={keyBind.key.replace(' ', 'space').toUpperCase()}/>
-	</div>;
-}
-
-function ConnectionStatusButton({context, label}: { label: string, context: INodeContext<any> }) {
-	return <Badge badgeContent={(context.connected ? <CheckIcon color={'success'}/> : (context.checking ?
-		<CircularProgress color={'warning'} size={25}/> : <CloseIcon color={'error'}/>))}>
-		<Button onClick={() => context.runCheck()}>{label}</Button>
-	</Badge>;
-}
-
-export function AppBar(props: IAppBarProps) {
+export function AppBar() {
 	const {tool, menu, setMenuOpen, shortcutService} = useToolBox();
 	const ipfs = useIpfs();
 	const ipfsCluster = useIpfsCluster();
@@ -68,7 +36,7 @@ export function AppBar(props: IAppBarProps) {
 		},
 		action: () => {
 			setAnchorEl(anchorRef.current);
-		}
+		},
 	});
 
 
@@ -84,6 +52,8 @@ export function AppBar(props: IAppBarProps) {
 			>
 				<MenuIcon/>
 			</IconButton>
+			{shortcutService.getShortCut(Symbol.for('Dashboard')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))}/>}
+			{tool.icon}
 			<Typography variant="h6" noWrap component="div">
 				{tool.name}
 			</Typography>
@@ -104,25 +74,12 @@ export function AppBar(props: IAppBarProps) {
 						horizontal: 'right',
 					}}
 				>
-					<Stack spacing={1} sx={{width: 300, padding: 2}}>
-						{Object.entries(shortcutService.getShortcuts()
-							.reduce((group, product) => {
-								const category = product.category ?? 'unknown';
-								group[category] = group[category] ?? [];
-								group[category].push(product);
-								return group;
-							}, {} as { [key: string]: IShortCut[] }))
-							.map(([category, shortcuts]) => <Stack>
-								<Typography variant={'caption'}>{category}</Typography>
-								{shortcuts.map((v, i) => (<Box
-									sx={{display: 'flex', borderBottomWidth: 1, borderBottomColor: 'primary.dark'}}>
-									<div style={{flexGrow: 1}}>{v.name}</div>
-									<ShortcutDisplay keyBind={v.keyBind}/>
-								</Box>))}
-							</Stack>)}
-					</Stack>
+					<Box sx={{width: 300, padding: 2}}>
+						<ShortCutList/>
+					</Box>
 				</Popover>
+				{shortcutService.getShortCut(Symbol.for('Configuration')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))}/>}
 			</Stack>
 		</Toolbar>
 	</Box>;
-};
+}

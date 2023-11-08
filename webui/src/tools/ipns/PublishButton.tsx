@@ -1,6 +1,6 @@
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
-import {InputAdornment, OutlinedInput} from '@mui/material';
+import {InputAdornment, OutlinedInput, TextField} from '@mui/material';
 import React, {useState} from 'react';
 import {CID} from 'kubo-rpc-client';
 import {LoadingButton} from '../../components/LoadingButton';
@@ -34,14 +34,14 @@ export function PublishButton(props: IPublishButtonProps) {
 		}
 	};
 
-	return <div>
-		<OutlinedInput
-			label={'cid'}
+	return <TextField
+			label={'CID'}
 			value={value}
 			onChange={(e) => setValue(e.target.value)}
-			endAdornment={(<InputAdornment position={'end'}>
+			InputProps={{
+			endAdornment: (<InputAdornment position={'end'}>
 				<LoadingButton onClick={publish} loading={loading}>Publish</LoadingButton>
-			</InputAdornment>)}
+			</InputAdornment>),
+		}}
 		/>
-	</div>;
 }

@@ -1,18 +1,4 @@
-export interface IKeyBind {
-	key: string;
-	ctrl?: boolean;
-	alt?: boolean;
-	shift?: boolean;
-}
-
-export interface IShortCut {
-	name: string;
-	keyBind: IKeyBind;
-	action: () => void;
-	description?: string;
-	hidden?: boolean;
-	category?: string;
-}
+import {IShortCut} from './IShortCut';
 
 export class ShortcutService {
 	private shortcuts = new Map<symbol, IShortCut>();
@@ -21,7 +7,7 @@ export class ShortcutService {
 		const active = this.getAllShortcuts().find(s => s.keyBind.key.toLowerCase() == event.key.toLowerCase()
 			&& Boolean(s.keyBind.ctrl) == event.ctrlKey
 			&& Boolean(s.keyBind.shift) == event.shiftKey
-			&& Boolean(s.keyBind.alt) == event.altKey
+			&& Boolean(s.keyBind.alt) == event.altKey,
 		);
 
 		if (active) {
@@ -30,18 +16,24 @@ export class ShortcutService {
 		}
 	}
 
-	public getShortcuts() {
+	public getShortCuts() {
 		return this.getAllShortcuts().filter(s => s.hidden != true);
 	}
 
-	registerShortcut(item: IShortCut) {
-		const sym = Symbol();
+	registerShortCut(item: IShortCut) {
+		const sym = item.id ?? Symbol();
 		this.shortcuts.set(sym, item);
 		return sym;
 	}
 
-	removeShortcut(sym: symbol) {
-		if (this.shortcuts.has(sym)) this.shortcuts.delete(sym);
+	removeShortCut(sym: symbol) {
+		if (this.shortcuts.has(sym)) {
+			this.shortcuts.delete(sym);
+		}
+	}
+
+	getShortCut(sym: symbol): IShortCut | undefined {
+		return this.shortcuts.has(sym) ? this.shortcuts.get(sym) : undefined;
 	}
 
 	private getAllShortcuts() {

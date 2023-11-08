@@ -1,11 +1,13 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
+import {IShortCut} from '../services/ShortcutService/IShortCut';
 import {ITool, IToolCategory} from '../types';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
-import {ShortcutService} from '../services/ShortcutService';
+import {ShortcutService} from '../services/ShortcutService/ShortcutService';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {ConfigurationService, IConfigurationService} from '../services/ConfigurationService';
 import {LocalStorageConfigurationStore} from '../services/LocalStorageConfigurationStore';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
@@ -19,9 +21,22 @@ export interface IToolBoxContext {
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 	shortcutService: ShortcutService
 	configuration: IConfigurationService
+	config: LocalStorageConfigurationStore
 }
 
 const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
+
+function useToolShortCut(tool: ITool): Omit<IShortCut, 'keyBind'> {
+	const n = useNavigate();
+
+	return {
+		name: tool.name,
+		icon: tool.icon,
+		description: 'Go to Dashboard',
+		action: () => n(tool.url),
+		id: Symbol.for(tool.name),
+	};
+}
 
 export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const [menu, setMenu] = useState<JSX.Element>();
@@ -31,23 +46,25 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const configurationService = useMemo(() => new ConfigurationService(new LocalStorageConfigurationStore()), []);
 	const n = useNavigate();
 	const location = useLocation();
+	const dashboardShortCut = useToolShortCut(DashboardDefinition);
+	const configurationShort = useToolShortCut(ConfigurationDefinition);
 
 	function setTool(tool: ITool) {
 		n(tool.url);
 	}
 
-	const tool = ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
+	const tool = location.pathname == '/' ? DashboardDefinition : ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
 
 	useEffect(() => {
 		const symbols = [
-			shortcutService.registerShortcut(
+			shortcutService.registerShortCut(
 				{
 					category: 'Global',
 					name: 'Search',
 					keyBind: {key: ' ', ctrl: true},
-					action: () => setSearchOpen(true)
+					action: () => setSearchOpen(true),
 				}),
-			shortcutService.registerShortcut(
+			shortcutService.registerShortCut(
 				{
 					category: 'Global',
 					hidden: true,
@@ -56,35 +73,34 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 					action: () => {
 						setSearchOpen(false);
 						setMenuOpen(false);
-					}
+					},
 				}),
-			shortcutService.registerShortcut(
+			shortcutService.registerShortCut(
 				{
+					...dashboardShortCut,
+					icon: <DashboardIcon/>,
 					category: 'Global',
-					name: 'Dashboard',
 					description: 'Go to Dashboard',
 					keyBind: {key: 'd', ctrl: true},
-					action: () => setTool(DashboardDefinition)
 				}),
-			shortcutService.registerShortcut(
+			shortcutService.registerShortCut(
 				{
+					...configurationShort,
 					category: 'Global',
-					name: 'Configuration',
 					description: 'Go to Configuration',
 					keyBind: {key: ',', ctrl: true},
-					action: () => setTool(ConfigurationDefinition)
 				}),
-			shortcutService.registerShortcut(
+			shortcutService.registerShortCut(
 				{
 					category: 'Global',
 					name: 'Menu',
 					keyBind: {key: 'm', ctrl: true},
-					action: () => setMenuOpen(v => !v)
+					action: () => setMenuOpen(v => !v),
 				}),
 		];
 
 		return () => {
-			symbols.forEach(s => shortcutService.removeShortcut(s));
+			symbols.forEach(s => shortcutService.removeShortCut(s));
 		};
 	}, []);
 
@@ -108,7 +124,8 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		isSearchOpen,
 		setSearchOpen,
 		shortcutService,
-		configuration: configurationService
+		configuration: configurationService,
+		config: new LocalStorageConfigurationStore(),
 	}}>
 		{props.children}
 	</ToolBoxContext.Provider>;

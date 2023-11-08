@@ -1,14 +1,14 @@
-import {IShortCut} from '../services/ShortcutService';
 import {useToolBox} from '../context/ToolBoxContext';
 import {useEffect} from 'react';
+import {IShortCut} from '../services/ShortcutService/IShortCut';
 
 export function useShortCut(shortcut: IShortCut) {
 	const {shortcutService} = useToolBox();
 
 	useEffect(() => {
-		const sym = shortcutService.registerShortcut(shortcut);
+		const sym = shortcutService.registerShortCut(shortcut);
 		return () => {
-			shortcutService.removeShortcut(sym);
+			shortcutService.removeShortCut(sym);
 		};
 	}, []);
 }

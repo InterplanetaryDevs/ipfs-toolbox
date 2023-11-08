@@ -6,9 +6,9 @@ import {
 	ButtonGroup,
 	Card,
 	CardContent,
-	CardHeader,
+	CardHeader, Stack,
 	TextField,
-	Typography
+	Typography,
 } from '@mui/material';
 import {useEffect, useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
@@ -69,37 +69,39 @@ export function KeyList() {
 		<Card>
 			<CardHeader title={'Generate new key'}/>
 			<CardContent>
-				<TextField value={key} onChange={(e) => setKey(e.target.value)} label={'Name'}/>
-				<br/>
-				<Button onClick={generateKey}>Generate</Button>
+				<TextField
+					sx={{width: '100%'}}
+					value={key}
+					label={'Name'}
+					onChange={(e) => setKey(e.target.value)}
+					InputProps={{endAdornment: (<Button onClick={generateKey}>Generate</Button>)}}/>
 			</CardContent>
 		</Card>
 		{keys.map(key => (
 			<Accordion key={key.id} expanded={expanded === key.id} onChange={handleChange(key.id)}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon/>}
-					aria-controls="panel1a-content"
-					id="panel1a-header"
 				>
 					<Typography>{key.name}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<Typography>
-						{key.id}: <Delayed promise={(async () => {
-						let res = '';
-						for await (const name of node.name.resolve(key.id)) {
-							res = name;
-						}
+					<Stack spacing={1}>
+						<Typography>
+							{key.id}: <Delayed promise={(async () => {
+							let res = '';
+							for await (const name of node.name.resolve(key.id)) {
+								res = name;
+							}
 
-						return <>{res}</>;
-					})()}/>
-					</Typography>
-					<PublishButton key={key.name}/>
-					<ExportButton key={key.name}/>
-					<ButtonGroup>
-						<Button onClick={() => deleteKey(key.name)}>Delete</Button>
-						<Button>Export</Button>
-					</ButtonGroup>
+							return <>{res}</>;
+						})()}/>
+						</Typography>
+						<PublishButton key={key.name}/>
+						<ExportButton key={key.name}/>
+						<ButtonGroup>
+							<Button onClick={() => deleteKey(key.name)} color={'error'}>Delete</Button>
+						</ButtonGroup>
+					</Stack>
 				</AccordionDetails>
 			</Accordion>))}
 	</>);

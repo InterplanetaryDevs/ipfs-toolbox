@@ -1,8 +1,8 @@
+import {Card, CardContent, CardHeader, FormControl, InputLabel, MenuItem, Select, Stack} from '@mui/material';
 import React, {useState} from 'react';
 import {useIpfs} from '../../context/IpfsContext';
-import {Card, CardContent, CardHeader, MenuItem, Select} from '@mui/material';
-import {PublishButton} from './PublishButton';
 import {useEffectCancel} from '../../hooks/UseEffectCancel';
+import {PublishButton} from './PublishButton';
 
 export function Publish() {
 	const [keys, setKeys] = useState<{ name: string, id: string }[]>([]);
@@ -20,11 +20,19 @@ export function Publish() {
 	return <Card>
 		<CardHeader title={'Publish'}/>
 		<CardContent>
-			<Select label={'key'} value={key} onChange={(e) => setKey(e.target.value)}>
-				{keys.map(k => (<MenuItem value={k.name} key={k.name}>{k.name} : {k.id}</MenuItem>))}
-			</Select>
-			<br/>
-			<PublishButton key={key}/>
+			<Stack spacing={2}>
+				<FormControl fullWidth>
+					<InputLabel id="key-select">Key</InputLabel>
+					<Select
+						labelId="key-select"
+						value={key}
+						onChange={(e) => setKey(e.target.value)}
+					>
+						{keys.map(k => (<MenuItem value={k.name} key={k.name}>{k.name} : {k.id}</MenuItem>))}
+					</Select>
+				</FormControl>
+				<PublishButton key={key}/>
+			</Stack>
 		</CardContent>
 	</Card>;
 }

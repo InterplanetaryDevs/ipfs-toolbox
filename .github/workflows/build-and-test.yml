@@ -32,9 +32,9 @@ jobs:
         run: CI=true yarn run build
 
       - name: Run tests
-        run: yarn test
+        run: yarn test --ci --coverage
 
-      - uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          test-script:
-            yarn test --coverage
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

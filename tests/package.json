@@ -1,9 +1,6 @@
 {
   "name": "tests",
   "packageManager": "yarn@3.2.4",
-  "scripts": {
-    "test": "jest"
-  },
   "dependencies": {
     "jest": "^29.2.2",
     "jest-environment-jsdom": "^29.2.2",

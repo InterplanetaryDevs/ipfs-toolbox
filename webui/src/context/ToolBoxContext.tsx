@@ -1,11 +1,12 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
+import {useConfigurationSetup} from '../hooks/UseConfiguration';
+import {IConfigurationService} from '../services/IConfigurationService';
 import {IShortCut} from '../services/ShortcutService/IShortCut';
 import {ITool, IToolCategory} from '../types';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
 import {ShortcutService} from '../services/ShortcutService/ShortcutService';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {ConfigurationService, IConfigurationService} from '../services/ConfigurationService';
 import {LocalStorageConfigurationStore} from '../services/LocalStorageConfigurationStore';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
@@ -20,7 +21,7 @@ export interface IToolBoxContext {
 	menu: JSX.Element | undefined,
 	setMenu: (value: (((prevState: (JSX.Element | undefined)) => (JSX.Element | undefined)) | JSX.Element | undefined)) => void,
 	shortcutService: ShortcutService
-	config: LocalStorageConfigurationStore
+	config: IConfigurationService
 }
 
 const ToolBoxContext = createContext<IToolBoxContext>({} as IToolBoxContext);
@@ -46,6 +47,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const location = useLocation();
 	const dashboardShortCut = useToolShortCut(DashboardDefinition);
 	const configurationShort = useToolShortCut(ConfigurationDefinition);
+	const config = useConfigurationSetup();
 
 	function setTool(tool: ITool) {
 		n(tool.url);
@@ -122,7 +124,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 		isSearchOpen,
 		setSearchOpen,
 		shortcutService,
-		config: new LocalStorageConfigurationStore(),
+		config,
 	}}>
 		{props.children}
 	</ToolBoxContext.Provider>;

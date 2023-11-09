@@ -1,4 +1,4 @@
-import {IConfiguration} from './ConfigurationService';
+import {IConfiguration} from './IConfigurationService';
 
 export const DefaultConfiguration: IConfiguration = {
 	ipfsClusterUrl: 'http://localhost:9094',

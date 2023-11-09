@@ -1,31 +1,35 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useToolBox} from '../context/ToolBoxContext';
 import {DefaultConfiguration} from '../services/DefaultConfiguration';
+import {IConfigurationService} from '../services/IConfigurationService';
+import {IConfigurationStore} from '../services/IConfigurationStore';
+import {LocalStorageConfigurationStore} from '../services/LocalStorageConfigurationStore';
 
-export function useConfiguration() {
-	const [ipfsUrl, setIpfsUrl] = useConfigValue('ipfsUrl', DefaultConfiguration.ipfsUrl);
-	const [ipfsClusterUrl, setIpfsClusterUrl] = useConfigValue('ipfsClusterUrl', DefaultConfiguration.ipfsClusterUrl);
+export function useConfiguration(): IConfigurationService {
+	return useToolBox().config;
+}
 
-	return {
+export function useConfigurationSetup(): IConfigurationService {
+	const store = new LocalStorageConfigurationStore();
+	const [ipfsUrl, setIpfsUrl] = useConfigValue(store, 'ipfsUrl', DefaultConfiguration.ipfsUrl);
+	const [ipfsClusterUrl, setIpfsClusterUrl] = useConfigValue(store, 'ipfsClusterUrl', DefaultConfiguration.ipfsClusterUrl);
+
+	return ({
 		ipfsUrl,
 		setIpfsUrl,
 		ipfsClusterUrl,
 		setIpfsClusterUrl,
-	};
+	} as IConfigurationService);
 }
 
-function useConfigValue(name: string, def?: string) {
-	const {config} = useToolBox();
-	const [state, setState] = useState(config.get(name) ?? def);
+function useConfigValue(config: IConfigurationStore, name: string, def?: string) {
+	const [state, setStateOrig] = useState(config.get(name) ?? def);
 
-	useEffect(() => {
-		if (state != config.get(name)) {
-			console.debug('config value', name, 'changed from', config.get(name), 'to', state);
-		}
-		if (state) {
-			config.set(name, state);
-		}
-	}, [state]);
+	function setState(newState: string): void {
+		console.debug('config value', name, 'changed from', state, 'to', newState);
+		config.set(name, newState);
+		setStateOrig(newState);
+	}
 
 	return [state, setState];
 }

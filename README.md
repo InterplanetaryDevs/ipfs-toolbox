@@ -1,6 +1,7 @@
 # IPFS Toolbox
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/InterplanetaryDevs/ipfs-toolbox/build-and-test.yml?branch=master)
+[![codecov](https://codecov.io/gh/InterplanetaryDevs/ipfs-toolbox/graph/badge.svg?token=47AD6TOODA)](https://codecov.io/gh/InterplanetaryDevs/ipfs-toolbox)
 ![GitHub](https://img.shields.io/github/license/InterplanetaryDevs/ipfs-toolbox)
 ![GitHub forks](https://img.shields.io/github/forks/InterplanetaryDevs/ipfs-toolbox?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/InterplanetaryDevs/ipfs-toolbox?style=social)

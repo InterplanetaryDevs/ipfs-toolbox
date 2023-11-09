@@ -1,18 +1,19 @@
 import React from 'react';
+import {DagEditorDefinition} from './definitions/DagEditorDefinition';
 import {EmbedTool} from './EmbedTool';
 import {ITool, IToolCategory} from '../types';
 import {
 	ConfigurationDefinition,
 	DashboardDefinition,
 	IpfsClusterToolDefinition,
-	IpnsToolDefinition
+	IpnsToolDefinition,
 } from './definitions';
 
 export const IpfsWebUIDefinition: ITool = {
 	url: '/webui',
 	name: 'IPFS WebUI',
 	tool: EmbedTool.create('https://webui.ipfs.io'),
-	image: 'https://raw.githubusercontent.com/ipfs/ipfs-webui/main/docs/screenshots/ipfs-webui-status.png'
+	image: 'https://raw.githubusercontent.com/ipfs/ipfs-webui/main/docs/screenshots/ipfs-webui-status.png',
 };
 
 export const IpfsCidToolDefinition: ITool = {
@@ -23,9 +24,9 @@ export const IpfsCidToolDefinition: ITool = {
 
 export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
+	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition, DagEditorDefinition]},
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 
-export const ALL_TOOLS: ITool[] = [...TOOLS.map(c => c.tools).flat(), ...AdditionalTools]
+export const ALL_TOOLS: ITool[] = [...TOOLS.map(c => c.tools).flat(), ...AdditionalTools];

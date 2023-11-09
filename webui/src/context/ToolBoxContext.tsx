@@ -38,7 +38,7 @@ function useToolShortCut(tool: ITool): Omit<IShortCut, 'keyBind'> {
 	};
 }
 
-export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfigurationStore }>) {
+export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfigurationStore, tools: IToolCategory[] }>) {
 	const [menu, setMenu] = useState<JSX.Element>();
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
@@ -114,7 +114,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfig
 	}, []);
 
 	return <ToolBoxContext.Provider value={{
-		tools: TOOLS,
+		tools: props.tools,
 		tool,
 		setTool,
 		isMenuOpen,

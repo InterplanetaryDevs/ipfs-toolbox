@@ -10,6 +10,7 @@ import {Theme} from './Theme';
 import {IpfsClusterApi} from 'ipfs-cluster-api';
 import {create} from 'kubo-rpc-client';
 import {LocalStorageConfigurationStore} from './services/LocalStorageConfigurationStore';
+import {TOOLS} from './tools/TOOLS';
 
 const theme = createTheme(Theme);
 
@@ -17,7 +18,7 @@ export const AppWrapper = () => {
 	return <ThemeProvider theme={theme}>
 		<HashRouter>
 			<SnackbarProvider>
-				<ToolBoxContextProvider store={new LocalStorageConfigurationStore()}>
+				<ToolBoxContextProvider store={new LocalStorageConfigurationStore()} tools={TOOLS}>
 					<IpfsContextProvider create={(url) => create({url})}>
 						<IpfsClusterContextProvider create={(url) => new IpfsClusterApi(url)}>
 							<App/>

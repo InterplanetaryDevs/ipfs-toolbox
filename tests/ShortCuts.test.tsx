@@ -8,6 +8,7 @@ import {ShortcutButton} from 'webui/src/components/ShortcutButton';
 import {ShortCutDisplay} from 'webui/src/components/ShortCutDisplay';
 import {reduceEntries, ShortCutList} from 'webui/src/components/ShortCutList';
 import {ToolBoxContextProvider} from 'webui/src/context/ToolBoxContext';
+import {TOOLS} from 'webui/src/tools/TOOLS';
 
 describe('ShortCuts', () => {
 	it('Reduces list correctly', async () => {
@@ -45,7 +46,7 @@ describe('ShortCuts', () => {
 	it('Renders List', async () => {
 		const component = renderer.create(<MemoryRouter>
 			<SnackbarProvider>
-				<ToolBoxContextProvider store={new MemoryConfigurationStore()}>
+				<ToolBoxContextProvider store={new MemoryConfigurationStore()} tools={TOOLS}>
 					<ShortCutList/>
 				</ToolBoxContextProvider>
 			</SnackbarProvider>

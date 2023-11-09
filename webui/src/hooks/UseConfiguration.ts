@@ -21,7 +21,7 @@ export function useConfigurationSetup(store: IConfigurationStore): IConfiguratio
 	} as IConfigurationService);
 }
 
-function useConfigValue(config: IConfigurationStore, name: string, def?: string) {
+export function useConfigValue(config: IConfigurationStore, name: string, def?: string) {
 	const [state, setStateOrig] = useState(config.get(name) ?? def);
 
 	function setState(newState: string): void {

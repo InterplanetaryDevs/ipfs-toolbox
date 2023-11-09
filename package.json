@@ -12,5 +12,9 @@
     "build": "yarn workspaces foreach -At run build",
     "test": "jest",
     "test-coverage": "jest --ci --coverage --testLocationInResults"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
   }
 }

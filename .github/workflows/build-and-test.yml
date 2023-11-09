@@ -20,8 +20,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install yarn
         run: npm install -g corepack
@@ -30,7 +29,12 @@ jobs:
         run: yarn install
 
       - name: Generate build artifact
-        run: CI=false yarn run build
+        run: CI=true yarn run build
 
       - name: Run tests
-        run: yarn test
+        run: yarn test --ci --coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

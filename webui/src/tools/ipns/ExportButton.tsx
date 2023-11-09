@@ -1,22 +1,20 @@
-import {useIpfs} from '../../context/IpfsContext';
+import {Button, InputAdornment, TextField} from '@mui/material';
 import {useSnackbar} from 'notistack';
-import {Button, InputAdornment, OutlinedInput} from '@mui/material';
-import {useState} from 'react';
-import {CID} from 'ipfs-http-client';
-import React from 'react';
+import React, {useState} from 'react';
+import {useIpfs} from '../../context/IpfsContext';
 
 interface IExportButtonProps {
 	key: string;
 }
 
 export function ExportButton(props: IExportButtonProps) {
-	const {ipfs} = useIpfs();
+	const {node} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
 
 	const [value, setValue] = useState<string>('');
 
 	const exportKey = () => {
-		ipfs.key.export(props.key, value)
+		node.key.export(props.key, value)
 			.then(r => {
 				enqueueSnackbar(`Exported key ${props.key}`, {variant: 'success'});
 			}).catch(e => {
@@ -24,15 +22,15 @@ export function ExportButton(props: IExportButtonProps) {
 		});
 	};
 
-	return <div>
-		<OutlinedInput
-			label={'Password'}
-			type={'password'}
-			value={value}
-			onChange={(e) => setValue(e.target.value)}
-			endAdornment={(<InputAdornment position={'end'}>
+	return <TextField
+		label={'Password'}
+		type={'password'}
+		value={value}
+		onChange={(e) => setValue(e.target.value)}
+		InputProps={{
+			endAdornment: (<InputAdornment position={'end'}>
 				<Button onClick={exportKey}>Export</Button>
-			</InputAdornment>)}
-		/>
-	</div>;
+			</InputAdornment>),
+		}}
+	/>;
 }

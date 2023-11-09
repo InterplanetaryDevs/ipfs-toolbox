@@ -7,7 +7,7 @@ import React from 'react';
 
 export const AddPinDialog = (props: any) => {
 	const {enqueueSnackbar} = useSnackbar();
-	const api = useIpfsCluster().ipfsCluster;
+	const api = useIpfsCluster().node;
 
 	const addPin = ({cid, ...pin}: PinOptions) => {
 		api.pins.add(cid, pin)

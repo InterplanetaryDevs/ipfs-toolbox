@@ -9,22 +9,43 @@ body {
 
 #root {
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-.embed {
-    width: 100vw;
-    height: calc(100vh - 155px);
+#app-bar {
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
-.tool-root {
-    margin-top: 74px;
-    margin-bottom: 18px;
-    min-height: calc(100vh - 135px);
-    overflow: auto;
+#tool {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 1;
+    flex-grow: 1;
 }
+
+#footer {
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.embed {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.embed iframe {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

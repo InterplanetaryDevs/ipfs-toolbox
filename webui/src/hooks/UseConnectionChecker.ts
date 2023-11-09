@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 
-export function useConnectionChecker(check: () => Promise<boolean>) {
+export function useConnectionChecker(check: () => Promise<boolean>, interval = 15000) {
 	const [connected, setConnected] = useState(false);
 	const [checking, setChecking] = useState(false);
 	const checkingRef = useRef(false);
@@ -17,16 +17,20 @@ export function useConnectionChecker(check: () => Promise<boolean>) {
 		});
 	}, [check]);
 
-	useEffect(() => {
+	const runCheck = useCallback(() => {
 		checker().then(setConnected).catch(() => setConnected(false));
+	}, [checker]);
+
+	useEffect(() => {
+		runCheck();
 		const timer = setInterval(() => {
-			checker().then(setConnected).catch(() => setConnected(false));
-		}, 5000);
+			runCheck();
+		}, interval);
 
 		return () => {
 			clearInterval(timer);
 		};
 	}, [checker]);
 
-	return {connected, checking};
+	return {connected, checking, runCheck};
 }

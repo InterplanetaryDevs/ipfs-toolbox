@@ -1,12 +1,12 @@
 import axios, {AxiosInstance} from 'axios';
 import {AddOptions} from '../options';
-import {PeerInfo} from '../results';
-import {VersionResult} from '../results';
+import {PeerInfo, VersionResult} from '../results';
 import {IpfsAllocationsApi} from './IpfsAllocationsApi';
 import {IpfsPeersApi} from './IpfsPeersApi';
 import {IpfsPinsApi} from './IpfsPinsApi';
+import {IIpfsClusterApi} from './IIpfsClusterApi';
 
-export class IpfsClusterApi {
+export class IpfsClusterApi implements IIpfsClusterApi {
 	/**
 	 * Create a new Cluster interface.
 	 * @param {string} apiUrl API Url of the cluster
@@ -19,7 +19,7 @@ export class IpfsClusterApi {
 	 * Cluster peer information
 	 * @return {Promise<PeerInfo>}
 	 */
-	public id(): Promise<PeerInfo> {
+	id(): Promise<PeerInfo> {
 		return this.api.get('/id')
 			.then(r => r.data);
 	}
@@ -27,7 +27,7 @@ export class IpfsClusterApi {
 	/**
 	 * Cluster version
 	 */
-	public version(): Promise<VersionResult> {
+	version(): Promise<VersionResult> {
 		return this.api.get('/version')
 			.then(r => r.data);
 	}
@@ -36,7 +36,7 @@ export class IpfsClusterApi {
 	 * Peers API
 	 * @return {IpfsPeersApi}
 	 */
-	public get peers(): IpfsPeersApi {
+	get peers(): IpfsPeersApi {
 		return new IpfsPeersApi(this.api);
 	}
 
@@ -44,7 +44,7 @@ export class IpfsClusterApi {
 	 * Pins API
 	 * @return {IpfsPinsApi}
 	 */
-	public get pins(): IpfsPinsApi {
+	get pins(): IpfsPinsApi {
 		return new IpfsPinsApi(this.api);
 	}
 
@@ -54,11 +54,11 @@ export class IpfsClusterApi {
 	 * @param {AddOptions} options
 	 * @return {Promise<void>}
 	 */
-	public add(data: any, options: AddOptions): Promise<void> {
+	add(data: any, options: AddOptions): Promise<void> {
 		return Promise.reject();
 	}
 
-	public get allocations(): IpfsAllocationsApi {
+	get allocations(): IpfsAllocationsApi {
 		return new IpfsAllocationsApi(this.api);
 	}
 

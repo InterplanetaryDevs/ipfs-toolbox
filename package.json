@@ -8,8 +8,13 @@
     "testing"
   ],
   "scripts": {
-    "watch": "yarn workspaces foreach -A run watch",
-    "build": "yarn workspaces foreach -A run build",
-    "test": "yarn workspace tests run test"
+    "watch": "yarn workspaces foreach -Api run watch",
+    "build": "yarn workspaces foreach -At run build",
+    "test": "jest",
+    "test-coverage": "jest --ci --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
   }
 }

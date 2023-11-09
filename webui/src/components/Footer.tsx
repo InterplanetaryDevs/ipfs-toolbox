@@ -1,13 +1,15 @@
 import React from 'react';
-import {Button, ButtonGroup, Card, CardContent} from '@mui/material';
+import {Box, Button, ButtonGroup, Toolbar} from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 export function Footer() {
-	return <Card>
-		<CardContent>
+	return <Box sx={{
+		bgcolor: 'secondary.dark'
+	}}>
+		<Toolbar>
 			<ButtonGroup>
-				<Button variant="outlined" startIcon={<GitHubIcon />}>Source Code</Button>
+				<Button variant="contained" startIcon={<GitHubIcon/>} onClick={() => window.open('https://github.com/InterplanetaryDevs/ipfs-toolbox/tree/dev')}>Source Code</Button>
 			</ButtonGroup>
-		</CardContent>
-	</Card>;
+		</Toolbar>
+	</Box>;
 }

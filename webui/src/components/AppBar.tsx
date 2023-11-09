@@ -1,38 +1,23 @@
-import {AppBar as MuiAppBar, Chip, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 import MenuIcon from '@mui/icons-material/Menu';
+import {Box, IconButton, Popover, Stack, Toolbar, Typography} from '@mui/material';
+import React, {useRef} from 'react';
+import {useIpfsCluster} from '../context/IpfsClusterContext';
 import {useIpfs} from '../context/IpfsContext';
 import {useToolBox} from '../context/ToolBoxContext';
-import {ConnectionTextField} from './ConnectionTextField';
-import {useIpfsCluster} from '../context/IpfsClusterContext';
-import React, {PropsWithoutRef} from 'react';
-import InfoIcon from '@mui/icons-material/Info';
-import {IKeyBind} from '../services/ShortcutService';
+import {useShortCut} from '../hooks/UseShortCut';
+import {ConnectionStatusButton} from './ConnectionStatusButton';
+import {ShortcutButton} from './ShortcutButton';
+import {ShortCutList} from './ShortCutList';
 
-interface IAppBarProps {
-}
-
-
-function ShortcutDisplay({keyBind}: PropsWithoutRef<{ keyBind: IKeyBind }>) {
-	return <div>
-		{keyBind.ctrl && <><Chip label={'CTRL'}/> + </>}
-		{keyBind.alt && <><Chip label={'ALT'}/> + </>}
-		{keyBind.shift && <><Chip label={'SHIFT'}/> + </>}
-		<Chip label={keyBind.key.replace(' ', 'space').toUpperCase()}/>
-	</div>;
-}
-
-export function AppBar(props: IAppBarProps) {
+export function AppBar() {
 	const {tool, menu, setMenuOpen, shortcutService} = useToolBox();
-	const {connected: ipfsConnected, apiUrl, setApiUrl, checking: ipfsChecking} = useIpfs();
-	const {
-		apiUrl: clusterApiUrl,
-		setApiUrl: clusterSetApiUrl,
-		connected: clusterConnected,
-		checking: clusterChecking
-	} = useIpfsCluster();
+	const ipfs = useIpfs();
+	const ipfsCluster = useIpfsCluster();
 
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 	const open = Boolean(anchorEl);
+	const anchorRef = useRef<HTMLButtonElement | null>(null);
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -42,8 +27,22 @@ export function AppBar(props: IAppBarProps) {
 		setAnchorEl(null);
 	};
 
+	useShortCut({
+		name: 'Help',
+		category: 'Global',
+		keyBind: {
+			key: 'h',
+			ctrl: true,
+		},
+		action: () => {
+			setAnchorEl(anchorRef.current);
+		},
+	});
 
-	return <MuiAppBar position="fixed">
+
+	return <Box sx={{
+		bgcolor: 'primary.light',
+	}}>
 		<Toolbar>
 			<IconButton
 				color="inherit"
@@ -53,29 +52,17 @@ export function AppBar(props: IAppBarProps) {
 			>
 				<MenuIcon/>
 			</IconButton>
+			{shortcutService.getShortCut(Symbol.for('Dashboard')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))!}/>}
+			{tool.icon}
 			<Typography variant="h6" noWrap component="div">
 				{tool.name}
 			</Typography>
 			{menu}
 			<div style={{flexGrow: 1}}/>
 			<Stack spacing={2} direction={'row'}>
-				<ConnectionTextField
-					value={apiUrl}
-					onChange={setApiUrl}
-					label={'IPFS Url'}
-					placeholder={'/ip4/127.0.0.1/tcp/5001'}
-					connected={ipfsConnected}
-					checking={ipfsChecking}
-				/>
-				<ConnectionTextField
-					value={clusterApiUrl}
-					onChange={clusterSetApiUrl}
-					label={'IPFS Cluster Url'}
-					placeholder={'http://localhost:9094'}
-					connected={clusterConnected}
-					checking={clusterChecking}
-				/>
-				<IconButton onClick={handleClick}>
+				<ConnectionStatusButton label={'IPFS'} context={ipfs}/>
+				<ConnectionStatusButton label={'IPFS Cluster'} context={ipfsCluster}/>
+				<IconButton onClick={handleClick} ref={el => anchorRef.current = el}>
 					<InfoIcon/>
 				</IconButton>
 				<Popover
@@ -87,13 +74,12 @@ export function AppBar(props: IAppBarProps) {
 						horizontal: 'right',
 					}}
 				>
-					<Stack>
-						{shortcutService.getShortcuts().map((v, i) => <div style={{display: 'flex'}}>
-							<div style={{flexGrow: 1}}>{v.name}</div>
-							<ShortcutDisplay keyBind={v.keyBind}/></div>)}
-					</Stack>
+					<Box sx={{width: 300, padding: 2}}>
+						<ShortCutList/>
+					</Box>
 				</Popover>
+				{shortcutService.getShortCut(Symbol.for('Configuration')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))!}/>}
 			</Stack>
 		</Toolbar>
-	</MuiAppBar>;
+	</Box>;
 }

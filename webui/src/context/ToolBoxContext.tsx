@@ -7,8 +7,8 @@ import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions
 import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
 import {ShortcutService} from '../services/ShortcutService/ShortcutService';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {LocalStorageConfigurationStore} from '../services/LocalStorageConfigurationStore';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import {IConfigurationStore} from '../services/IConfigurationStore';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
@@ -38,7 +38,7 @@ function useToolShortCut(tool: ITool): Omit<IShortCut, 'keyBind'> {
 	};
 }
 
-export function ToolBoxContextProvider(props: PropsWithChildren) {
+export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfigurationStore }>) {
 	const [menu, setMenu] = useState<JSX.Element>();
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
@@ -47,7 +47,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren) {
 	const location = useLocation();
 	const dashboardShortCut = useToolShortCut(DashboardDefinition);
 	const configurationShort = useToolShortCut(ConfigurationDefinition);
-	const config = useConfigurationSetup();
+	const config = useConfigurationSetup(props.store);
 
 	function setTool(tool: ITool) {
 		n(tool.url);

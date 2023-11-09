@@ -5,24 +5,48 @@ exports[`Dashboard renders 1`] = `
   "instance": null,
   "nodeType": "component",
   "props": {
-    "children": <Dashboard />,
+    "children": <ToolBoxContextProvider
+      store={
+        MemoryConfigurationStore {
+          "data": Map {},
+        }
+      }
+    >
+      <Dashboard />
+      ,
+    </ToolBoxContextProvider>,
   },
   "rendered": {
     "instance": null,
     "nodeType": "component",
     "props": {
-      "children": <ToolBoxContextProvider>
+      "basename": undefined,
+      "children": <ToolBoxContextProvider
+        store={
+          MemoryConfigurationStore {
+            "data": Map {},
+          }
+        }
+      >
         <Dashboard />
+        ,
       </ToolBoxContextProvider>,
-    },
-    "rendered": {
-      "instance": null,
-      "nodeType": "component",
-      "props": {
-        "basename": undefined,
-        "children": <ToolBoxContextProvider>
-          <Dashboard />
-        </ToolBoxContextProvider>,
+      "location": {
+        "hash": "",
+        "key": "default",
+        "pathname": "/",
+        "search": "",
+        "state": null,
+      },
+      "navigationType": "POP",
+      "navigator": {
+        "action": "POP",
+        "createHref": [Function],
+        "createURL": [Function],
+        "encodeLocation": [Function],
+        "go": [Function],
+        "index": 0,
+        "listen": [Function],
         "location": {
           "hash": "",
           "key": "default",
@@ -30,33 +54,24 @@ exports[`Dashboard renders 1`] = `
           "search": "",
           "state": null,
         },
-        "navigationType": "POP",
-        "navigator": {
-          "action": "POP",
-          "createHref": [Function],
-          "createURL": [Function],
-          "encodeLocation": [Function],
-          "go": [Function],
-          "index": 0,
-          "listen": [Function],
-          "location": {
-            "hash": "",
-            "key": "default",
-            "pathname": "/",
-            "search": "",
-            "state": null,
-          },
-          "push": [Function],
-          "replace": [Function],
+        "push": [Function],
+        "replace": [Function],
+      },
+    },
+    "rendered": {
+      "instance": null,
+      "nodeType": "component",
+      "props": {
+        "children": [
+          <Dashboard />,
+          ",",
+        ],
+        "store": MemoryConfigurationStore {
+          "data": Map {},
         },
       },
-      "rendered": {
-        "instance": null,
-        "nodeType": "component",
-        "props": {
-          "children": <Dashboard />,
-        },
-        "rendered": {
+      "rendered": [
+        {
           "instance": null,
           "nodeType": "component",
           "props": {},
@@ -36704,8 +36719,8 @@ exports[`Dashboard renders 1`] = `
           },
           "type": [Function],
         },
-        "type": [Function],
-      },
+        ",",
+      ],
       "type": [Function],
     },
     "type": [Function],

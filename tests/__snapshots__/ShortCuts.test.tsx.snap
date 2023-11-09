@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShortCuts Renders Display 1`] = `
+<div>
+  <div
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+  >
+    <span
+      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    >
+      CTRL
+    </span>
+  </div>
+   + 
+  <div
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+  >
+    <span
+      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    >
+      ALT
+    </span>
+  </div>
+   + 
+  <div
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+  >
+    <span
+      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    >
+      H
+    </span>
+  </div>
+</div>
+`;
+
+exports[`ShortCuts Renders List 1`] = `
+<div
+  className="MuiBox-root css-0"
+>
+  <div
+    className="css-1okj3ks-MuiStack-root"
+  />
+</div>
+`;
+
+exports[`ShortCuts Shortcutbutton iconOnly works 1`] = `
+<button
+  className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onContextMenu={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <svg
+    aria-hidden={true}
+    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+    data-testid="BoltIcon"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"
+    />
+  </svg>
+  <span
+    className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+  />
+</button>
+`;
+
+exports[`ShortCuts Shortcutbutton works 1`] = `
+<button
+  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onContextMenu={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  Test shortcut
+</button>
+`;

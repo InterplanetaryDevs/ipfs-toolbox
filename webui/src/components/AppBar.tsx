@@ -52,7 +52,7 @@ export function AppBar() {
 			>
 				<MenuIcon/>
 			</IconButton>
-			{shortcutService.getShortCut(Symbol.for('Dashboard')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))}/>}
+			{shortcutService.getShortCut(Symbol.for('Dashboard')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))!}/>}
 			{tool.icon}
 			<Typography variant="h6" noWrap component="div">
 				{tool.name}
@@ -78,7 +78,7 @@ export function AppBar() {
 						<ShortCutList/>
 					</Box>
 				</Popover>
-				{shortcutService.getShortCut(Symbol.for('Configuration')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))}/>}
+				{shortcutService.getShortCut(Symbol.for('Configuration')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))!}/>}
 			</Stack>
 		</Toolbar>
 	</Box>;

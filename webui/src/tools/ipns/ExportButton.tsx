@@ -8,13 +8,13 @@ interface IExportButtonProps {
 }
 
 export function ExportButton(props: IExportButtonProps) {
-	const {ipfs} = useIpfs();
+	const {node} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
 
 	const [value, setValue] = useState<string>('');
 
 	const exportKey = () => {
-		ipfs.key.export(props.key, value)
+		node.key.export(props.key, value)
 			.then(r => {
 				enqueueSnackbar(`Exported key ${props.key}`, {variant: 'success'});
 			}).catch(e => {

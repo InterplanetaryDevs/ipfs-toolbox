@@ -2,7 +2,7 @@ import {Box, Stack, Typography} from '@mui/material';
 import React from 'react';
 import {useToolBox} from '../context/ToolBoxContext';
 import {IShortCut} from '../services/ShortcutService/IShortCut';
-import {ShortcutDisplay} from './ShortcutDisplay';
+import {ShortCutDisplay} from './ShortCutDisplay';
 
 export function ShortCutList() {
 	const {shortcutService} = useToolBox();
@@ -21,7 +21,7 @@ export function ShortCutList() {
 					{shortcuts.map((v, i) => (<Box
 						sx={{display: 'flex', borderBottomWidth: 1, borderBottomColor: 'primary.dark'}}>
 						<div style={{flexGrow: 1}}>{v.name}</div>
-						<ShortcutDisplay keyBind={v.keyBind}/>
+						<ShortCutDisplay keyBind={v.keyBind}/>
 					</Box>))}
 				</Stack>)}
 		</Stack>

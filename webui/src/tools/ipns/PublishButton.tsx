@@ -1,6 +1,6 @@
 import {useIpfs} from '../../context/IpfsContext';
 import {useSnackbar} from 'notistack';
-import {InputAdornment, OutlinedInput, TextField} from '@mui/material';
+import {InputAdornment, TextField} from '@mui/material';
 import React, {useState} from 'react';
 import {CID} from 'kubo-rpc-client';
 import {LoadingButton} from '../../components/LoadingButton';
@@ -10,7 +10,7 @@ interface IPublishButtonProps {
 }
 
 export function PublishButton(props: IPublishButtonProps) {
-	const {ipfs} = useIpfs();
+	const {node} = useIpfs();
 	const {enqueueSnackbar} = useSnackbar();
 
 	const [value, setValue] = useState<string>('');
@@ -20,7 +20,7 @@ export function PublishButton(props: IPublishButtonProps) {
 		try {
 			const cid = CID.parse(value);
 			setLoading(true);
-			ipfs.name.publish(cid, {key: props.key})
+			node.name.publish(cid, {key: props.key})
 				.then(r => {
 					enqueueSnackbar(`Published ${value} to ${props.key}`, {variant: 'success'});
 				}).catch(e => {

@@ -7604,6 +7604,7 @@ __metadata:
   dependencies:
     "@types/react": "npm:^18.0.24"
     "@types/react-dom": "npm:^18.0.8"
+    kubo-rpc-client: "npm:^3.0.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     typescript: "npm:^5.2.2"

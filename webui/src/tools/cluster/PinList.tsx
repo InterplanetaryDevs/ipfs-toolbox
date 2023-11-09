@@ -30,11 +30,11 @@ export const PinList = (props: any) => {
 	const [detail, setDetail] = useState<string>();
 
 	const {enqueueSnackbar} = useSnackbar();
-	const {ipfsCluster} = useIpfsCluster();
+	const {node} = useIpfsCluster();
 	const [isLoading, load] = useLoading();
 
 	const reload = () => {
-		load(ipfsCluster.allocations.list({
+		load(node.allocations.list({
 			filter: 'all'
 		}))
 			.then(r => {
@@ -87,7 +87,7 @@ export const PinList = (props: any) => {
 										<IconButton
 											color={'error'}
 											onClick={() => {
-												load(ipfsCluster.pins.remove(pin.cid['/']))
+												load(node.pins.remove(pin.cid['/']))
 													.then(() => {
 														console.log('deleted');
 														return reload();

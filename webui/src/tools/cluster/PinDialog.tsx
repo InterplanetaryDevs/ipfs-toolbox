@@ -13,7 +13,7 @@ export interface PinDialogProps {
 
 export const PinDialog = (props: PinDialogProps) => {
 	const {enqueueSnackbar} = useSnackbar();
-	const api = useIpfsCluster().ipfsCluster;
+	const api = useIpfsCluster().node;
 
 	const updatePin = (pin: PinOptions) => {
 		const {cid, ...pinOptions} = pin;

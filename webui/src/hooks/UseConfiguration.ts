@@ -9,8 +9,7 @@ export function useConfiguration(): IConfigurationService {
 	return useToolBox().config;
 }
 
-export function useConfigurationSetup(): IConfigurationService {
-	const store = new LocalStorageConfigurationStore();
+export function useConfigurationSetup(store: IConfigurationStore): IConfigurationService {
 	const [ipfsUrl, setIpfsUrl] = useConfigValue(store, 'ipfsUrl', DefaultConfiguration.ipfsUrl);
 	const [ipfsClusterUrl, setIpfsClusterUrl] = useConfigValue(store, 'ipfsClusterUrl', DefaultConfiguration.ipfsClusterUrl);
 

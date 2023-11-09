@@ -5,7 +5,13 @@ exports[`Dashboard renders 1`] = `
   "instance": null,
   "nodeType": "component",
   "props": {
-    "children": <ToolBoxContextProvider>
+    "children": <ToolBoxContextProvider
+      store={
+        MemoryConfigurationStore {
+          "data": Map {},
+        }
+      }
+    >
       <Dashboard />
       ,
     </ToolBoxContextProvider>,
@@ -15,7 +21,13 @@ exports[`Dashboard renders 1`] = `
     "nodeType": "component",
     "props": {
       "basename": undefined,
-      "children": <ToolBoxContextProvider>
+      "children": <ToolBoxContextProvider
+        store={
+          MemoryConfigurationStore {
+            "data": Map {},
+          }
+        }
+      >
         <Dashboard />
         ,
       </ToolBoxContextProvider>,
@@ -54,6 +66,9 @@ exports[`Dashboard renders 1`] = `
           <Dashboard />,
           ",",
         ],
+        "store": MemoryConfigurationStore {
+          "data": Map {},
+        },
       },
       "rendered": [
         {

@@ -19,10 +19,10 @@ export interface IIpfsContext extends INodeContext<IPFSHTTPClient> {
 
 const IpfsContext = createContext<IIpfsContext>({} as IIpfsContext);
 
-export function IpfsContextProvider(props: PropsWithChildren) {
+export function IpfsContextProvider(props: PropsWithChildren<{ create: (url: string) => IPFSHTTPClient }>) {
 	const {ipfsUrl} = useConfiguration();
 
-	const ipfs = useMemo(() => create({url: ipfsUrl}), [ipfsUrl]);
+	const ipfs = useMemo(() => props.create(ipfsUrl), [ipfsUrl]);
 	const check = useCallback(() => ipfs.id().then(() => true), [ipfs]);
 	const {connected, checking, runCheck} = useConnectionChecker(check);
 

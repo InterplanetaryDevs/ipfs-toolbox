@@ -11,7 +11,7 @@
     "watch": "yarn workspaces foreach -Api run watch",
     "build": "yarn workspaces foreach -At run build",
     "test": "jest",
-    "test-coverage": "jest --ci --coverage --testLocationInResults"
+    "test-coverage": "jest --ci --coverage"
   },
   "devDependencies": {
     "jest": "^29.7.0",

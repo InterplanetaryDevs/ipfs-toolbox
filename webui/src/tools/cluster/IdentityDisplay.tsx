@@ -17,7 +17,7 @@ import {useIpfsCluster} from '../../context/IpfsClusterContext';
 export const IdentityDisplay = (props: any) => {
 	const [identity, setIdentity] = useState<any>();
 	const {enqueueSnackbar} = useSnackbar();
-	const api = useIpfsCluster().ipfsCluster;
+	const api = useIpfsCluster().node;
 
 	const reload = () => {
 		api.id()

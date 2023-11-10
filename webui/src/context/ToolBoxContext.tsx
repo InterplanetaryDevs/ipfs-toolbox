@@ -1,14 +1,16 @@
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import {ThemeProvider} from '@mui/material';
 import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
-import {useConfigurationSetup} from '../hooks/UseConfiguration';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {useConfiguration, useConfigurationSetup} from '../hooks/UseConfiguration';
 import {IConfigurationService} from '../services/IConfigurationService';
+import {IConfigurationStore} from '../services/IConfigurationStore';
 import {IShortCut} from '../services/ShortcutService/IShortCut';
-import {ITool, IToolCategory} from '../types';
+import {ShortcutService} from '../services/ShortcutService/ShortcutService';
+import {darkTheme, lightTheme} from '../Theme';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
 import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
-import {ShortcutService} from '../services/ShortcutService/ShortcutService';
-import {useLocation, useNavigate} from 'react-router-dom';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import {IConfigurationStore} from '../services/IConfigurationStore';
+import {ITool, IToolCategory} from '../types';
 
 export interface IToolBoxContext {
 	tools: IToolCategory[]
@@ -54,6 +56,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfig
 	}
 
 	const tool = location.pathname == '/' ? DashboardDefinition : ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
+	const theme = useMemo(() => config.darkMode == 'true' ? darkTheme : lightTheme, [config.darkMode]);
 
 	useEffect(() => {
 		const symbols = [
@@ -126,7 +129,9 @@ export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfig
 		shortcutService,
 		config,
 	}}>
-		{props.children}
+		<ThemeProvider theme={theme}>
+			{props.children}
+		</ThemeProvider>
 	</ToolBoxContext.Provider>;
 }
 

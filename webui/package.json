@@ -21,6 +21,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
     "axios": "^1.1.3",
+    "chart.js": "^4.4.0",
     "codemirror": "^6.0.1",
     "ipfs-cluster-api": "workspace:^",
     "ipfs-core-types": "^0.13.0",

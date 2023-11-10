@@ -2,10 +2,9 @@
   <configuration default="false" name="Jest" type="JavaScriptTestRunnerJest">
     <config-file value="$PROJECT_DIR$/jest.config.js" />
     <node-interpreter value="project" />
-    <node-options value="" />
     <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-    <working-dir value="$PROJECT_DIR$/tests" />
-    <jest-options value="-w 4 --ci" />
+    <working-dir value="$PROJECT_DIR$/" />
+    <jest-options value="-w 4" />
     <envs />
     <scope-kind value="ALL" />
     <method v="2" />

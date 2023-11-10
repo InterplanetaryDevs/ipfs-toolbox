@@ -9,6 +9,7 @@ import {useShortCut} from '../hooks/UseShortCut';
 import {ConnectionStatusButton} from './ConnectionStatusButton';
 import {ShortcutButton} from './ShortcutButton';
 import {ShortCutList} from './ShortCutList';
+import {ThemeSwitcher} from './ThemeSwitcher';
 
 export function AppBar() {
 	const {tool, menu, setMenuOpen, shortcutService} = useToolBox();
@@ -52,7 +53,8 @@ export function AppBar() {
 			>
 				<MenuIcon/>
 			</IconButton>
-			{shortcutService.getShortCut(Symbol.for('Dashboard')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))!}/>}
+			{shortcutService.getShortCut(Symbol.for('Dashboard')) &&
+      <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Dashboard'))!}/>}
 			{tool.icon}
 			<Typography variant="h6" noWrap component="div">
 				{tool.name}
@@ -78,7 +80,9 @@ export function AppBar() {
 						<ShortCutList/>
 					</Box>
 				</Popover>
-				{shortcutService.getShortCut(Symbol.for('Configuration')) && <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))!}/>}
+				{shortcutService.getShortCut(Symbol.for('Configuration')) &&
+        <ShortcutButton iconOnly={true} shortcut={shortcutService.getShortCut(Symbol.for('Configuration'))!}/>}
+				<ThemeSwitcher/>
 			</Stack>
 		</Toolbar>
 	</Box>;

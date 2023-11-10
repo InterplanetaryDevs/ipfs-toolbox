@@ -56,7 +56,7 @@ export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfig
 	}
 
 	const tool = location.pathname == '/' ? DashboardDefinition : ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
-	const theme = useMemo(() => config.darkMode == 'true' ? darkTheme : lightTheme, [config.darkMode]);
+	const theme = useMemo(() => config.darkMode ? darkTheme : lightTheme, [config.darkMode]);
 
 	useEffect(() => {
 		const symbols = [

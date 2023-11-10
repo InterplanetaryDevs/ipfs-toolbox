@@ -12,23 +12,13 @@ import {TOOLS} from './tools/TOOLS';
 
 export const AppWrapper = () => {
 	return <HashRouter>
-		<ToolBoxContextProvider store={new LocalStorageConfigurationStore()}>
+		<ToolBoxContextProvider store={new LocalStorageConfigurationStore()} tools={TOOLS}>
 			<SnackbarProvider>
-<<<<<<< Updated upstream
-				<ToolBoxContextProvider store={new LocalStorageConfigurationStore()} tools={TOOLS}>
-					<IpfsContextProvider create={(url) => create({url})}>
-						<IpfsClusterContextProvider create={(url) => new IpfsClusterApi(url)}>
-							<App/>
-						</IpfsClusterContextProvider>
-					</IpfsContextProvider>
-				</ToolBoxContextProvider>
-=======
 				<IpfsContextProvider create={(url) => create({url})}>
 					<IpfsClusterContextProvider create={(url) => new IpfsClusterApi(url)}>
 						<App/>
 					</IpfsClusterContextProvider>
 				</IpfsContextProvider>
->>>>>>> Stashed changes
 			</SnackbarProvider>
 		</ToolBoxContextProvider>
 	</HashRouter>;

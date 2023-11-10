@@ -1,4 +1,4 @@
-import {Button, Card, CardActions, CardHeader, CardMedia, Grid, Typography} from '@mui/material';
+import {Button, Card, CardActions, CardHeader, CardMedia, Grid, Stack, Typography} from '@mui/material';
 import React from 'react';
 import {useToolBox} from '../context/ToolBoxContext';
 import {DefaultToolImage} from './ToolDefaults';
@@ -21,7 +21,7 @@ export function Dashboard() {
 					/>
 					<CardHeader title={t.name}/>
 					<CardActions>
-						<Button onClick={() => setTool(t)}>Open</Button>
+						<Button onClick={() => setTool(t)} color={'secondary'}>Open</Button>
 					</CardActions>
 				</Card>
 			</Grid>))}

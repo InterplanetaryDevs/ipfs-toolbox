@@ -1,13 +1,13 @@
-import {IConfigurationStore} from 'webui/src/services/IConfigurationStore';
+import {IConfigurationStore} from 'webui/src/services/configuration/IConfigurationStore';
 
 export class MemoryConfigurationStore implements IConfigurationStore {
-	public data = new Map<string, string>();
+	public data = new Map<string, any>();
 
-	get(key: string): string | undefined {
+	get<T>(key: string): T | undefined {
 		return this.data.get(key);
 	}
 
-	set(key: string, value: string): void {
+	set<T>(key: string, value: T): void {
 		this.data.set(key, value);
 	}
 }

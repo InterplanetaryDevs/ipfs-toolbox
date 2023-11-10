@@ -7,6 +7,6 @@ import {INodeContext} from '../context/INodeContext';
 export function ConnectionStatusButton({context, label}: { label: string, context: INodeContext<any> }) {
 	return <Badge badgeContent={(context.connected ? <CheckIcon color={'success'}/> : (context.checking ?
 		<CircularProgress color={'warning'} size={25}/> : <CloseIcon color={'error'}/>))}>
-		<Button onClick={() => context.runCheck()}>{label}</Button>
+		<Button onClick={() => context.runCheck()} variant={'text'} color={'secondary'}>{label}</Button>
 	</Badge>;
 }

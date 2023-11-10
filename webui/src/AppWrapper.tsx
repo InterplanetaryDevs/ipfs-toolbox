@@ -7,7 +7,7 @@ import {App} from './App';
 import {IpfsClusterContextProvider} from './context/IpfsClusterContext';
 import {IpfsContextProvider} from './context/IpfsContext';
 import {ToolBoxContextProvider} from './context/ToolBoxContext';
-import {LocalStorageConfigurationStore} from './services/LocalStorageConfigurationStore';
+import {LocalStorageConfigurationStore} from './services/configuration';
 import {TOOLS} from './tools/TOOLS';
 
 export const AppWrapper = () => {

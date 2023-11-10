@@ -1,16 +1,4 @@
-import {createTheme, ThemeOptions} from '@material-ui/core/styles';
-
-// export const Theme: ThemeOptions = {
-// 	palette: {
-// 		mode: 'dark',
-// 		primary: {
-// 			main: '#1a237e',
-// 		},
-// 		secondary: {
-// 			main: '#0277bd',
-// 		},
-// 	},
-// };
+import {createTheme} from '@material-ui/core/styles';
 
 const baseTheme = createTheme({
 	typography: {
@@ -19,30 +7,32 @@ const baseTheme = createTheme({
 	},
 });
 
-const darkTheme = createTheme({
-	...baseTheme,
-	palette: {
-		type: 'dark',
-		primary: {
-			main: '#26a27b',
+export function createDarkTheme (accentColor: string) {
+	return createTheme({
+		...baseTheme,
+		palette: {
+			type: 'dark',
+			primary: {
+				main: accentColor,
+			},
+			secondary: {
+				main: '#fafafa',
+			},
 		},
-		secondary: {
-			main: '#fafafa',
-		},
-	},
-});
+	});
+}
 
-const lightTheme = createTheme({
-	...baseTheme,
-	palette: {
-		type: 'light',
-		primary: {
-			main: '#fafafa',
+export function createLightTheme(accentColor: string) {
+	return createTheme({
+		...baseTheme,
+		palette: {
+			type: 'light',
+			primary: {
+				main: '#e0e0e0',
+			},
+			secondary: {
+				main: accentColor,
+			},
 		},
-		secondary: {
-			main: '#26a27b',
-		},
-	},
-});
-
-export {darkTheme, lightTheme};
+	});
+}

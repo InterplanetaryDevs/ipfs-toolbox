@@ -5,7 +5,11 @@ import {useMenu} from './UseMenu';
 export function useTabs(tabs: [Tab, ReactNode][]) {
 	const [tab, setTab] = useState(0);
 
-	useMenu(<Tabs value={tab} onChange={(e, v) => setTab(v)}>
+	useMenu(<Tabs
+		textColor="secondary"
+		indicatorColor="secondary"
+		value={tab} onChange={(e, v) => setTab(v)}
+	>
 		{tabs.map(t => t[0])}
 	</Tabs>);
 

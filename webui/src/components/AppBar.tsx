@@ -42,7 +42,7 @@ export function AppBar() {
 
 
 	return <Box sx={{
-		bgcolor: 'primary.light',
+		bgcolor: 'primary.main',
 	}}>
 		<Toolbar>
 			<IconButton

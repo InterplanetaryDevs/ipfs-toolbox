@@ -1,5 +1,6 @@
 import React, {createContext, PropsWithChildren, useCallback, useContext, useMemo} from 'react';
 import {IIpfsClusterApi} from 'ipfs-cluster-api';
+import {useConfigurationProperty} from '../hooks/UseConfigurationProperty';
 import {INodeContext} from './INodeContext';
 import {useConnectionChecker} from '../hooks/UseConnectionChecker';
 import {useConfiguration} from '../hooks/UseConfiguration';
@@ -11,7 +12,8 @@ export interface IIpfsClusterContext extends INodeContext<IIpfsClusterApi> {
 }
 
 export const IpfsClusterContextProvider = (props: PropsWithChildren<{ create: (url: string) => IIpfsClusterApi }>) => {
-	const {ipfsClusterUrl} = useConfiguration();
+	const config = useConfiguration();
+	const [ipfsClusterUrl] = useConfigurationProperty<string>(config.ipfsClusterUrl);
 
 	const api = useMemo(() => props.create(ipfsClusterUrl), [ipfsClusterUrl]);
 	const check = useCallback(() => api.id().then(() => true), [api]);
@@ -22,7 +24,7 @@ export const IpfsClusterContextProvider = (props: PropsWithChildren<{ create: (u
 			runCheck,
 			node: api,
 			connected,
-			checking
+			checking,
 		}}
 	>
 		{props.children}

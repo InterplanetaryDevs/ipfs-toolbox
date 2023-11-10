@@ -2,14 +2,16 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import {ThemeProvider} from '@mui/material';
 import React, {createContext, PropsWithChildren, useContext, useEffect, useMemo, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {useConfiguration, useConfigurationSetup} from '../hooks/UseConfiguration';
-import {IConfigurationService} from '../services/IConfigurationService';
-import {IConfigurationStore} from '../services/IConfigurationStore';
+import {useConfigurationProperty} from '../hooks/UseConfigurationProperty';
+import {ConfigurationService} from '../services/configuration/ConfigurationService';
+import {DefaultConfiguration} from '../services/configuration/DefaultConfiguration';
+import {IConfiguration, IConfigurationService} from '../services/configuration/IConfigurationService';
+import {IConfigurationStore} from '../services/configuration/IConfigurationStore';
 import {IShortCut} from '../services/ShortcutService/IShortCut';
 import {ShortcutService} from '../services/ShortcutService/ShortcutService';
-import {darkTheme, lightTheme} from '../Theme';
+import {createDarkTheme, createLightTheme} from '../Theme';
 import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
-import {ALL_TOOLS, TOOLS} from '../tools/TOOLS';
+import {ALL_TOOLS} from '../tools/TOOLS';
 import {ITool, IToolCategory} from '../types';
 
 export interface IToolBoxContext {
@@ -40,7 +42,11 @@ function useToolShortCut(tool: ITool): Omit<IShortCut, 'keyBind'> {
 	};
 }
 
-export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfigurationStore, tools: IToolCategory[] }>) {
+export function ToolBoxContextProvider(props: PropsWithChildren<{
+	store: IConfigurationStore,
+	tools: IToolCategory[],
+	defaultConfiguration?: IConfiguration
+}>) {
 	const [menu, setMenu] = useState<JSX.Element>();
 	const [isSearchOpen, setSearchOpen] = useState(false);
 	const [isMenuOpen, setMenuOpen] = useState(false);
@@ -49,14 +55,16 @@ export function ToolBoxContextProvider(props: PropsWithChildren<{ store: IConfig
 	const location = useLocation();
 	const dashboardShortCut = useToolShortCut(DashboardDefinition);
 	const configurationShort = useToolShortCut(ConfigurationDefinition);
-	const config = useConfigurationSetup(props.store);
+	const config = useMemo(() => new ConfigurationService(props.store, props.defaultConfiguration ?? DefaultConfiguration), [props]);
+	const [darkMode] = useConfigurationProperty<boolean>(config.darkMode);
+	const [accentColor] = useConfigurationProperty<string>(config.accentColor);
+	const theme = useMemo(() => darkMode ? createDarkTheme(accentColor) : createLightTheme(accentColor), [darkMode, accentColor]);
 
 	function setTool(tool: ITool) {
 		n(tool.url);
 	}
 
 	const tool = location.pathname == '/' ? DashboardDefinition : ALL_TOOLS.find(t => t.url.startsWith(location.pathname))!;
-	const theme = useMemo(() => config.darkMode ? darkTheme : lightTheme, [config.darkMode]);
 
 	useEffect(() => {
 		const symbols = [

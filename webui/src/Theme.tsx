@@ -1,25 +1,23 @@
-import {createTheme} from '@material-ui/core/styles';
-import {ThemeOptions} from '@material-ui/core/styles/createMuiTheme';
+import {createTheme, ThemeOptions} from '@material-ui/core/styles';
 
-export const Theme: ThemeOptions = {
-	palette: {
-		mode: 'dark',
-		primary: {
-			main: '#1a237e',
-		},
-		secondary: {
-			main: '#0277bd',
-		},
-	},
-};
+// export const Theme: ThemeOptions = {
+// 	palette: {
+// 		mode: 'dark',
+// 		primary: {
+// 			main: '#1a237e',
+// 		},
+// 		secondary: {
+// 			main: '#0277bd',
+// 		},
+// 	},
+// };
 
-const baseTheme: ThemeOptions = {
+const baseTheme = createTheme({
 	typography: {
-		fontFamily: '\'Work Sans\', sans-serif',
+		fontFamily: '\'Roboto Condensed\', sans-serif',
 		fontSize: 14,
-		fontFamilySecondary: '\'Roboto Condensed\', sans-serif',
 	},
-};
+});
 
 const darkTheme = createTheme({
 	...baseTheme,

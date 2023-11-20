@@ -3,8 +3,9 @@
     <config-file value="$PROJECT_DIR$/jest.config.js" />
     <node-interpreter value="project" />
     <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-    <working-dir value="$PROJECT_DIR$/" />
-    <jest-options value="-w 4" />
+    <working-dir value="$PROJECT_DIR$/tests" />
+    <node-options value="" />
+    <jest-options value="-w 4 --ci" />
     <envs />
     <scope-kind value="ALL" />
     <method v="2" />

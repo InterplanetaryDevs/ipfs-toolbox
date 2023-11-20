@@ -1,4 +1,3 @@
-import React from 'react';
 import {EmbedTool} from './EmbedTool';
 import {ITool, IToolCategory} from '../types';
 import {
@@ -7,6 +6,7 @@ import {
 	IpfsClusterToolDefinition,
 	IpnsToolDefinition
 } from './definitions';
+import {StatusToolDefinition} from './definitions/StatusToolDefinition';
 
 export const IpfsWebUIDefinition: ITool = {
 	url: '/webui',
@@ -23,7 +23,7 @@ export const IpfsCidToolDefinition: ITool = {
 
 export const TOOLS: IToolCategory[] = [
 	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [IpnsToolDefinition, IpfsClusterToolDefinition]},
+	{name: 'Tools', tools: [StatusToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];

@@ -1,12 +1,13 @@
-import {EmbedTool} from './EmbedTool';
-import {ITool, IToolCategory} from '../types';
+import { EmbedTool } from './EmbedTool';
+import { ITool, IToolCategory } from '../types';
 import {
 	ConfigurationDefinition,
 	DashboardDefinition,
 	IpfsClusterToolDefinition,
-	IpnsToolDefinition
+	IpnsToolDefinition,
+	MfsTextEditorDefinition
 } from './definitions';
-import {StatusToolDefinition} from './definitions/StatusToolDefinition';
+import { StatusToolDefinition } from './definitions/StatusToolDefinition';
 
 export const IpfsWebUIDefinition: ITool = {
 	url: '/webui',
@@ -22,10 +23,10 @@ export const IpfsCidToolDefinition: ITool = {
 };
 
 export const TOOLS: IToolCategory[] = [
-	{name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition]},
-	{name: 'Tools', tools: [StatusToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition]},
+	{ name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition] },
+	{ name: 'Tools', tools: [StatusToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition, MfsTextEditorDefinition] },
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
 
-export const ALL_TOOLS: ITool[] = [...TOOLS.map(c => c.tools).flat(), ...AdditionalTools]
+export const ALL_TOOLS: ITool[] = [...TOOLS.map(c => c.tools).flat(), ...AdditionalTools];

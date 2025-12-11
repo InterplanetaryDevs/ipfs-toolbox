@@ -1,10 +1,10 @@
-import {Card, CardContent, CardHeader, CircularProgress, Stack} from '@mui/material';
+import { Card, CardContent, CardHeader, CircularProgress, Stack } from '@mui/material';
 import Chart from 'chart.js/auto';
-import React, {useEffect, useRef, useState} from 'react';
-import {ConnectionChecker} from '../components/ConnectionChecker';
-import {ToolContainer} from '../components/ToolContainer';
-import {useIpfs} from '../context/IpfsContext';
-import {useEffectCancel} from '../hooks/UseEffectCancel';
+import React, { useEffect, useRef, useState } from 'react';
+import { ConnectionChecker } from '../components/ConnectionChecker';
+import { ToolContainer } from '../components/ToolContainer';
+import { useIpfs } from '../context/IpfsContext';
+import { useEffectCancel } from '../hooks/UseEffectCancel';
 
 
 export default function StatusTool() {
@@ -12,7 +12,7 @@ export default function StatusTool() {
 	const ipfs = useIpfs();
 
 	useEffectCancel((signal) => {
-		ipfs.node.id({signal}).then(setIdInfo);
+		ipfs.node.id({ signal }).then(setIdInfo);
 	}, []);
 
 	return <ConnectionChecker context={ipfs}>
@@ -24,13 +24,13 @@ export default function StatusTool() {
 							<p>Id: {idInfo.id.toString()}</p>
 							<p>Version: {idInfo.agentVersion}</p>
 							<p>Addresses: <ul>{idInfo.addresses?.map((i: any) => <li>{i.toString()}</li>)}</ul></p>
-						</> : <CircularProgress/>}
+						</> : <CircularProgress />}
 					</CardContent>
 				</Card>
 				<Card>
-					<CardHeader title={'Network'}/>
+					<CardHeader title={'Network'} />
 					<CardContent>
-						<ConnectionChart/>
+						<ConnectionChart />
 					</CardContent>
 				</Card>
 			</Stack>
@@ -39,7 +39,7 @@ export default function StatusTool() {
 }
 
 function ConnectionChart() {
-	const {node} = useIpfs();
+	const { node } = useIpfs();
 	const chartRef = useRef<HTMLCanvasElement>(null);
 	const [chart, setChart] = useState<Chart>();
 
@@ -47,8 +47,8 @@ function ConnectionChart() {
 	useEffectCancel((signal) => {
 		if (chart) {
 			(async () => {
-				for await (const item of node.stats.bw({signal, interval: '1s', poll: true})) {
-					chart.data.labels.push(Date.now());
+				for await (const item of node.stats.bw({ signal, interval: '1s', poll: true })) {
+					chart.data.labels!.push(new Date(Date.now()).toLocaleTimeString());
 					chart.data.datasets[0].data.push(item.rateIn);
 					chart.data.datasets[1].data.push(-item.rateOut);
 					chart.update();
@@ -67,16 +67,47 @@ function ConnectionChart() {
 					labels: [],
 					datasets: [
 						{
-							label: 'Inbound',
+							label: 'In',
+							fill: true,
+							tension: 0.3,
 							data: [],
 						},
 						{
-							label: 'Outbound',
+							label: 'Out',
+							fill: true,
+							tension: 0.3,
 							data: [],
 						},
 					],
 				},
-				options: {},
+				options: {
+					interaction: {
+						mode: 'index',
+						intersect: false,
+					},
+					scales: {
+						y: {
+							suggestedMax: 1_000_000,
+							suggestedMin: -1_000_000,
+							ticks: {
+								callback: (value) => formatBytes(value),
+							},
+						}
+					},
+					plugins: {
+						tooltip: {
+							callbacks: {
+								label: (context) => context.dataset.label ? `${context.dataset.label}: ${formatBytes(context.parsed.y)}` : formatBytes(context.parsed.y),
+							},
+						},
+						decimation: {
+							algorithm: 'lttb',
+							enabled: true,
+							samples: 100,
+							threshold: 100,
+						}
+					},
+				},
 			});
 			setChart(chart);
 		}
@@ -86,5 +117,9 @@ function ConnectionChart() {
 		};
 	}, []);
 
-	return <canvas ref={chartRef}/>;
+	return <canvas ref={chartRef} />;
+}
+
+function formatBytes(value: number | string | null): string {
+	return typeof value === 'number' ? `${(value / 1024 / 1024).toFixed(1)} MiB/s` : (value ?? '');
 }

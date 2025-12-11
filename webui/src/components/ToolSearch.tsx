@@ -1,12 +1,12 @@
-import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField} from '@mui/material';
-import {useToolBox} from '../context/ToolBoxContext';
-import React, {useEffect, useMemo, useState} from 'react';
-import {AdditionalTools, TOOLS} from '../tools/TOOLS';
-import {ITool} from '../types';
-import {DefaultToolIcon} from '../tools/ToolDefaults';
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, Paper, TextField } from '@mui/material';
+import { useToolBox } from '../context/ToolBoxContext';
+import React, { useEffect, useMemo, useState } from 'react';
+import { AdditionalTools, TOOLS } from '../tools/TOOLS';
+import { ITool } from '../types';
+import { DefaultToolIcon } from '../tools/ToolDefaults';
 
 export function ToolSearch() {
-	const {setSearchOpen, isSearchOpen, setTool} = useToolBox();
+	const { setSearchOpen, isSearchOpen, setTool } = useToolBox();
 
 	const [value, setValue] = useState('');
 	const [selected, setSelected] = useState(0);
@@ -41,7 +41,7 @@ export function ToolSearch() {
 				value={value}
 				onChange={e => setValue(e.target.value)}
 				variant={'standard'}
-				sx={{width: '100%'}}
+				sx={{ width: '100%' }}
 				onKeyDown={(ev) => {
 					if (ev.key === 'Enter' && results.length >= selected) {
 						ev.preventDefault();
@@ -64,10 +64,10 @@ export function ToolSearch() {
 				}}
 			/>
 			<List>
-				{results.map((t, k) => (<ListItem key={t.name} selected={selected === k}>
-					<ListItemButton onClick={() => openTool(t)}>
+				{results.map((t, k) => (<ListItem key={t.name}>
+					<ListItemButton onClick={() => openTool(t)} selected={selected === k}>
 						<ListItemIcon>{t.icon ?? DefaultToolIcon}</ListItemIcon>
-						<ListItemText primary={t.name}/>
+						<ListItemText primary={t.name} />
 					</ListItemButton>
 				</ListItem>))}
 			</List>

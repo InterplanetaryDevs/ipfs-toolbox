@@ -6,17 +6,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "kubo-rpc-client": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "kubo-rpc-client": "^6.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "webui": "workspace:^"
   },
   "scripts": {
     "build": "tsc"
   },
   "devDependencies": {
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
-    "typescript": "^5.2.2"
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,4 +1,4 @@
-import {createTheme} from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const baseTheme = createTheme({
 	typography: {
@@ -7,11 +7,11 @@ const baseTheme = createTheme({
 	},
 });
 
-export function createDarkTheme (accentColor: string) {
+export function createDarkTheme(accentColor: string) {
 	return createTheme({
 		...baseTheme,
 		palette: {
-			type: 'dark',
+			mode: 'dark',
 			primary: {
 				main: accentColor,
 			},
@@ -26,7 +26,7 @@ export function createLightTheme(accentColor: string) {
 	return createTheme({
 		...baseTheme,
 		palette: {
-			type: 'light',
+			mode: 'light',
 			primary: {
 				main: '#e0e0e0',
 			},

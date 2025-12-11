@@ -1,11 +1,11 @@
 import SaveIcon from '@mui/icons-material/Save';
-import {Grid, IconButton, TextField} from '@mui/material';
-import React, {useState} from 'react';
-import {PinOptions} from './types/PinOptions';
-import {PinType} from './types/PinType';
+import { Grid, IconButton, TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { PinOptions } from './types/PinOptions';
+import { PinType } from './types/PinType';
 
 export interface PinFormProps {
-	onSubmit: (pin: PinOptions & { cid: string }) => void;
+	onSubmit: (pin: PinOptions & { cid: string; }) => void;
 	values?: PinType;
 }
 
@@ -13,7 +13,7 @@ const defaults = {
 	maxReplication: -1,
 	minReplication: -1,
 	shardSize: 0,
-}
+};
 
 export const PinForm = (props: PinFormProps) => {
 	const [cid, setCid] = useState(props.values?.cid['/'] ?? '');
@@ -34,7 +34,7 @@ export const PinForm = (props: PinFormProps) => {
 
 
 	return <Grid container spacing={3}>
-		<Grid item xs={12}>
+		<Grid size={{ xs: 12 }}>
 			<TextField
 				value={cid}
 				onChange={(e) => setCid(e.target.value)}
@@ -42,7 +42,7 @@ export const PinForm = (props: PinFormProps) => {
 				fullWidth={true}
 			/>
 		</Grid>
-		<Grid item xs={12}>
+		<Grid size={{ xs: 12 }}>
 			<TextField
 				value={name}
 				onChange={(e) => setName(e.target.value)}
@@ -50,7 +50,7 @@ export const PinForm = (props: PinFormProps) => {
 				fullWidth={true}
 			/>
 		</Grid>
-		<Grid item xs={12} lg={6}>
+		<Grid size={{ xs: 12, lg: 6 }}>
 			<TextField
 				value={maxReplication}
 				onChange={(e) => setMaxReplication(e.target.value)}
@@ -58,7 +58,7 @@ export const PinForm = (props: PinFormProps) => {
 				fullWidth={true}
 			/>
 		</Grid>
-		<Grid item xs={12} lg={6}>
+		<Grid size={{ xs: 12, lg: 6 }}>
 			<TextField
 				value={minReplication}
 				onChange={(e) => setMinReplication(e.target.value)}
@@ -66,7 +66,7 @@ export const PinForm = (props: PinFormProps) => {
 				fullWidth={true}
 			/>
 		</Grid>
-		<Grid item xs={12} lg={6}>
+		<Grid size={{ xs: 12, lg: 6 }}>
 			<TextField
 				value={shardSize}
 				onChange={(e) => setShardSize(e.target.value)}
@@ -74,8 +74,8 @@ export const PinForm = (props: PinFormProps) => {
 				fullWidth={true}
 			/>
 		</Grid>
-		<Grid item xs={12}>
-			<IconButton onClick={submit}><SaveIcon/></IconButton>
+		<Grid size={{ xs: 12 }}>
+			<IconButton onClick={submit}><SaveIcon /></IconButton>
 		</Grid>
 	</Grid>;
 };

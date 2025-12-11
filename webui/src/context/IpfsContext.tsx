@@ -1,23 +1,23 @@
-import {Alert, Stack} from '@mui/material';
-import {IPFSHTTPClient} from 'kubo-rpc-client';
-import React, {createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo} from 'react';
-import {useConfiguration} from '../hooks/UseConfiguration';
-import {useConfigurationProperty} from '../hooks/UseConfigurationProperty';
-import {useConnectionChecker} from '../hooks/UseConnectionChecker';
-import {INodeContext} from './INodeContext';
+import { Alert, Stack } from '@mui/material';
+import { KuboRPCClient } from 'kubo-rpc-client';
+import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react';
+import { useConfiguration } from '../hooks/UseConfiguration';
+import { useConfigurationProperty } from '../hooks/UseConfigurationProperty';
+import { useConnectionChecker } from '../hooks/UseConnectionChecker';
+import { INodeContext } from './INodeContext';
 
-export interface IIpfsContext extends INodeContext<IPFSHTTPClient> {
+export interface IIpfsContext extends INodeContext<KuboRPCClient> {
 }
 
 const IpfsContext = createContext<IIpfsContext>({} as IIpfsContext);
 
-export function IpfsContextProvider(props: PropsWithChildren<{ create: (url: string) => IPFSHTTPClient }>) {
+export function IpfsContextProvider(props: PropsWithChildren<{ create: (url: string) => KuboRPCClient; }>) {
 	const config = useConfiguration();
 	const [ipfsUrl] = useConfigurationProperty<string>(config.ipfsUrl);
 
 	const ipfs = useMemo(() => props.create(ipfsUrl), [ipfsUrl]);
 	const check = useCallback(() => ipfs.id().then(() => true), [ipfs]);
-	const {connected, checking, runCheck} = useConnectionChecker(check);
+	const { connected, checking, runCheck } = useConnectionChecker(check);
 
 	useEffect(() => {
 		runCheck();

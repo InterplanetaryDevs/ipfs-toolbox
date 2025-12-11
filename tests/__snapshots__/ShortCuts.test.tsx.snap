@@ -43,36 +43,39 @@ exports[`ShortCuts Reduces list correctly 1`] = `
 exports[`ShortCuts Renders Display 1`] = `
 <div>
   <div
-    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1mfsd6e-MuiChip-root"
+    onClick={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
   >
     <span
-      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+      className="MuiChip-label MuiChip-labelMedium css-1dybbl5-MuiChip-label"
     >
       CTRL
     </span>
   </div>
    + 
   <div
-    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1mfsd6e-MuiChip-root"
+    onClick={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
   >
     <span
-      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+      className="MuiChip-label MuiChip-labelMedium css-1dybbl5-MuiChip-label"
     >
       ALT
     </span>
   </div>
    + 
   <div
-    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+    className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1mfsd6e-MuiChip-root"
+    onClick={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
   >
     <span
-      className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+      className="MuiChip-label MuiChip-labelMedium css-1dybbl5-MuiChip-label"
     >
       H
     </span>
@@ -85,15 +88,15 @@ exports[`ShortCuts Renders List 1`] = `
   className="MuiBox-root css-0"
 >
   <div
-    className="css-1okj3ks-MuiStack-root"
+    className="MuiStack-root css-jfdv4h-MuiStack-root"
   />
 </div>
 `;
 
 exports[`ShortCuts ShortCutButton iconOnly works 1`] = `
 <button
-  className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-  disabled={false}
+  className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-53g0n7-MuiButtonBase-root-MuiIconButton-root"
+  disabled={null}
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -112,25 +115,22 @@ exports[`ShortCuts ShortCutButton iconOnly works 1`] = `
 >
   <svg
     aria-hidden={true}
-    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
     data-testid="BoltIcon"
     focusable="false"
     viewBox="0 0 24 24"
   >
     <path
-      d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"
+      d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66s.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21"
     />
   </svg>
-  <span
-    className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-  />
 </button>
 `;
 
 exports[`ShortCuts ShortCutButton works 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
-  disabled={false}
+  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1uent87-MuiButtonBase-root-MuiButton-root"
+  disabled={null}
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -149,13 +149,13 @@ exports[`ShortCuts ShortCutButton works 1`] = `
 >
   <svg
     aria-hidden={true}
-    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
     data-testid="DashboardIcon"
     focusable="false"
     viewBox="0 0 24 24"
   >
     <path
-      d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
+      d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"
     />
   </svg>
   Test shortcut

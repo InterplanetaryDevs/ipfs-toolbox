@@ -1,6 +1,6 @@
-import {IPFSHTTPClient} from 'kubo-rpc-client';
+import { KuboRPCClient, RoutingAPI } from 'kubo-rpc-client';
 
-export class MockIpfsClient implements IPFSHTTPClient {
+export class MockIpfsClient implements KuboRPCClient {
 	add(entry: any, options: any | undefined): Promise<any> {
 		return Promise.resolve(undefined);
 	}
@@ -12,6 +12,7 @@ export class MockIpfsClient implements IPFSHTTPClient {
 		return generateSequence();
 	}
 
+	routing: any;
 	bases: any;
 	bitswap: any;
 	block: any;
@@ -58,8 +59,8 @@ export class MockIpfsClient implements IPFSHTTPClient {
 		return Promise.resolve(undefined);
 	}
 
-	isOnline(): boolean {
-		return false;
+	isOnline(): Promise<boolean> {
+		return Promise.resolve(false);
 	}
 
 	key: any;

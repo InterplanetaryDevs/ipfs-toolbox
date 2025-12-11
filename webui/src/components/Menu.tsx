@@ -11,16 +11,16 @@ import {
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {useToolBox} from '../context/ToolBoxContext';
-import {ToolList} from './ToolList';
+import { useToolBox } from '../context/ToolBoxContext';
+import { ToolList } from './ToolList';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import {ToolSearch} from './ToolSearch';
-import {ITool} from '../types';
-import {ConfigurationDefinition, DashboardDefinition} from '../tools/definitions';
+import { ToolSearch } from './ToolSearch';
+import { ITool } from '../types';
+import { ConfigurationDefinition, DashboardDefinition } from '../tools/definitions';
 
 export function Menu() {
-	const {tool, setTool, setMenuOpen, isMenuOpen, setSearchOpen} = useToolBox();
+	const { tool, setTool, setMenuOpen, isMenuOpen, setSearchOpen } = useToolBox();
 
 	const openTool = (tool: ITool) => {
 		setMenuOpen(false);
@@ -28,14 +28,14 @@ export function Menu() {
 	};
 
 	return <>
-		<ToolSearch/>
+		<ToolSearch />
 		<Drawer
 			anchor={'left'}
 			open={isMenuOpen}
 			onClose={() => setMenuOpen(false)}
 		>
 			<Box
-				sx={{width: 350}}
+				sx={{ width: 350 }}
 				role="presentation"
 			>
 				<List>
@@ -45,32 +45,28 @@ export function Menu() {
 							setMenuOpen(false);
 						}}>
 							<ListItemIcon>
-								<SearchIcon/>
+								<SearchIcon />
 							</ListItemIcon>
-							<ListItemText primary={'Search'}/>
+							<ListItemText primary={'Search'} />
 						</ListItemButton>
 					</ListItem>
-					<ListItem disablePadding selected={tool === DashboardDefinition}>
-						<ListItemButton onClick={() => openTool(DashboardDefinition)}>
-							<ListItemIcon>
-								<DashboardIcon/>
-							</ListItemIcon>
-							<ListItemText primary={'Dashboard'}/>
-						</ListItemButton>
-					</ListItem>
+					<ListItemButton onClick={() => openTool(DashboardDefinition)} selected={tool === DashboardDefinition}>
+						<ListItemIcon>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Dashboard'} />
+					</ListItemButton>
 				</List>
-				<ToolList onClick={openTool} tool={tool}/>
-				<Divider/>
+				<ToolList onClick={openTool} tool={tool} />
+				<Divider />
 				<Typography>Settings</Typography>
 				<List>
-					<ListItem disablePadding selected={tool === ConfigurationDefinition}>
-						<ListItemButton onClick={() => openTool(ConfigurationDefinition)}>
-							<ListItemIcon>
-								<SettingsIcon/>
-							</ListItemIcon>
-							<ListItemText primary={'Configuration'}/>
-						</ListItemButton>
-					</ListItem>
+					<ListItemButton onClick={() => openTool(ConfigurationDefinition)} selected={tool === ConfigurationDefinition}>
+						<ListItemIcon>
+							<SettingsIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Configuration'} />
+					</ListItemButton>
 				</List>
 			</Box>
 		</Drawer>

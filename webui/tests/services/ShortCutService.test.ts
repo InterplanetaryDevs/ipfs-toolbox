@@ -1,6 +1,7 @@
-import {IKeyBind} from 'webui/src/services/ShortcutService/IKeyBind';
-import {IShortCut} from 'webui/src/services/ShortcutService/IShortCut';
-import {ShortcutService} from 'webui/src/services/ShortcutService/ShortcutService';
+import { IKeyBind } from 'src/services/ShortcutService/IKeyBind';
+import { IShortCut } from 'src/services/ShortcutService/IShortCut';
+import { ShortcutService } from 'src/services/ShortcutService/ShortcutService';
+import { describe, it, expect } from 'vitest';
 
 const shortcuts: Omit<IShortCut, 'action'>[] = [{
 	name: 'Test',
@@ -19,14 +20,14 @@ const shortcuts: Omit<IShortCut, 'action'>[] = [{
 	},
 }];
 
-function createTestShortCut(action: () => void, index = 0, overrides: {keyBind?: IKeyBind, shortCut?: Partial<Omit<IShortCut, 'keyBind'>>} = {}): IShortCut {
+function createTestShortCut(action: () => void, index = 0, overrides: { keyBind?: IKeyBind, shortCut?: Partial<Omit<IShortCut, 'keyBind'>>; } = {}): IShortCut {
 	let shortcut = shortcuts[Math.min(Math.min(index, 0), shortcuts.length - 1)];
 
 	return {
 		...shortcut,
 		action,
-	...(overrides.keyBind ?? {}),
-	...(overrides.shortCut ?? {}),
+		...(overrides.keyBind ?? {}),
+		...(overrides.shortCut ?? {}),
 	};
 }
 
@@ -94,7 +95,7 @@ describe('Registration', () => {
 		});
 		const shortcut2 = createTestShortCut(() => {
 			called2++;
-		}, 1, {shortCut: {hidden: true}});
+		}, 1, { shortCut: { hidden: true } });
 		service.registerShortCut(shortcut1);
 		service.registerShortCut(shortcut2);
 

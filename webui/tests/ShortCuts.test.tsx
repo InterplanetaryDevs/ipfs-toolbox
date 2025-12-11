@@ -1,14 +1,15 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import {SnackbarProvider} from 'notistack';
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
-import {MemoryRouter} from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import {MemoryConfigurationStore} from 'testing';
-import {ShortcutButton} from 'webui/src/components/ShortcutButton';
-import {ShortCutDisplay} from 'webui/src/components/ShortCutDisplay';
-import {reduceEntries, ShortCutList} from 'webui/src/components/ShortCutList';
-import {ToolBoxContextProvider} from 'webui/src/context/ToolBoxContext';
-import {TOOLS} from 'webui/src/tools/TOOLS';
+import { MemoryConfigurationStore } from 'testing';
+import { ShortcutButton } from 'webui/src/components/ShortcutButton';
+import { ShortCutDisplay } from 'webui/src/components/ShortCutDisplay';
+import { reduceEntries, ShortCutList } from 'webui/src/components/ShortCutList';
+import { ToolBoxContextProvider } from 'webui/src/context/ToolBoxContext';
+import { TOOLS } from 'webui/src/tools/TOOLS';
+import { describe, it, expect } from 'vitest';
 
 describe('ShortCuts', () => {
 	it('Reduces list correctly', async () => {
@@ -47,7 +48,7 @@ describe('ShortCuts', () => {
 		const component = renderer.create(<MemoryRouter>
 			<SnackbarProvider>
 				<ToolBoxContextProvider store={new MemoryConfigurationStore()} tools={TOOLS}>
-					<ShortCutList/>
+					<ShortCutList />
 				</ToolBoxContextProvider>
 			</SnackbarProvider>
 		</MemoryRouter>);
@@ -60,7 +61,7 @@ describe('ShortCuts', () => {
 			key: 'h',
 			ctrl: true,
 			alt: true,
-		}}/>);
+		}} />);
 
 		expect(component).toMatchSnapshot();
 	});
@@ -72,13 +73,13 @@ describe('ShortCuts', () => {
 				called++;
 			},
 			name: 'Test shortcut',
-			icon: <DashboardIcon/>,
+			icon: <DashboardIcon />,
 			keyBind: {
 				key: 'h',
 				ctrl: true,
 				alt: true,
 			},
-		}}/>);
+		}} />);
 
 		expect(called).toBe(0);
 
@@ -101,7 +102,7 @@ describe('ShortCuts', () => {
 				ctrl: true,
 				alt: true,
 			},
-		}}/>);
+		}} />);
 
 		expect(called).toBe(0);
 

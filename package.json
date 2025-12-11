@@ -1,20 +1,17 @@
 {
-  "name": "ipfs-toolbox",
-  "packageManager": "yarn@4.0.1",
-  "workspaces": [
-    "webui",
-    "ipfs-cluster-api",
-    "tests",
-    "testing"
-  ],
-  "scripts": {
-    "watch": "yarn workspaces foreach -Api run watch",
-    "build": "yarn workspaces foreach -At run build",
-    "test": "yarn build && jest",
-    "test-coverage": "yarn build && jest --ci --coverage"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1"
-  }
+	"name": "ipfs-toolbox",
+	"packageManager": "yarn@4.0.1",
+	"workspaces": [
+		"webui",
+		"ipfs-cluster-api"
+	],
+	"scripts": {
+		"watch": "yarn workspaces foreach -Api run watch",
+		"build": "yarn workspaces foreach -Apt run build",
+		"test": "yarn workspaces foreach -Apt run test",
+		"upgrade": "yarn upgrade-interactive"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3"
+	}
 }

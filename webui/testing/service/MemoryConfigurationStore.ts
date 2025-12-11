@@ -1,4 +1,4 @@
-import {IConfigurationStore} from 'webui/src/services/configuration/IConfigurationStore';
+import { IConfigurationStore } from 'src/services/configuration/IConfigurationStore';
 
 export class MemoryConfigurationStore implements IConfigurationStore {
 	public data = new Map<string, any>();

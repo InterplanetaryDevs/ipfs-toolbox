@@ -1,6 +1,7 @@
-import {MemoryConfigurationStore} from 'testing';
-import {ConfigurationService} from 'webui/src/services/configuration/ConfigurationService';
-import {DefaultConfiguration} from 'webui/src/services/configuration/DefaultConfiguration';
+import { MemoryConfigurationStore } from 'testing';
+import { ConfigurationService } from 'src/services/configuration/ConfigurationService';
+import { DefaultConfiguration } from 'src/services/configuration/DefaultConfiguration';
+import { describe, it, expect } from 'vitest';
 
 describe('Configuration', () => {
 	it('calls listeners', () => {

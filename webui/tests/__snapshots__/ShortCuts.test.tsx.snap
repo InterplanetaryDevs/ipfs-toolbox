@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ShortCuts Reduces list correctly 1`] = `
+exports[`ShortCuts > Reduces list correctly 1`] = `
 [
   [
     "unknown",
@@ -40,7 +40,7 @@ exports[`ShortCuts Reduces list correctly 1`] = `
 ]
 `;
 
-exports[`ShortCuts Renders Display 1`] = `
+exports[`ShortCuts > Renders Display 1`] = `
 <div>
   <div
     className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1mfsd6e-MuiChip-root"
@@ -83,7 +83,7 @@ exports[`ShortCuts Renders Display 1`] = `
 </div>
 `;
 
-exports[`ShortCuts Renders List 1`] = `
+exports[`ShortCuts > Renders List 1`] = `
 <div
   className="MuiBox-root css-0"
 >
@@ -93,7 +93,7 @@ exports[`ShortCuts Renders List 1`] = `
 </div>
 `;
 
-exports[`ShortCuts ShortCutButton iconOnly works 1`] = `
+exports[`ShortCuts > ShortCutButton iconOnly works 1`] = `
 <button
   className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-53g0n7-MuiButtonBase-root-MuiIconButton-root"
   disabled={null}
@@ -127,7 +127,7 @@ exports[`ShortCuts ShortCutButton iconOnly works 1`] = `
 </button>
 `;
 
-exports[`ShortCuts ShortCutButton works 1`] = `
+exports[`ShortCuts > ShortCutButton works 1`] = `
 <button
   className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1uent87-MuiButtonBase-root-MuiButton-root"
   disabled={null}

@@ -5,13 +5,12 @@
 	"scripts": {
 		"watch": "vite",
 		"build": "vite build",
-		"upgrade": "yarn upgrade-interactive"
+		"test": "vitest run"
 	},
 	"packageManager": "yarn@3.2.4",
 	"eslintConfig": {
 		"extends": [
-			"react-app",
-			"react-app/jest"
+			"react-app"
 		]
 	},
 	"dependencies": {
@@ -30,16 +29,22 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-router-dom": "^6.30.2",
-		"typescript": "^5.9.3",
 		"uint8arrays": "^5.1.0"
 	},
 	"devDependencies": {
 		"@originjs/vite-plugin-commonjs": "^1.0.3",
-		"@types/jest": "^29.2.1",
+		"@types/jsdom": "^27",
 		"@types/node": "^24.10.2",
 		"@types/react": "^18.3.27",
 		"@types/react-dom": "^18.3.7",
+		"@types/react-test-renderer": "^19",
+		"@vitest/coverage-v8": "^4.0.15",
+		"jsdom": "^27.3.0",
+		"react-test-renderer": "^18.3.1",
+		"typescript": "^5.9.3",
 		"vite": "^7.2.7",
-		"vite-plugin-env-compatible": "^2.0.1"
+		"vite-plugin-env-compatible": "^2.0.1",
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "^4.0.15"
 	}
 }

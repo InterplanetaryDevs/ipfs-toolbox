@@ -19,6 +19,7 @@
 		"@emotion/styled": "^11.14.1",
 		"@mui/icons-material": "^7.3.6",
 		"@mui/material": "^7.3.6",
+		"@mui/x-tree-view": "^8.27.2",
 		"axios": "^1.13.2",
 		"chart.js": "^4.5.1",
 		"codemirror": "^6.0.2",

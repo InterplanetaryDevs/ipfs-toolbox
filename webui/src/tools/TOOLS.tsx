@@ -1,13 +1,14 @@
-import { EmbedTool } from './EmbedTool';
 import { ITool, IToolCategory } from '../types';
 import {
+	CborToolDefinition,
 	ConfigurationDefinition,
 	DashboardDefinition,
 	IpfsClusterToolDefinition,
 	IpnsToolDefinition,
-	MfsTextEditorDefinition
+	MfsTextEditorDefinition,
+	StatusToolDefinition
 } from './definitions';
-import { StatusToolDefinition } from './definitions/StatusToolDefinition';
+import { EmbedTool } from './EmbedTool';
 
 export const IpfsWebUIDefinition: ITool = {
 	url: '/webui',
@@ -24,7 +25,7 @@ export const IpfsCidToolDefinition: ITool = {
 
 export const TOOLS: IToolCategory[] = [
 	{ name: 'Official', tools: [IpfsWebUIDefinition, IpfsCidToolDefinition] },
-	{ name: 'Tools', tools: [StatusToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition, MfsTextEditorDefinition] },
+	{ name: 'Tools', tools: [StatusToolDefinition, IpnsToolDefinition, IpfsClusterToolDefinition, MfsTextEditorDefinition, CborToolDefinition] },
 ];
 
 export const AdditionalTools = [DashboardDefinition, ConfigurationDefinition];
